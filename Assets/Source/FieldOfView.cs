@@ -3,35 +3,44 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
+    [SerializeField] private LayerMask _layerMask;
+
+    private Mesh _mesh;
+
+    private Vector3 _origin;
+
     private void Start()
     {
-        Mesh mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = mesh;
-        
+        _origin = Vector3.zero;
+        _mesh = new Mesh();
+        _layerMask = LayerMask.GetMask("Objects");
+        GetComponent<MeshFilter>().mesh = _mesh;
+    }
 
-        float fov = 90f;
-        Vector3 origin = Vector3.zero;
+    private void LateUpdate()
+    {
+        float fov = 360f;
         int rayCount = 50;
         float angle = 0f;
         float angleIncrease = fov / rayCount;
-        float viewDistance = 5f;
+        float viewDistance = 10f;
 
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
         int[] triangles = new int[rayCount * 3];
 
-        vertices[0] = origin;
+        vertices[0] = _origin;
 
         int vertexIndex = 1;
         int triangleIndex = 0;
         for (int i = 0; i <= rayCount; i++)
         {
             Vector3 vertex;
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, Utilities.GetVectorFromAngle(angle), viewDistance);
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(_origin, Utilities.GetVectorFromAngle(angle), viewDistance, _layerMask.value);
             if (raycastHit2D.collider == null)
             {
-                vertex = origin + Utilities.GetVectorFromAngle(angle) * viewDistance;
+                vertex = _origin + Utilities.GetVectorFromAngle(angle) * viewDistance;
             }
             else
             {
@@ -53,8 +62,14 @@ public class FieldOfView : MonoBehaviour
             angle -= angleIncrease;
         }
 
-        mesh.vertices = vertices;
-        mesh.uv = uv;
-        mesh.triangles = triangles;
+        _mesh.vertices = vertices;
+        _mesh.uv = uv;
+        _mesh.triangles = triangles;
+    }
+
+    public void SetOrigin(Vector3 origin)
+    {
+        this._origin = origin;
+        transform.position = Vector3.zero;
     }
 }

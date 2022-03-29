@@ -18,6 +18,7 @@ namespace DungeonCrawl.Actors
 
         private (int x, int y) _position;
         private SpriteRenderer _spriteRenderer;
+        private FieldOfView _fieldOfView;
 
         private void Awake()
         {
@@ -29,12 +30,16 @@ namespace DungeonCrawl.Actors
             {
                 CameraController.Singleton.Camera.transform.parent = this.transform;
                 CameraController.Singleton.Position = (0, 0);
-                
-                SpriteMask spriteMask = Instantiate(Resources.Load<SpriteMask>("Sprite Mask"));
-                spriteMask.transform.parent = this.transform;
+
+                _fieldOfView = Instantiate(Resources.Load<FieldOfView>("FieldOfView"));
+                _fieldOfView.transform.parent = this.transform;
+
+                //SpriteMask spriteMask = Instantiate(Resources.Load<SpriteMask>("Sprite Mask"));
+                //spriteMask.transform.parent = this.transform;
             }
 
-            _spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            //_spriteRenderer.maskInteraction = SpriteMaskInteraction.None;
+            //_spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         }
 
         private void Update()
@@ -58,6 +63,11 @@ namespace DungeonCrawl.Actors
             {
                 // No obstacle found, just move
                 Position = targetPosition;
+
+                if (this.GetType() == typeof(Player))
+                {
+                    _fieldOfView.SetOrigin(transform.position);
+                }
             }
             else
             {
@@ -65,6 +75,11 @@ namespace DungeonCrawl.Actors
                 {
                     // Allowed to move
                     Position = targetPosition;
+
+                    if (this.GetType() == typeof(Player))
+                    {
+                        _fieldOfView.SetOrigin(transform.position);
+                    }
                 }
             }
         }
