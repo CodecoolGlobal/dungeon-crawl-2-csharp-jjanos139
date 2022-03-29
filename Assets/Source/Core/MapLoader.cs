@@ -59,6 +59,86 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<Skeleton>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
                     break;
+                case 'b':
+                    ActorManager.Singleton.Spawn<Bat>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'B':
+                    ActorManager.Singleton.Spawn<Bear>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'c':
+                    ActorManager.Singleton.Spawn<Crocodile>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'g':
+                    ActorManager.Singleton.Spawn<Ghoul>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'x':
+                    ActorManager.Singleton.Spawn<Scorpion>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'S':
+                    ActorManager.Singleton.Spawn<Snake>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'X':
+                    ActorManager.Singleton.Spawn<Spider>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'C':
+                    ActorManager.Singleton.Spawn<Cactus>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'D':
+                    ActorManager.Singleton.Spawn<Diamond>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'd':
+                    ActorManager.Singleton.Spawn<Drumstick>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'e':
+                    ActorManager.Singleton.Spawn<Explosive>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'G':
+                    ActorManager.Singleton.Spawn<Grave>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'K':
+                    ActorManager.Singleton.Spawn<Key>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'A':
+                    ActorManager.Singleton.Spawn<Apple>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'P':
+                    ActorManager.Singleton.Spawn<Potion>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case '|':
+                    ActorManager.Singleton.Spawn<Switch>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'R':
+                    ActorManager.Singleton.Spawn<Ring>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 't':
+                    ActorManager.Singleton.Spawn<Tree1>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'T':
+                    ActorManager.Singleton.Spawn<Tree2>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'u':
+                    ActorManager.Singleton.Spawn<Tree3>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
                 case ' ':
                     break;
                 default:
