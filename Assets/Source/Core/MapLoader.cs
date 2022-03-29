@@ -138,6 +138,46 @@ namespace DungeonCrawl.Core
                 case 'u':
                     ActorManager.Singleton.Spawn<Tree3>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'o':
+                    ActorManager.Singleton.Spawn<Bow>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case '-':
+                    ActorManager.Singleton.Spawn<Bridge>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'Z':
+                    ActorManager.Singleton.Spawn<Danger>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case '_':
+                    ActorManager.Singleton.Spawn<Gate>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'H':
+                    ActorManager.Singleton.Spawn<Heart>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case '1':
+                    ActorManager.Singleton.Spawn<Shield1>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case '2':
+                    ActorManager.Singleton.Spawn<Shield2>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case '3':
+                    ActorManager.Singleton.Spawn<Sword1>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case '4':
+                    ActorManager.Singleton.Spawn<Sword2>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;                
+                case 'W':
+                    ActorManager.Singleton.Spawn<Water>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
                     break;
                 case ' ':
                     break;
