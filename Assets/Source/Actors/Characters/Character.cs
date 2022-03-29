@@ -1,4 +1,6 @@
-﻿using DungeonCrawl.Core;
+﻿using System;
+using DungeonCrawl.Core;
+using UnityEngine;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -18,6 +20,91 @@ namespace DungeonCrawl.Actors.Characters
                 ActorManager.Singleton.DestroyActor(this);
             }
         }
+
+        protected void CheckIfAggro((int x, int y) playerCoords, int agroRange, int loseAgroRange)
+        {
+            var monsterPos = new Vector3(Position.x, Position.y, Z);
+            var playerPos = new Vector3(playerCoords.x, playerCoords.y, Z);
+            float dist = Vector3.Distance(monsterPos, playerPos);
+            if (!_isAggro && dist <= agroRange)
+            {
+                _isAggro = true;
+            }
+            else if (_isAggro && dist >= loseAgroRange)
+            {
+                _isAggro = false;
+            }
+        }
+
+        protected Direction GetMoveDirection((int x, int y) playerCoords)
+        {
+            //------------------------------------------------------------------------------------------------------------------
+            if (playerCoords.x - Position.x >= 0)
+            {
+                (int x, int y) targetPosition = (Position.x + 1, Position.y);
+                if (playerCoords.y - Position.y >= 0)
+                {
+
+                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y) &&
+                        (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                        ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall"))
+                    {
+                        return Direction.Right;
+                    }
+                    else
+                    {
+                        return Direction.Up;
+                    }
+                }//-------------------------------------------------------------------------------------------------------------
+                else if (playerCoords.y - Position.y <= 0)
+                {
+                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y) &&
+                        (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                         ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall"))
+                    {
+                        return Direction.Right;
+                    }
+                    else
+                    {
+                        return Direction.Down;
+                    }
+                }
+            }//-----------------------------------------------------------------------------------------------------------------
+            else if (playerCoords.x - Position.x <= 0)
+            {
+                (int x, int y) targetPosition = (Position.x - 1, Position.y);
+                if (playerCoords.y - Position.y >= 0)
+                {
+                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y) &&
+                        (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                         ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall"))
+                    {
+                        return Direction.Left;
+                    }
+                    else
+                    {
+                        return Direction.Up;
+                    }
+                }//-------------------------------------------------------------------------------------------------------------
+                else if (playerCoords.y - Position.y <= 0)
+                {
+                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y) &&
+                        (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                         ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall"))
+                    {
+                        return Direction.Left;
+                    }
+                    else
+                    {
+                        return Direction.Down;
+                    }
+                }
+            }//-----------------------------------------------------------------------------------------------------------------
+
+            throw new Exception("Where on earth  is that drone?");
+        }
+
+        protected bool _isAggro;
 
         protected abstract void OnDeath();
 

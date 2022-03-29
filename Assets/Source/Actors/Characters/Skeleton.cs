@@ -1,5 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
+using DungeonCrawl.Core;
+using UnityEditor.AnimatedValues;
+using UnityEngine;
 using static DungeonCrawl.Utilities;
+
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -21,12 +26,21 @@ namespace DungeonCrawl.Actors.Characters
             if (_turnCounter >= 1)
             {
                 _turnCounter = 0;
-                Direction direction = GetRandomDirection();
-                TryMove(direction);
+                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayerCoords();
+                CheckIfAggro(playerCoords, 3, 5);
+
+                if (_isAggro)
+                {
+                    TryMove(GetMoveDirection(playerCoords));
+                }
+                else if (!_isAggro)
+                {
+                    Direction direction = GetRandomDirection();
+                    TryMove(direction);
+                }
             }
         }
-
-
+        
         private float _turnCounter;
         public override int DefaultSpriteId => 316;
         public override string DefaultName => "Skeleton";
