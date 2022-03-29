@@ -306,6 +306,10 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<Web>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
                     break;
+                case 'Ú':
+                    ActorManager.Singleton.Spawn<Skull>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
