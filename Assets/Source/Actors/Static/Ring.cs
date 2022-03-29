@@ -4,6 +4,7 @@
     {
         public override int DefaultSpriteId => 332;
         public override string DefaultName => "Ring";
+        public override int Z => -1;
 
         public override bool Detectable => false;
     }

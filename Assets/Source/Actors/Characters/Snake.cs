@@ -14,7 +14,7 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("Trust in me...");
         }
 
-        public override int DefaultSpriteId => 412;
+        public override int DefaultSpriteId => 411;
         public override string DefaultName => "Snake";
     }
 }

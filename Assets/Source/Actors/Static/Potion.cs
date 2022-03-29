@@ -6,5 +6,6 @@
         public override string DefaultName => "Potion";
 
         public override bool Detectable => false;
+        public override int Z => -1;
     }
 }
