@@ -1,9 +1,9 @@
 ﻿namespace DungeonCrawl.Actors.Static
 {
-    public class Grave : Actor
+    public class Grave2 : Actor
     {
-        public override int DefaultSpriteId => 672;
-        public override string DefaultName => "Grave";
+        public override int DefaultSpriteId => 671;
+        public override string DefaultName => "Grave2";
         public override int Z => -1;
 
 
