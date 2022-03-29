@@ -55,6 +55,10 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<Player>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
                     break;
+                case 'Ő':
+                    ActorManager.Singleton.Spawn<Player>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
                 case 's':
                     ActorManager.Singleton.Spawn<Skeleton>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
@@ -236,6 +240,17 @@ namespace DungeonCrawl.Core
                 case 'v':
                     ActorManager.Singleton.Spawn<Wizard>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
+                case 'ő':
+                    ActorManager.Singleton.Spawn<Torch>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
+                case 'ö':
+                    ActorManager.Singleton.Spawn<Wizard>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
+                case 'ú':
+                    ActorManager.Singleton.Spawn<Stairs>(position);
                     break;
                 case ' ':
                     break;
