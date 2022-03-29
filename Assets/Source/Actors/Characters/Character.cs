@@ -41,62 +41,126 @@ namespace DungeonCrawl.Actors.Characters
             //------------------------------------------------------------------------------------------------------------------
             if (playerCoords.x - Position.x >= 0)
             {
-                (int x, int y) targetPosition = (Position.x + 1, Position.y);
                 if (playerCoords.y - Position.y >= 0)
                 {
 
-                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y) &&
-                        (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                        ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall"))
+                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y))
                     {
-                        return Direction.Right;
+                        (int x, int y) targetPosition = (Position.x + 1, Position.y);
+                        if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                        {
+                            return Direction.Right;
+                        }
+                        else
+                        {
+                            return Direction.Up;
+                        }
                     }
                     else
                     {
-                        return Direction.Up;
+                        (int x, int y) targetPosition = (Position.x, Position.y + 1);
+                        if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                        {
+                            return Direction.Up;
+                        }
+                        else
+                        {
+                            return Direction.Right;
+                        }
                     }
                 }//-------------------------------------------------------------------------------------------------------------
-                else if (playerCoords.y - Position.y <= 0)
+                else if (playerCoords.y - Position.y < 0)
                 {
-                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y) &&
-                        (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                         ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall"))
+                    
+                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y))
                     {
-                        return Direction.Right;
+                        (int x, int y) targetPosition = (Position.x + 1, Position.y);
+                        if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                        {
+                            return Direction.Right;
+                        }
+                        else
+                        {
+                            return Direction.Down;
+                        }
                     }
                     else
                     {
-                        return Direction.Down;
+                        (int x, int y) targetPosition = (Position.x, Position.y - 1);
+                        if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                        {
+                            return Direction.Down;
+                        }
+                        else
+                        {
+                            return Direction.Right;
+                        }
                     }
                 }
             }//-----------------------------------------------------------------------------------------------------------------
-            else if (playerCoords.x - Position.x <= 0)
+            else if (playerCoords.x - Position.x < 0)
             {
-                (int x, int y) targetPosition = (Position.x - 1, Position.y);
                 if (playerCoords.y - Position.y >= 0)
                 {
-                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y) &&
-                        (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                         ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall"))
+                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y))
                     {
-                        return Direction.Left;
+                        (int x, int y) targetPosition = (Position.x - 1, Position.y);
+                        if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                        {
+                            return Direction.Left;
+                        }
+                        else
+                        {
+                            return Direction.Up;
+                        }
                     }
                     else
                     {
-                        return Direction.Up;
+                        (int x, int y) targetPosition = (Position.x, Position.y + 1);
+                        if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                        {
+                            return Direction.Up;
+                        }
+                        else
+                        {
+                            return Direction.Left;
+                        }
                     }
                 }//-------------------------------------------------------------------------------------------------------------
-                else if (playerCoords.y - Position.y <= 0)
+                else if (playerCoords.y - Position.y < 0)
                 {
-                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y) &&
-                        (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                         ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall"))
+
+                    if (Math.Abs(playerCoords.x - Position.x) >= Math.Abs(playerCoords.y - Position.y))
                     {
-                        return Direction.Left;
+                        (int x, int y) targetPosition = (Position.x - 1, Position.y);
+                        if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                        {
+                            return Direction.Left;
+                        }
+                        else
+                        {
+                            return Direction.Down;
+                        }
                     }
                     else
                     {
-                        return Direction.Down;
+                        (int x, int y) targetPosition = (Position.x, Position.y - 1);
+                        if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
+                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                        {
+                            return Direction.Down;
+                        }
+                        else
+                        {
+                            return Direction.Left;
+                        }
                     }
                 }
             }//-----------------------------------------------------------------------------------------------------------------
