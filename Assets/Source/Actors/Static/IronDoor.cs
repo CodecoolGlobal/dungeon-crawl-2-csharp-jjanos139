@@ -1,15 +1,15 @@
 ﻿namespace DungeonCrawl.Actors.Static
 {
-    public class Web : Actor
+    public class IronDoor : Actor
     {
-        public override int DefaultSpriteId => 721;
-        public override string DefaultName => "Web";
+        public override int DefaultSpriteId => 194;
+        public override string DefaultName => "IronDoor";
         public override int Z => -1;
 
 
         public override bool OnCollision(Actor anotherActor)
         {
-            return false;
+            return true;
         }
     }
 }

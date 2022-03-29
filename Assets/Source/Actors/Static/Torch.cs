@@ -7,6 +7,9 @@
         public override int Z => -1;
 
 
-        public override bool Detectable => false;
+        public override bool OnCollision(Actor anotherActor)
+        {
+            return false;
+        }
     }
 }
