@@ -37,6 +37,11 @@ namespace DungeonCrawl.Core
         private (int x, int y) _position;
         private Camera _camera;
 
+        public Camera Camera
+        {
+            get => _camera;
+        }
+
         private void Awake()
         {
             if (Singleton != null)

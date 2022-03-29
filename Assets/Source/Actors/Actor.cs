@@ -1,4 +1,5 @@
-﻿using DungeonCrawl.Core;
+﻿using DungeonCrawl.Actors.Characters;
+using DungeonCrawl.Core;
 using UnityEngine;
 
 namespace DungeonCrawl.Actors
@@ -23,6 +24,17 @@ namespace DungeonCrawl.Actors
             _spriteRenderer = GetComponent<SpriteRenderer>();
 
             SetSprite(DefaultSpriteId);
+
+            if (this.GetType() == typeof(Player))
+            {
+                CameraController.Singleton.Camera.transform.parent = this.transform;
+                CameraController.Singleton.Position = (0, 0);
+                
+                SpriteMask spriteMask = Instantiate(Resources.Load<SpriteMask>("Sprite Mask"));
+                spriteMask.transform.parent = this.transform;
+            }
+
+            _spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         }
 
         private void Update()
