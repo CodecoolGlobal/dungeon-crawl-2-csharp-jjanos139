@@ -1,7 +1,4 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using DungeonCrawl.Core;
-using UnityEditor.AnimatedValues;
+﻿using DungeonCrawl.Core;
 using UnityEngine;
 using static DungeonCrawl.Utilities;
 
@@ -26,7 +23,7 @@ namespace DungeonCrawl.Actors.Characters
             if (_turnCounter >= 1)
             {
                 _turnCounter = 0;
-                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayerCoords();
+                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
                 CheckIfAggro(playerCoords, 3, 5);
 
                 if (_isAggro)
