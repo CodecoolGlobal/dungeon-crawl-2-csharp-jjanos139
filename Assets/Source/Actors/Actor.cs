@@ -111,5 +111,8 @@ namespace DungeonCrawl.Actors
 
         public abstract char DefaultChar { get; }
 
+        public int Health { get; set; }
+
+        public int MaxHealth { get; set; }
     }
 }
