@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DungeonCrawl.Core;
+using UnityEngine;
 
 namespace DungeonCrawl.Actors.Static
 {
@@ -12,6 +13,16 @@ namespace DungeonCrawl.Actors.Static
         //    gameObject.transform.localScale = new Vector3(1, -1, 1);
         //}
 
-        public override bool Detectable => false;
+        public override bool OnCollision(Actor anotherActor)
+        {
+            if (anotherActor.DefaultName == "Player")
+            {
+                anotherActor.Inventory.Add(this);
+                ActorManager.Singleton.DestroyActor(this);
+            }
+            return true;
+    }
+
+        public override bool Detectable => true;
     }
 }
