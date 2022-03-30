@@ -11,5 +11,7 @@
         {
             return true;
         }
+
+        public override char DefaultChar => '8';
     }
 }

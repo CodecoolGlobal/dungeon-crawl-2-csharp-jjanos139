@@ -13,5 +13,6 @@ namespace DungeonCrawl.Actors.Static
         //}
 
         public override bool Detectable => false;
+        public override char DefaultChar => '3';
     }
 }

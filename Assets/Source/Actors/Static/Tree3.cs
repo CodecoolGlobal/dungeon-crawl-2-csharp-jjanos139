@@ -14,5 +14,7 @@ namespace DungeonCrawl.Actors.Static
                 return false;
             return true;
         }
+
+        public override char DefaultChar => 'u';
     }
 }

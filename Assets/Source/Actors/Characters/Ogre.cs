@@ -16,5 +16,7 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 317;
         public override string DefaultName => "Ogre";
+
+        public override char DefaultChar => 'r';
     }
 }

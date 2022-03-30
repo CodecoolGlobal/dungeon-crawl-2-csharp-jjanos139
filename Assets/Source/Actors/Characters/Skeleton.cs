@@ -44,5 +44,7 @@ namespace DungeonCrawl.Actors.Characters
         private float _turnCounter;
         public override int DefaultSpriteId => 316;
         public override string DefaultName => "Skeleton";
+
+        public override char DefaultChar => 's';
     }
 }

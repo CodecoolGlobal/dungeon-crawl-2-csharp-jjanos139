@@ -16,5 +16,7 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 267;
         public override string DefaultName => "Spider";
+
+        public override char DefaultChar => 'X';
     }
 }

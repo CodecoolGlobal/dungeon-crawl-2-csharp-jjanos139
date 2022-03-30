@@ -16,5 +16,7 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 122;
         public override string DefaultName => "Demon";
+
+        public override char DefaultChar => '!';
     }
 }

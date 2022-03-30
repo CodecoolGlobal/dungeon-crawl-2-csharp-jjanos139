@@ -6,5 +6,7 @@
         public override string DefaultName => "Bridge";
 
         public override bool Detectable => false;
+
+        public override char DefaultChar => '-';
     }
 }

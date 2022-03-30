@@ -16,5 +16,7 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 455;
         public override string DefaultName => "LastBoss";
+
+        public override char DefaultChar => '§';
     }
 }

@@ -16,5 +16,7 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 78;
         public override string DefaultName => "Priest";
+
+        public override char DefaultChar => '%';
     }
 }

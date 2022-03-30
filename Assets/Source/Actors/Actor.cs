@@ -109,5 +109,7 @@ namespace DungeonCrawl.Actors
         /// </summary>
         public abstract string DefaultName { get; }
 
+        public abstract char DefaultChar { get; }
+
     }
 }

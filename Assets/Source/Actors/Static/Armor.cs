@@ -8,5 +8,6 @@
 
 
         public override bool Detectable => false;
+        public override char DefaultChar => 'q';
     }
 }

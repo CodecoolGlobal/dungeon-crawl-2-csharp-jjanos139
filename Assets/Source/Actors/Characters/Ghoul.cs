@@ -16,5 +16,7 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 313;
         public override string DefaultName => "Ghoul";
+
+        public override char DefaultChar => 'g';
     }
 }

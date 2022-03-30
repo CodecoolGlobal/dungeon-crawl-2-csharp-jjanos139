@@ -1,7 +1,9 @@
 ﻿using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Actors.Static;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using DungeonCrawl.Actors;
 using UnityEngine;
 
 namespace DungeonCrawl.Core
@@ -9,8 +11,12 @@ namespace DungeonCrawl.Core
     /// <summary>
     ///     MapLoader is used for constructing maps from txt files
     /// </summary>
+    ///
     public static class MapLoader
     {
+        public static List<Actor> AllActorsFirstMap;
+        public static List<Actor> AllActorsSecondMap;
+        public static List<Actor> AllActorsThirdNMap;
         /// <summary>
         ///     Constructs map from txt file and spawns actors at appropriate positions
         /// </summary>
@@ -41,6 +47,33 @@ namespace DungeonCrawl.Core
             //CameraController.Singleton.Position = (width / 2, -height / 2);
         }
 
+        public static void ReLoadMap(int mapId)
+        {
+            if (mapId == 1)
+            {
+                foreach (Actor actor in AllActorsFirstMap)
+                {
+                    if (actor.DefaultName != "Player")
+                        SpawnActor(actor.DefaultChar, (actor.Position.x, actor.Position.y));
+                }
+            }
+            else if (mapId == 2)
+            {
+                foreach (Actor actor in AllActorsSecondMap)
+                {
+                    if (actor.DefaultName != "Player")
+                        SpawnActor(actor.DefaultChar, (actor.Position.x, actor.Position.y));
+                }
+            }
+            else if (mapId == 3)
+            {
+                foreach (Actor actor in AllActorsThirdNMap)
+                {
+                    if (actor.DefaultName != "Player")
+                        SpawnActor(actor.DefaultChar, (actor.Position.x, actor.Position.y));
+                }
+            }
+        }
         private static void SpawnActor(char c, (int x, int y) position)
         {
             switch (c)

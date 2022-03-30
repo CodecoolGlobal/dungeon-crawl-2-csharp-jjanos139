@@ -12,12 +12,25 @@ namespace DungeonCrawl.Actors.Static
         {
             if (anotherActor.DefaultName == "Player")
             {
-                ActorManager.Singleton.DestroyAllActors();
-                MapLoader.LoadMap(2);
-                anotherActor.Position = (4, -17);
+                if (MapLoader.AllActorsSecondMap is null)
+                {
+                    ActorManager.Singleton.FreezeActualMap(1);
+                    ActorManager.Singleton.DestroyAllActors();
+                    MapLoader.LoadMap(2);
+                    anotherActor.Position = (4, -17);
+                }
+                else
+                {
+                    ActorManager.Singleton.FreezeActualMap(1);
+                    ActorManager.Singleton.DestroyAllActors();
+                    MapLoader.ReLoadMap(2);
+                    anotherActor.Position = (4, -17);
+                }
             }
 
             return false;
         }
+
+        public override char DefaultChar => 'n';
     }
 }

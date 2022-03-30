@@ -6,5 +6,7 @@
         public override string DefaultName => "Gate";
 
         public override bool Detectable => false;
+
+        public override char DefaultChar => '_';
     }
 }

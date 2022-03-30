@@ -6,6 +6,7 @@ namespace DungeonCrawl.Actors.Characters
     {
         protected override void OnUpdate(float deltaTime)
         {
+            // Move up
             if (Input.GetKeyDown(KeyCode.W))
             {
                 // Move up
@@ -29,6 +30,51 @@ namespace DungeonCrawl.Actors.Characters
                 // Move right
                 TryMove(Direction.Right);
             }
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                // Move down
+                _turnCounter += deltaTime;
+                if (_turnCounter >= 0.25)
+                {
+                    TryMove(Direction.Up);
+                    _turnCounter = 0;
+                }
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                // Move down
+                _turnCounter += deltaTime;
+                if (_turnCounter >= 0.25)
+                {
+                    TryMove(Direction.Down);
+                    _turnCounter = 0;
+                }
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                // Move left
+                _turnCounter += deltaTime;
+                if (_turnCounter >= 0.25)
+                {
+                    TryMove(Direction.Left);
+                    _turnCounter = 0;
+                }
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                // Move right
+                _turnCounter += deltaTime;
+                if (_turnCounter >= 0.25)
+                {
+                    TryMove(Direction.Right);
+                    _turnCounter = 0;
+                }
+            }
+
         }
 
         public override bool OnCollision(Actor anotherActor)
@@ -43,5 +89,7 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 24;
         public override string DefaultName => "Player";
+
+        private float _turnCounter;
     }
 }

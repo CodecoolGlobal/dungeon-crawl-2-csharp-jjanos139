@@ -7,5 +7,6 @@
         public override int Z => -1;
 
         public override bool Detectable => false;
+        public override char DefaultChar => '4';
     }
 }

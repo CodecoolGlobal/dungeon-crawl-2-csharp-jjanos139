@@ -16,5 +16,7 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 457;
         public override string DefaultName => "Wizard";
+
+        public override char DefaultChar => 'v';
     }
 }

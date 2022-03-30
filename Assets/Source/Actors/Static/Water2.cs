@@ -11,5 +11,6 @@
                 return false;
             return true;
         }
+        public override char DefaultChar => 'w';
     }
 }

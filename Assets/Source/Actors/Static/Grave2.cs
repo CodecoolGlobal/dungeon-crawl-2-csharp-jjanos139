@@ -11,5 +11,7 @@
         {
             return false;
         }
+
+        public override char DefaultChar => '(';
     }
 }

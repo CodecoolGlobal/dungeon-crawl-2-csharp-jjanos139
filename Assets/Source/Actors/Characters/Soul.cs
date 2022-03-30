@@ -16,5 +16,7 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 314;
         public override string DefaultName => "Soul";
+
+        public override char DefaultChar => '"';
     }
 }
