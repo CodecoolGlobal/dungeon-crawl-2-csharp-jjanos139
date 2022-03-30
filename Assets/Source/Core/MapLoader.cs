@@ -301,10 +301,6 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<Ghoul>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
                     break;
-                case 'G':
-                    ActorManager.Singleton.Spawn<Grave>(position);
-                    ActorManager.Singleton.Spawn<Floor>(position);
-                    break;
                 case '/':
                     ActorManager.Singleton.Spawn<Knight>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
@@ -329,9 +325,13 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<Battleaxe>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
                     break;
+                case 'G':
+                    ActorManager.Singleton.Spawn<Grave>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
                 case '(':
                     ActorManager.Singleton.Spawn<Grave2>(position);
-                    ActorManager.Singleton.Spawn<GrassFloor>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
                     break;
                 case ')':
                     ActorManager.Singleton.Spawn<House>(position);
