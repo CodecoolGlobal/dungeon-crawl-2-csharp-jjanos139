@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DungeonCrawl.Actors;
 using UnityEngine;
@@ -118,6 +119,19 @@ namespace DungeonCrawl.Core
             _allActors.Add(component);
 
             return component;
+        }
+
+        public (int X, int Y) GetPlayerCoords()
+        {
+            foreach (var actor in _allActors)
+            {
+                if (actor.DefaultName == "Player")
+                {
+                    return actor.Position;
+                }
+            }
+
+            throw new Exception("There is no player on the map!");
         }
     }
 }
