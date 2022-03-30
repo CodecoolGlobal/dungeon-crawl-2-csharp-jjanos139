@@ -1,4 +1,5 @@
-﻿using DungeonCrawl.Actors.Characters;
+﻿using System.Collections.Generic;
+using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Core;
 using UnityEngine;
 
@@ -108,6 +109,8 @@ namespace DungeonCrawl.Actors
         ///     Default name assigned to this actor type
         /// </summary>
         public abstract string DefaultName { get; }
+
+        public List<Actor> Inventory = new List<Actor>();
 
     }
 }
