@@ -73,7 +73,8 @@ namespace DungeonCrawl.Core
             var actors = _allActors.ToArray();
 
             foreach (var actor in actors)
-                DestroyActor(actor);
+                if (actor.DefaultName != "Player")
+                    DestroyActor(actor);
         }
 
         /// <summary>
