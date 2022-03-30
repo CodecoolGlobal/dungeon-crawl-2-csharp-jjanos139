@@ -122,7 +122,7 @@ namespace DungeonCrawl.Core
                 //rigidbody2D.bodyType = RigidbodyType2D.Static;
                 //MeshCollider meshCollider = go.AddComponent<MeshCollider>();
                 //meshCollider.convex = true;
-                boxCollider.enabled = true;
+                //boxCollider.enabled = true;
                 go.layer = 3;
             }
 

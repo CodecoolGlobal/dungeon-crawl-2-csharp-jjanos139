@@ -17,29 +17,33 @@ namespace DungeonCrawl.Actors
         }
 
         private (int x, int y) _position;
-        private SpriteRenderer _spriteRenderer;
-        private FieldOfView _fieldOfView;
+
+        protected SpriteRenderer SpriteRenderer;
+        //private FieldOfView _fieldOfView;
 
         private void Awake()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            SpriteRenderer = GetComponent<SpriteRenderer>();
 
             SetSprite(DefaultSpriteId);
 
             if (this.GetType() == typeof(Player))
             {
-                CameraController.Singleton.Camera.transform.parent = this.transform;
-                CameraController.Singleton.Position = (0, 0);
+                //CameraController.Singleton.Camera.transform.parent = this.transform;
+                //CameraController.Singleton.Position = (0, 0);
 
-                _fieldOfView = Instantiate(Resources.Load<FieldOfView>("FieldOfView"));
-                _fieldOfView.transform.parent = this.transform;
+                //_fieldOfView = Instantiate(Resources.Load<FieldOfView>("FieldOfView"));
+                //_fieldOfView.transform.parent = this.transform;
 
                 //SpriteMask spriteMask = Instantiate(Resources.Load<SpriteMask>("Sprite Mask"));
                 //spriteMask.transform.parent = this.transform;
-            }
+                //}
 
-            //_spriteRenderer.maskInteraction = SpriteMaskInteraction.None;
-            //_spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            }
+            //SpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
+            SpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+
+            //GetComponent<Renderer>().material = Resources.Load<Material>("Materials/Objects");
         }
 
         private void Update()
@@ -49,7 +53,7 @@ namespace DungeonCrawl.Actors
 
         public void SetSprite(int id)
         {
-            _spriteRenderer.sprite = ActorManager.Singleton.GetSprite(id);
+            SpriteRenderer.sprite = ActorManager.Singleton.GetSprite(id);
         }
 
         public void TryMove(Direction direction)
@@ -63,11 +67,6 @@ namespace DungeonCrawl.Actors
             {
                 // No obstacle found, just move
                 Position = targetPosition;
-
-                if (this.GetType() == typeof(Player))
-                {
-                    _fieldOfView.SetOrigin(transform.position);
-                }
             }
             else
             {
@@ -75,11 +74,6 @@ namespace DungeonCrawl.Actors
                 {
                     // Allowed to move
                     Position = targetPosition;
-
-                    if (this.GetType() == typeof(Player))
-                    {
-                        _fieldOfView.SetOrigin(transform.position);
-                    }
                 }
             }
         }
