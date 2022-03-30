@@ -116,19 +116,27 @@ namespace DungeonCrawl.Core
 
             go.name = actorName ?? component.DefaultName;
             component.Position = (x, y);
-
+            if (component.DefaultName == "Player")
+            {
+                Rigidbody2D _rigidbody2D = go.AddComponent<Rigidbody2D>();
+                _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+                _rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            }
+            BoxCollider2D _boxCollider2D = go.AddComponent<BoxCollider2D>();
+            _boxCollider2D.isTrigger = true;
+            _boxCollider2D.size = new Vector2(0.5f, 0.5f);
             _allActors.Add(component);
 
             return component;
         }
 
-        public (int X, int Y) GetPlayerCoords()
+        public Actor GetPlayer()
         {
             foreach (var actor in _allActors)
             {
                 if (actor.DefaultName == "Player")
                 {
-                    return actor.Position;
+                    return actor;
                 }
             }
 

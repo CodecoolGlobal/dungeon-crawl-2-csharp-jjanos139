@@ -1,4 +1,5 @@
-﻿using DungeonCrawl.Core;
+﻿using Assets.Source.Core;
+using DungeonCrawl.Core;
 using UnityEngine;
 
 namespace DungeonCrawl.Actors.Static
@@ -13,15 +14,11 @@ namespace DungeonCrawl.Actors.Static
         //    gameObject.transform.localScale = new Vector3(1, -1, 1);
         //}
 
-        public override bool OnCollision(Actor anotherActor)
+        public void OnTriggerExit2D(Collider2D collider2D)
         {
-            if (anotherActor.DefaultName == "Player")
-            {
-                anotherActor.Inventory.Add(this);
-                ActorManager.Singleton.DestroyActor(this);
-            }
-            return true;
-    }
+            UserInterface.Singleton.SetText(null, UserInterface.TextPosition.BottomRight);
+            ActorManager.Singleton.GetPlayer().ItemUnder = null;
+        }
 
         public override bool Detectable => true;
     }
