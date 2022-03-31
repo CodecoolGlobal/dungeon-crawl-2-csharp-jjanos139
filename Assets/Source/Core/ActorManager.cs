@@ -20,6 +20,7 @@ namespace DungeonCrawl.Core
         private SpriteAtlas _spriteAtlas;
         private HashSet<Actor> _allActors;
 
+
         private void Awake()
         {
             if (Singleton != null)
@@ -63,7 +64,8 @@ namespace DungeonCrawl.Core
         /// <returns></returns>
         public T GetActorAt<T>((int x, int y) position) where T : Actor
         {
-            return _allActors.FirstOrDefault(actor => actor.Detectable && actor is T && actor.Position == position) as T;
+            return _allActors.FirstOrDefault(actor =>
+                actor.Detectable && actor is T && actor.Position == position) as T;
         }
 
         /// <summary>
@@ -86,6 +88,22 @@ namespace DungeonCrawl.Core
             foreach (var actor in actors)
                 if (actor.DefaultName != "Player")
                     DestroyActor(actor);
+        }
+
+        public void FreezeActualMap(int mapId)
+        {
+            if (mapId == 1)
+            {
+                MapLoader.AllActorsFirstMap = _allActors.ToList();
+            }
+            else if (mapId == 2)
+            {
+                MapLoader.AllActorsSecondMap = _allActors.ToList(); ;
+            }
+            else if (mapId == 3)
+            {
+                MapLoader.AllActorsThirdNMap = _allActors.ToList(); ;
+            }
         }
 
         /// <summary>

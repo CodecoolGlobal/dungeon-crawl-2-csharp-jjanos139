@@ -1,4 +1,5 @@
-﻿using DungeonCrawl.Actors.Characters;
+﻿using Assets.Source.Core;
+using DungeonCrawl.Actors.Characters;
 using UnityEngine;
 
 namespace DungeonCrawl.Actors.Static
@@ -20,7 +21,12 @@ namespace DungeonCrawl.Actors.Static
         }
         public override bool OnCollision(Actor anotherActor)
         {
-            if (anotherActor is Player)
+            if (anotherActor.DefaultName == "Player")
+            {
+                UserInterface.Singleton.SetText("Press E to pick up", UserInterface.TextPosition.BottomRight);
+                anotherActor.ItemUnder = this;
+            }
+            else if (anotherActor is Player)
                 _itemPickUp.Play();
             return true;
         }
@@ -31,5 +37,7 @@ namespace DungeonCrawl.Actors.Static
 
 
         public override bool Detectable => true;
+
+        public override char DefaultChar => 'o';
     }
 }

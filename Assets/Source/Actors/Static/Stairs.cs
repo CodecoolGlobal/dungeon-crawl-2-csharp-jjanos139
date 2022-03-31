@@ -28,15 +28,24 @@ namespace DungeonCrawl.Actors.Static
             {
                 if (this.Position == (3, -17))
                 {
-
+                    ActorManager.Singleton.FreezeActualMap(2);
                     ActorManager.Singleton.DestroyAllActors();
-                    MapLoader.LoadMap(1);
                     _mapOneMusic.Play();
+                    MapLoader.ReLoadMap(1);
                     anotherActor.Position = (48, -22);
+                }
+                else if (this.Position == (53, -23))
+                {
+                    ActorManager.Singleton.FreezeActualMap(2);
+                    ActorManager.Singleton.DestroyAllActors();
+                    MapLoader.LoadMap(3);
+                    anotherActor.Position = (7, -8);
                 }
             }
 
             return false;
         }
+
+        public override char DefaultChar => 'ú';
     }
 }

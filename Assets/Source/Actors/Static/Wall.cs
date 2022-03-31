@@ -10,7 +10,13 @@ namespace DungeonCrawl.Actors.Static
         {
             //if (anotherActor.DefaultName == "Player" || anotherActor.DefaultName == "Player")
             //    return false;
+            if (DefaultName == "Soul")
+            {
+                return true;
+            }
             return false;
         }
+
+        public override char DefaultChar => '#';
     }
 }

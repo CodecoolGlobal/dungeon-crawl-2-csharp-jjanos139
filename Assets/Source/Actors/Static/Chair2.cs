@@ -10,6 +10,6 @@
         public override string DefaultName => "Chair2";
         public override int Z => -1;
 
-
+        public override char DefaultChar => '*';
     }
 }

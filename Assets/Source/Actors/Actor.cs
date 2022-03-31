@@ -8,6 +8,7 @@ namespace DungeonCrawl.Actors
 {
     public abstract class Actor : MonoBehaviour
     {
+        
         public (int x, int y) Position
         {
             get => _position;
@@ -115,6 +116,25 @@ namespace DungeonCrawl.Actors
         {
         }
 
+
+        public void ApplyDamage(int damage)
+        {
+            this.Health -= damage;
+            if (this.Health <= 0)
+            {
+                // Die
+                //Character.OnDeath();
+                var cams = GameObject.FindObjectsOfType(typeof(Camera));
+                foreach (Camera cam in cams)
+                {
+                    if (cam.name == "BattleCamera")
+                    {
+                        cam.enabled = false;
+                    }
+                }
+                ActorManager.Singleton.DestroyActor(this);
+            }
+        }
         /// <summary>
         ///     Can this actor be detected with ActorManager.GetActorAt()? Should be false for purely cosmetic actors
         /// </summary>
@@ -134,8 +154,16 @@ namespace DungeonCrawl.Actors
         ///     Default name assigned to this actor type
         /// </summary>
         public abstract string DefaultName { get; }
+
+        public abstract char DefaultChar { get; }
+
+        public virtual int Health { get; set; }
+
+        public virtual int MaxHealth { get; }
+
         public virtual bool IsWalkable => false;
         public List<Actor> Inventory = new List<Actor>();
         public Actor ItemUnder;
+        public virtual int Damage { get; }
     }
 }

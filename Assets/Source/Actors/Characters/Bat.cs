@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using DungeonCrawl.Core;
+using UnityEngine;
+using static DungeonCrawl.Utilities;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -6,7 +8,7 @@ namespace DungeonCrawl.Actors.Characters
     {
         private AudioSource _batSound;
         private AudioSource _batDeathSound;
-
+        BattleSystem battleSystem = new BattleSystem();
         private void Awake()
         {
             base.Awake();
@@ -20,11 +22,31 @@ namespace DungeonCrawl.Actors.Characters
             _batDeathSound = Instantiate(Resources.Load<AudioSource>("BatDeathSound"));
             _batDeathSound.transform.parent = transform;
         }
+        protected override void OnUpdate(float deltaTime)
+        {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
+            _turnCounter += deltaTime;
+            if (_turnCounter >= 0.7)
+            {
+                _turnCounter = 0;
+                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
+                Direction direction = GetRandomDirection();
+                TryMove(direction);
+            }
+        }
+        private float _turnCounter;
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
+            {
                 _batSound.Play();
-            return true;
+                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+                return true;
+            }
+            return false;
         }
 
         protected override void OnDeath()
@@ -35,7 +57,16 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 409;
         public override string DefaultName => "Bat";
-        public override bool Detectable => true;
+        public override int Health
+        {
+            get;
+            set;
+        } = 100;
 
+        public override int MaxHealth => 100;
+
+        public override int Damage => 10;
+
+        public override char DefaultChar => 'b';
     }
 }

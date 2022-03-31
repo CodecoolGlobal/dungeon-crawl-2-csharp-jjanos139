@@ -1,7 +1,10 @@
 ﻿using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Actors.Static;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
+using DungeonCrawl.Actors;
 using UnityEngine;
 
 namespace DungeonCrawl.Core
@@ -9,8 +12,14 @@ namespace DungeonCrawl.Core
     /// <summary>
     ///     MapLoader is used for constructing maps from txt files
     /// </summary>
+    ///
     public static class MapLoader
     {
+        public static List<Actor> AllActorsFirstMap;
+        public static List<Actor> AllActorsSecondMap;
+        public static List<Actor> AllActorsThirdNMap;
+        public static int CurrentMapWidth;
+        public static int CurrentMapHeight;
         /// <summary>
         ///     Constructs map from txt file and spawns actors at appropriate positions
         /// </summary>
@@ -43,9 +52,33 @@ namespace DungeonCrawl.Core
             //CameraController.Singleton.Position = (width / 2, -height / 2);
         }
 
-        public static int CurrentMapWidth;
-        public static int CurrentMapHeight;
-
+        public static void ReLoadMap(int mapId)
+        {
+            if (mapId == 1)
+            {
+                foreach (Actor actor in AllActorsFirstMap)
+                {
+                    if (actor.DefaultName != "Player")
+                        SpawnActor(actor.DefaultChar, (actor.Position.x, actor.Position.y));
+                }
+            }
+            else if (mapId == 2)
+            {
+                foreach (Actor actor in AllActorsSecondMap)
+                {
+                    if (actor.DefaultName != "Player")
+                        SpawnActor(actor.DefaultChar, (actor.Position.x, actor.Position.y));
+                }
+            }
+            else if (mapId == 3)
+            {
+                foreach (Actor actor in AllActorsThirdNMap)
+                {
+                    if (actor.DefaultName != "Player")
+                        SpawnActor(actor.DefaultChar, (actor.Position.x, actor.Position.y));
+                }
+            }
+        }
         private static void SpawnActor(char c, (int x, int y) position)
         {
             switch (c)
@@ -64,7 +97,7 @@ namespace DungeonCrawl.Core
                 case 'B':
                     ActorManager.Singleton.Spawn<Bear>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
-                    break;                
+                    break;
                 case 'c':
                     ActorManager.Singleton.Spawn<Crocodile>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
@@ -72,23 +105,23 @@ namespace DungeonCrawl.Core
                 case 'S':
                     ActorManager.Singleton.Spawn<Snake>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
-                    break;                
+                    break;
                 case 'X':
                     ActorManager.Singleton.Spawn<Spider>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
-                    break;                
+                    break;
                 case 'C':
                     ActorManager.Singleton.Spawn<Cactus>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
-                    break;                
+                    break;
                 case 'D':
                     ActorManager.Singleton.Spawn<Diamond>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
-                    break;                
+                    break;
                 case 'd':
                     ActorManager.Singleton.Spawn<Drumstick>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
-                    break;                
+                    break;
                 case 'e':
                     ActorManager.Singleton.Spawn<Explosive>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
@@ -104,7 +137,7 @@ namespace DungeonCrawl.Core
                 case '|':
                     ActorManager.Singleton.Spawn<Switch>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
-                    break;                
+                    break;
                 case 'R':
                     ActorManager.Singleton.Spawn<Ring>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
@@ -403,6 +436,10 @@ namespace DungeonCrawl.Core
                 case 'É':
                     ActorManager.Singleton.Spawn<Priest>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
+                    break;
+                case 'á':
+                    ActorManager.Singleton.Spawn<Spider>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
                     break;
                 case ' ':
                     break;

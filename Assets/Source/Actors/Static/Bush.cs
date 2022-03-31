@@ -10,9 +10,9 @@ namespace DungeonCrawl.Actors.Static
 
         public override bool OnCollision(Actor anotherActor)
         {
-            if (anotherActor.DefaultName == "Player")
-                return false;
-            return true;
+            return false;
         }
+
+        public override char DefaultChar => 'z';
     }
 }

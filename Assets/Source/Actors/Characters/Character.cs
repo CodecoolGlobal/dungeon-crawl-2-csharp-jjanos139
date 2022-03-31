@@ -8,20 +8,7 @@ namespace DungeonCrawl.Actors.Characters
 {
     public abstract class Character : Actor
     {
-        public int Health { get; private set; }
 
-        public void ApplyDamage(int damage)
-        {
-            Health -= damage;
-
-            if (Health <= 0)
-            {
-                // Die
-                OnDeath();
-
-                ActorManager.Singleton.DestroyActor(this);
-            }
-        }
 
         protected void CheckIfAggro((int x, int y) playerCoords, int agroRange, int loseAgroRange)
         {
@@ -191,5 +178,8 @@ namespace DungeonCrawl.Actors.Characters
         ///     All characters are drawn "above" floor etc
         /// </summary>
         public override int Z => -1;
+
+        public override char DefaultChar => 'p';
     }
+    
 }
