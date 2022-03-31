@@ -44,7 +44,7 @@ namespace DungeonCrawl.Actors.Static
         }
         public override int DefaultSpriteId => 60;
         public override string DefaultName => "RoadHorizontal";
-
+        public override bool IsWalkable => true;
         public override bool Detectable => true;
     }
 }

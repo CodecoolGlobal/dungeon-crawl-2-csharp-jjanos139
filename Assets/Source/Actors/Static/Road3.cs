@@ -43,7 +43,7 @@ namespace DungeonCrawl.Actors.Static
         }
         public override int DefaultSpriteId => 10;
         public override string DefaultName => "Road3";
-
+        public override bool IsWalkable => true;
         public override bool Detectable => true;
     }
 }
