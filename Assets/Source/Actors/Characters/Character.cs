@@ -7,18 +7,6 @@ namespace DungeonCrawl.Actors.Characters
     public abstract class Character : Actor
     {
 
-        public void ApplyDamage(int damage)
-        {
-            Health -= damage;
-
-            if (Health <= 0)
-            {
-                // Die
-                OnDeath();
-
-                ActorManager.Singleton.DestroyActor(this);
-            }
-        }
 
         protected void CheckIfAggro((int x, int y) playerCoords, int agroRange, int loseAgroRange)
         {

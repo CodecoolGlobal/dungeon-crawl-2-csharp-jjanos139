@@ -4,8 +4,20 @@ namespace DungeonCrawl.Actors.Characters
 {
     public class Player : Character
     {
+        BattleSystem battleSystem = new BattleSystem();
+        public override bool OnCollision(Actor anotherActor)
+        {
+            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+            return true;
+        }
+
+
         protected override void OnUpdate(float deltaTime)
         {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
             // Move up
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -77,10 +89,6 @@ namespace DungeonCrawl.Actors.Characters
 
         }
 
-        public override bool OnCollision(Actor anotherActor)
-        {
-            return true;
-        }
 
         protected override void OnDeath()
         {
@@ -89,6 +97,16 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 24;
         public override string DefaultName => "Player";
+
+        public override int Health
+        {
+            get;
+            set;
+        } = 1000;
+
+        public override int MaxHealth => 1000;
+
+        public override int Damage => 15;
 
         private float _turnCounter;
     }
