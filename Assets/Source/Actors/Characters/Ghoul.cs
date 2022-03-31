@@ -8,11 +8,7 @@ namespace DungeonCrawl.Actors.Characters
     {
 
         BattleSystem battleSystem = new BattleSystem();
-        public override bool OnCollision(Actor anotherActor)
-        {
-
-            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-
+        
         private AudioSource _ghoulSound;
         private AudioSource _ghoulDeathSound;
 
@@ -32,12 +28,19 @@ namespace DungeonCrawl.Actors.Characters
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
+            {
                 _ghoulSound.Play();
-
-            return true;
+                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+                return true;
+            }
+            return false;
         }
         protected override void OnUpdate(float deltaTime)
         {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
             _turnCounter += deltaTime;
             if (_turnCounter >= 1)
             {
@@ -58,16 +61,6 @@ namespace DungeonCrawl.Actors.Characters
         }
 
         private float _turnCounter;
-
-
-
-        protected override void OnUpdate(float deltaTime)
-        {
-            if (battleSystem.state == BattleStatus.PlayerMove)
-            {
-                battleSystem.HandleActionSelection();
-            }
-        }
 
         protected override void OnDeath()
         {

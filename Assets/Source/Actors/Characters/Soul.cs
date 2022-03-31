@@ -11,6 +11,10 @@ namespace DungeonCrawl.Actors.Characters
 
         protected override void OnUpdate(float deltaTime)
         {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
             _turnCounter += deltaTime;
             if (_turnCounter >= 0.6)
             {
@@ -33,18 +37,8 @@ namespace DungeonCrawl.Actors.Characters
 
         public override bool OnCollision(Actor anotherActor)
         {
-
             battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
             return true;
-        }
-
-
-        protected override void OnUpdate(float deltaTime)
-        {
-            if (battleSystem.state == BattleStatus.PlayerMove)
-            {
-                battleSystem.HandleActionSelection();
-            }
         }
 
         protected override void OnDeath()

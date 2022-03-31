@@ -11,6 +11,10 @@ namespace DungeonCrawl.Actors.Characters
 
         protected override void OnUpdate(float deltaTime)
         {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
             _turnCounter += deltaTime;
             if (_turnCounter >= 0.8)
             {
@@ -40,14 +44,6 @@ namespace DungeonCrawl.Actors.Characters
             return true;
         }
 
-
-        protected override void OnUpdate(float deltaTime)
-        {
-            if (battleSystem.state == BattleStatus.PlayerMove)
-            {
-                battleSystem.HandleActionSelection();
-            }
-        }
         protected override void OnDeath()
         {
             Debug.Log("Remember, with great power comes great responsibility...");
