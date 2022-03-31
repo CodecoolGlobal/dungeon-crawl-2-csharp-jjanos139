@@ -1,4 +1,6 @@
-﻿using DungeonCrawl.Actors.Characters;
+﻿using System.Collections.Generic;
+using Assets.Source.Core;
+using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Core;
 using UnityEngine;
 
@@ -6,6 +8,7 @@ namespace DungeonCrawl.Actors
 {
     public abstract class Actor : MonoBehaviour
     {
+        
         public (int x, int y) Position
         {
             get => _position;
@@ -21,7 +24,7 @@ namespace DungeonCrawl.Actors
         protected SpriteRenderer SpriteRenderer;
         //private FieldOfView _fieldOfView;
 
-        private void Awake()
+        protected void Awake()
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -78,6 +81,25 @@ namespace DungeonCrawl.Actors
             }
         }
 
+        public void TryMove((int x, int y) targetPosition)
+        {
+            var actorAtTargetPosition = ActorManager.Singleton.GetActorAt(targetPosition);
+
+            if (actorAtTargetPosition == null)
+            {
+                // No obstacle found, just move
+                Position = targetPosition;
+            }
+            else
+            {
+                if (actorAtTargetPosition.OnCollision(this))
+                {
+                    // Allowed to move
+                    Position = targetPosition;
+                }
+            }
+        }
+
         /// <summary>
         ///     Invoked whenever another actor attempts to walk on the same position
         ///     this actor is placed.
@@ -86,10 +108,15 @@ namespace DungeonCrawl.Actors
         /// <returns>true if actor can walk on this position, false if not</returns>
         public virtual bool OnCollision(Actor anotherActor)
         {
+            if (anotherActor.DefaultName == "Player")
+            {
+                UserInterface.Singleton.SetText("Press E to pick up", UserInterface.TextPosition.BottomRight);
+                anotherActor.ItemUnder = this;
+            }
             // All actors are passable by default
             return true;
         }
-
+        
         /// <summary>
         ///     Invoked every animation frame, can be used for movement, character logic, etc
         /// </summary>
@@ -98,6 +125,25 @@ namespace DungeonCrawl.Actors
         {
         }
 
+
+        public void ApplyDamage(int damage)
+        {
+            this.Health -= damage;
+            if (this.Health <= 0)
+            {
+                // Die
+                //Character.OnDeath();
+                var cams = GameObject.FindObjectsOfType(typeof(Camera));
+                foreach (Camera cam in cams)
+                {
+                    if (cam.name == "BattleCamera")
+                    {
+                        cam.enabled = false;
+                    }
+                }
+                ActorManager.Singleton.DestroyActor(this);
+            }
+        }
         /// <summary>
         ///     Can this actor be detected with ActorManager.GetActorAt()? Should be false for purely cosmetic actors
         /// </summary>
@@ -117,5 +163,16 @@ namespace DungeonCrawl.Actors
         ///     Default name assigned to this actor type
         /// </summary>
         public abstract string DefaultName { get; }
+
+        public abstract char DefaultChar { get; }
+
+        public virtual int Health { get; set; }
+
+        public virtual int MaxHealth { get; }
+
+        public virtual bool IsWalkable => false;
+        public List<Actor> Inventory = new List<Actor>();
+        public Actor ItemUnder;
+        public virtual int Damage { get; }
     }
 }

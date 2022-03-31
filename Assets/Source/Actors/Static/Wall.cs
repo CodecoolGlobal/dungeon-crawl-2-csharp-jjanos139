@@ -8,9 +8,15 @@ namespace DungeonCrawl.Actors.Static
         public override string DefaultName => "Wall";
         public override bool OnCollision(Actor anotherActor)
         {
-            if (anotherActor.DefaultName == "Player")
-                return false;
-            return true;
+            //if (anotherActor.DefaultName == "Player" || anotherActor.DefaultName == "Player")
+            //    return false;
+            if (DefaultName == "Soul")
+            {
+                return true;
+            }
+            return false;
         }
+
+        public override char DefaultChar => '#';
     }
 }

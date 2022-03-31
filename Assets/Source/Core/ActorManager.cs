@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DungeonCrawl.Actors;
 using DungeonCrawl.Actors.Static;
@@ -19,6 +20,7 @@ namespace DungeonCrawl.Core
 
         private SpriteAtlas _spriteAtlas;
         private HashSet<Actor> _allActors;
+
 
         private void Awake()
         {
@@ -44,6 +46,17 @@ namespace DungeonCrawl.Core
             return _allActors.FirstOrDefault(actor => actor.Detectable && actor.Position == position);
         }
 
+        public List<Actor> GetAllActorsAt((int x, int y) position)
+        {
+            List<Actor> list = new List<Actor>();
+            foreach (Actor actor in _allActors)
+            {
+                if (actor.Position == position)
+                    list.Add(actor);
+            }
+            return list;
+        }
+
         /// <summary>
         ///     Returns actor of specific subclass present at given position (returns null if no actor is present)
         /// </summary>
@@ -52,7 +65,8 @@ namespace DungeonCrawl.Core
         /// <returns></returns>
         public T GetActorAt<T>((int x, int y) position) where T : Actor
         {
-            return _allActors.FirstOrDefault(actor => actor.Detectable && actor is T && actor.Position == position) as T;
+            return _allActors.FirstOrDefault(actor =>
+                actor.Detectable && actor is T && actor.Position == position) as T;
         }
 
         /// <summary>
@@ -73,7 +87,24 @@ namespace DungeonCrawl.Core
             var actors = _allActors.ToArray();
 
             foreach (var actor in actors)
-                DestroyActor(actor);
+                if (actor.DefaultName != "Player")
+                    DestroyActor(actor);
+        }
+
+        public void FreezeActualMap(int mapId)
+        {
+            if (mapId == 1)
+            {
+                MapLoader.AllActorsFirstMap = _allActors.ToList();
+            }
+            else if (mapId == 2)
+            {
+                MapLoader.AllActorsSecondMap = _allActors.ToList(); ;
+            }
+            else if (mapId == 3)
+            {
+                MapLoader.AllActorsThirdNMap = _allActors.ToList(); ;
+            }
         }
 
         /// <summary>
@@ -128,10 +159,31 @@ namespace DungeonCrawl.Core
 
             go.name = actorName ?? component.DefaultName;
             component.Position = (x, y);
-
+            if (component.DefaultName == "Player")
+            {
+                Rigidbody2D _rigidbody2D = go.AddComponent<Rigidbody2D>();
+                _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+                _rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            }
+            BoxCollider2D _boxCollider2D = go.AddComponent<BoxCollider2D>();
+            _boxCollider2D.isTrigger = true;
+            _boxCollider2D.size = new Vector2(0.5f, 0.5f);
             _allActors.Add(component);
 
             return component;
+        }
+
+        public Actor GetPlayer()
+        {
+            foreach (var actor in _allActors)
+            {
+                if (actor.DefaultName == "Player")
+                {
+                    return actor;
+                }
+            }
+
+            throw new Exception("There is no player on the map!");
         }
     }
 }
