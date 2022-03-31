@@ -23,7 +23,7 @@ namespace DungeonCrawl.Actors.Characters
         BattleSystem battleSystem = new BattleSystem();
         public override bool OnCollision(Actor anotherActor)
         {
-            battleSystem.SetupBattle(413, this, anotherActor);
+
             if (anotherActor is Player)
                 _bearSound.Play();
             
