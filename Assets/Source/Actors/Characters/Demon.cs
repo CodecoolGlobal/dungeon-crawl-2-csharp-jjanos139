@@ -10,11 +10,20 @@ namespace DungeonCrawl.Actors.Characters
         BattleSystem battleSystem = new BattleSystem();
         public override bool OnCollision(Actor anotherActor)
         {
-
-            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-
+            if (anotherActor is Player)
+            {
+                _demonSound.Play();
+                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+                return true;
+            }
+            return false;
+        }
         protected override void OnUpdate(float deltaTime)
         {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
             _turnCounter += deltaTime;
             if (_turnCounter >= 0.5)
             {
@@ -51,22 +60,7 @@ namespace DungeonCrawl.Actors.Characters
             _demonDeathSound = Instantiate(Resources.Load<AudioSource>("DemonDeathSound"));
             _demonDeathSound.transform.parent = transform;
         }
-        public override bool OnCollision(Actor anotherActor)
-        {
-            if (anotherActor is Player)
-                _demonSound.Play();
 
-            return true;
-        }
-
-
-        protected override void OnUpdate(float deltaTime)
-        {
-            if (battleSystem.state == BattleStatus.PlayerMove)
-            {
-                battleSystem.HandleActionSelection();
-            }
-        }
         protected override void OnDeath()
         {
             _demonDeathSound.Play();

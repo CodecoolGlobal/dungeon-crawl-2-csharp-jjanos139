@@ -6,10 +6,18 @@ namespace DungeonCrawl.Actors.Characters
     {
 
         BattleSystem battleSystem = new BattleSystem();
+
         public override bool OnCollision(Actor anotherActor)
         {
+            if (anotherActor is Player)
+            {
+                _crocSound.Play();
+                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+                return true;
+            }
 
-            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+            return false;
+        }
 
         private AudioSource _crocSound;
         private AudioSource _crocDeathSound;
@@ -27,14 +35,6 @@ namespace DungeonCrawl.Actors.Characters
             _crocDeathSound = Instantiate(Resources.Load<AudioSource>("CrocDeathSound"));
             _crocDeathSound.transform.parent = transform;
         }
-        public override bool OnCollision(Actor anotherActor)
-        {
-            if (anotherActor is Player)
-                _crocSound.Play();
-
-            return true;
-        }
-
 
         protected override void OnUpdate(float deltaTime)
         {

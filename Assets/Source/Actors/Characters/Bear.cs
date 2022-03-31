@@ -27,6 +27,10 @@ namespace DungeonCrawl.Actors.Characters
 
         protected override void OnUpdate(float deltaTime)
         {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
             _turnCounter += deltaTime;
             if (_turnCounter >= 1)
             {
@@ -42,20 +46,14 @@ namespace DungeonCrawl.Actors.Characters
         {
 
             if (anotherActor is Player)
-                _bearSound.Play();
-            
-            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-            return true;
-        }
-
-
-        protected override void OnUpdate(float deltaTime)
-        {
-            if (battleSystem.state == BattleStatus.PlayerMove)
             {
-                battleSystem.HandleActionSelection();
+                _bearSound.Play();
+                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+                return true;
             }
+            return false;
         }
+
         protected override void OnDeath()
         {
             _bearDeathSound.Play();

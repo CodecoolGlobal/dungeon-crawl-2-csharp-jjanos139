@@ -6,10 +6,6 @@ namespace DungeonCrawl.Actors.Characters
     {
 
         BattleSystem battleSystem = new BattleSystem();
-        public override bool OnCollision(Actor anotherActor)
-        {
-
-            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
 
         private AudioSource _snakeSound;
         private AudioSource _snakeDeathSound;
@@ -30,9 +26,12 @@ namespace DungeonCrawl.Actors.Characters
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
+            {
+                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
                 _snakeSound.Play();
-
-            return true;
+                return true;
+            }
+            return false;
         }
 
 
