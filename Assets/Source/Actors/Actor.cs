@@ -71,6 +71,25 @@ namespace DungeonCrawl.Actors
             }
         }
 
+        public void TryMove((int x, int y) targetPosition)
+        {
+            var actorAtTargetPosition = ActorManager.Singleton.GetActorAt(targetPosition);
+
+            if (actorAtTargetPosition == null)
+            {
+                // No obstacle found, just move
+                Position = targetPosition;
+            }
+            else
+            {
+                if (actorAtTargetPosition.OnCollision(this))
+                {
+                    // Allowed to move
+                    Position = targetPosition;
+                }
+            }
+        }
+
         /// <summary>
         ///     Invoked whenever another actor attempts to walk on the same position
         ///     this actor is placed.
@@ -115,7 +134,7 @@ namespace DungeonCrawl.Actors
         ///     Default name assigned to this actor type
         /// </summary>
         public abstract string DefaultName { get; }
-
+        public virtual bool IsWalkable => false;
         public List<Actor> Inventory = new List<Actor>();
         public Actor ItemUnder;
     }
