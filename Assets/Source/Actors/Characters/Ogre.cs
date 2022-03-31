@@ -5,13 +5,30 @@ namespace DungeonCrawl.Actors.Characters
     public class Ogre : Character
     {
         BattleSystem battleSystem = new BattleSystem();
+
+        private AudioSource _ogreSound;
+        private AudioSource _ogreDeathSound;
+
+        private void Awake()
+        {
+            base.Awake();
+            InstantiateAudio();
+        }
+
+        private void InstantiateAudio()
+        {
+            _ogreSound = Instantiate(Resources.Load<AudioSource>("OgreSound"));
+            _ogreSound.transform.parent = transform;
+            _ogreDeathSound = Instantiate(Resources.Load<AudioSource>("OgreDeathSound"));
+            _ogreDeathSound.transform.parent = transform;
+        }
         public override bool OnCollision(Actor anotherActor)
         {
-
+            if (anotherActor is Player)
+                _ogreSound.Play();
             battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
             return true;
         }
-
 
         protected override void OnUpdate(float deltaTime)
         {
@@ -23,6 +40,7 @@ namespace DungeonCrawl.Actors.Characters
 
         protected override void OnDeath()
         {
+            _ogreDeathSound.Play();
             Debug.Log("ME SMASH!");
         }
 

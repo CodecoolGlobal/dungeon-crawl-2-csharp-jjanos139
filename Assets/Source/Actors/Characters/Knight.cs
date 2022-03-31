@@ -28,27 +28,41 @@ namespace DungeonCrawl.Actors.Characters
                     TryMove(direction);
                 }
             }
-        }
-
-        private float _turnCounter;
-
-        public override bool OnCollision(Actor anotherActor)
-        {
-
-            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-            return true;
-        }
-
-
-        protected override void OnUpdate(float deltaTime)
-        {
             if (battleSystem.state == BattleStatus.PlayerMove)
             {
                 battleSystem.HandleActionSelection();
             }
         }
+
+        private float _turnCounter;
+
+        private AudioSource _knightSound;
+        private AudioSource _knightDeathSound;
+
+        private void Awake()
+        {
+            base.Awake();
+            InstantiateAudio();
+        }
+
+        private void InstantiateAudio()
+        {
+            _knightSound = Instantiate(Resources.Load<AudioSource>("PriestSound"));
+            _knightSound.transform.parent = transform;
+            _knightDeathSound = Instantiate(Resources.Load<AudioSource>("DeathSound3"));
+            _knightDeathSound.transform.parent = transform;
+        }
+        public override bool OnCollision(Actor anotherActor)
+        {
+            if (anotherActor is Player)
+                _knightSound.Play();
+            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+            return true;
+        }
+
         protected override void OnDeath()
         {
+            _knightDeathSound.Play();
             Debug.Log("How...?");
         }
 

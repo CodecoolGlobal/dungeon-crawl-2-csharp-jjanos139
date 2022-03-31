@@ -5,9 +5,27 @@ namespace DungeonCrawl.Actors.Characters
     public class Ork : Character
     {
         BattleSystem battleSystem = new BattleSystem();
+
+        private AudioSource _orcSound;
+        private AudioSource _orcDeathSound;
+
+        private void Awake()
+        {
+            base.Awake();
+            InstantiateAudio();
+        }
+
+        private void InstantiateAudio()
+        {
+            _orcSound = Instantiate(Resources.Load<AudioSource>("OrkSound"));
+            _orcSound.transform.parent = transform;
+            _orcDeathSound = Instantiate(Resources.Load<AudioSource>("OrkDeathSound"));
+            _orcDeathSound.transform.parent = transform;
+        }
         public override bool OnCollision(Actor anotherActor)
         {
-
+            if (anotherActor is Player) 
+                _orcSound.Play();
             battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
             return true;
         }
@@ -23,6 +41,7 @@ namespace DungeonCrawl.Actors.Characters
 
         protected override void OnDeath()
         {
+            _orcDeathSound.Play();
             Debug.Log("Looks like meat is back on the menu boys.");
         }
 

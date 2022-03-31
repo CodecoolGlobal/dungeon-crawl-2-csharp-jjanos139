@@ -7,6 +7,8 @@ namespace DungeonCrawl.Actors.Characters
         BattleSystem battleSystem = new BattleSystem();
         public override bool OnCollision(Actor anotherActor)
         {
+            if (anotherActor is Player)
+                _wizardSound.Play();
 
             battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
             return true;
@@ -21,8 +23,26 @@ namespace DungeonCrawl.Actors.Characters
             }
         }
 
+        private AudioSource _wizardSound;
+        private AudioSource _wizardDeathSound;
+
+        private void Awake()
+        {
+            base.Awake();
+            InstantiateAudio();
+        }
+
+        private void InstantiateAudio()
+        {
+            _wizardSound = Instantiate(Resources.Load<AudioSource>("WizardSound"));
+            _wizardSound.transform.parent = transform;
+            _wizardDeathSound = Instantiate(Resources.Load<AudioSource>("DeathSound1"));
+            _wizardDeathSound.transform.parent = transform;
+        }
+
         protected override void OnDeath()
         {
+            _wizardDeathSound.Play();
             Debug.Log("Run, you fool.");
         }
 
