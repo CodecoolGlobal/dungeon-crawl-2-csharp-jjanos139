@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Source.Core
@@ -11,7 +6,6 @@ namespace Assets.Source.Core
     public class Pathfinding
     {
         private const int MOVE_STRAIGHT_COST = 10;
-        private const int MOVE_DIAGONAL_COST = 14;
 
         private Grid<PathNode> _grid;
         private List<PathNode> _openList;
@@ -25,6 +19,9 @@ namespace Assets.Source.Core
         {
             PathNode startNode = _grid.GetGridObject(startX, startY);   // get own cords?
             PathNode endNode = _grid.GetGridObject(endX, endY);         // get player cords?
+
+            startNode.isWalkable = true;
+            endNode.isWalkable = true;
 
             _openList = new List<PathNode> {startNode};
             _closedList = new List<PathNode>();

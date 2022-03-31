@@ -63,31 +63,35 @@ namespace DungeonCrawl.Actors.Characters
         {
             if (battleSystem.state == BattleStatus.PlayerMove)
             {
+                InCombat = true;
                 battleSystem.HandleActionSelection();
             }
 
-            _turnCounter += deltaTime;
-            if (_turnCounter >= 0.5)
+            if (!InCombat)
             {
-                _turnCounter = 0;
-                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
-                CheckIfAggro(playerCoords, 5, 10);
-
-                if (_isAggro)
+                _turnCounter += deltaTime;
+                if (_turnCounter >= 0.5)
                 {
-                    var placeToMove = PathFind(playerCoords);
-                    if (placeToMove != (0, 0))
-                        TryMove(placeToMove);
-                    else
+                    _turnCounter = 0;
+                    (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
+                    CheckIfAggro(playerCoords, 5, 10);
+
+                    if (_isAggro)
+                    {
+                        var placeToMove = PathFind(playerCoords);
+                        if (placeToMove != (0, 0))
+                            TryMove(placeToMove);
+                        else
+                        {
+                            Direction direction = GetRandomDirection();
+                            TryMove(direction);
+                        }
+                    }
+                    else if (!_isAggro)
                     {
                         Direction direction = GetRandomDirection();
                         TryMove(direction);
                     }
-                }
-                else if (!_isAggro)
-                {
-                    Direction direction = GetRandomDirection();
-                    TryMove(direction);
                 }
             }
         }
@@ -105,7 +109,6 @@ namespace DungeonCrawl.Actors.Characters
         public override int MaxHealth => 100;
 
         public override int Damage => 10;
-
 
         public override bool Detectable => true;
 

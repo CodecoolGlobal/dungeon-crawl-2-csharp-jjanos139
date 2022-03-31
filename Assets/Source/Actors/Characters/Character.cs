@@ -18,10 +18,12 @@ namespace DungeonCrawl.Actors.Characters
             if (!_isAggro && dist <= agroRange)
             {
                 _isAggro = true;
+                PathFinding = new Pathfinding(MapLoader.CurrentMapWidth, MapLoader.CurrentMapHeight);
             }
             else if (_isAggro && dist >= loseAgroRange)
             {
                 _isAggro = false;
+                PathFinding = null;
             }
         }
 
@@ -170,15 +172,16 @@ namespace DungeonCrawl.Actors.Characters
             throw new Exception("Where on earth  is that drone?");
         }
 
+        protected bool InCombat;
         protected bool _isAggro;
-        protected Pathfinding PathFinding = new Pathfinding(MapLoader.CurrentMapWidth, MapLoader.CurrentMapHeight);
+        public Pathfinding PathFinding;
         protected abstract void OnDeath();
 
         /// <summary>
         ///     All characters are drawn "above" floor etc
         /// </summary>
         public override int Z => -1;
-
+        
         public override char DefaultChar => 'p';
     }
     
