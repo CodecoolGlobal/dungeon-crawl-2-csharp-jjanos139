@@ -375,6 +375,18 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<Bush2>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
                     break;
+                case '&':
+                    ActorManager.Singleton.Spawn<Helm>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
+                case '¤':
+                    ActorManager.Singleton.Spawn<Mace>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
+                case '$':
+                    ActorManager.Singleton.Spawn<Chest>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
                 case ' ':
                     break;
                 default:
