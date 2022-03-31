@@ -41,10 +41,12 @@ namespace DungeonCrawl.Actors.Characters
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
+            {
                 _batSound.Play();
-
-            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-            return true;
+                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+                return true;
+            }
+            return false;
         }
 
         protected override void OnDeath()

@@ -46,10 +46,12 @@ namespace DungeonCrawl.Actors.Characters
         {
 
             if (anotherActor is Player)
+            {
                 _bearSound.Play();
-            
-            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-            return true;
+                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+                return true;
+            }
+            return false;
         }
 
         protected override void OnDeath()

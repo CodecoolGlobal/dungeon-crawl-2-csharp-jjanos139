@@ -30,7 +30,7 @@ public class BattleSystem : MonoBehaviour
         playerHud.GetComponent<PlayerHud>().Name.text = player.DefaultName;
         enemyHud = GameObject.Find("EnemyHud");
         enemyHud.GetComponent<PlayerHud>().Name.text = enemy.DefaultName;
-        enemyHud.GetComponent<PlayerHud>().Hpbar.SetHP(1);
+        //enemyHud.GetComponent<PlayerHud>().Hpbar.SetHP(1);
         var cams = GameObject.FindObjectsOfType(typeof(Camera));
         foreach (Camera cam in cams)
         {
@@ -39,9 +39,12 @@ public class BattleSystem : MonoBehaviour
                 cam.enabled = true;
             }
         }
-        //float phealth = playerUnit.GetComponent<PlayerUnit>().Unit.Health;
-        //float pmaxHealth = playerUnit.GetComponent<PlayerUnit>().Unit.MaxHealth;
-        //playerHud.GetComponent<PlayerHud>().Hpbar.SetHP((float)phealth / pmaxHealth);
+        float phealth = playerUnit.GetComponent<PlayerUnit>().Unit.Health;
+        float pmaxHealth = playerUnit.GetComponent<PlayerUnit>().Unit.MaxHealth;
+        playerHud.GetComponent<PlayerHud>().Hpbar.SetHP((float)phealth / pmaxHealth);
+        float ehealth = enemyUnit.GetComponent<PlayerUnit>().Unit.Health;
+        float emaxHealth = enemyUnit.GetComponent<PlayerUnit>().Unit.MaxHealth;
+        enemyHud.GetComponent<PlayerHud>().Hpbar.SetHP((float)ehealth / emaxHealth);
         PlayerAction();
     }
 
