@@ -1,10 +1,24 @@
 ﻿using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Core;
+using UnityEngine;
 
 namespace DungeonCrawl.Actors.Static
 {
     public class Stairs : Actor
     {
+        private AudioSource _mapOneMusic;
+
+        private void Awake()
+        {
+            base.Awake();
+            InstantiateAudio();
+        }
+
+        private void InstantiateAudio()
+        {
+            _mapOneMusic = Instantiate(Resources.Load<AudioSource>("MapOneMusic"));
+            _mapOneMusic.transform.parent = transform;
+        }
         public override int DefaultSpriteId => 289;
         public override string DefaultName => "Stairs";
         public override int Z => -1;
@@ -16,7 +30,12 @@ namespace DungeonCrawl.Actors.Static
                 {
                     ActorManager.Singleton.FreezeActualMap(2);
                     ActorManager.Singleton.DestroyAllActors();
+<<<<<<< HEAD
                     MapLoader.ReLoadMap(1);
+=======
+                    MapLoader.LoadMap(1);
+                    _mapOneMusic.Play();
+>>>>>>> development
                     anotherActor.Position = (48, -22);
                 }
             }

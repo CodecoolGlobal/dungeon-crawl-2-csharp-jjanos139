@@ -1,9 +1,23 @@
 ﻿using DungeonCrawl.Core;
+using UnityEngine;
 
 namespace DungeonCrawl.Actors.Static
 {
     public class Trapdoor : Actor
     {
+        private AudioSource _mapTwoMusic;
+
+        private void Awake()
+        {
+            base.Awake();
+            InstantiateAudio();
+        }
+
+        private void InstantiateAudio()
+        {
+            _mapTwoMusic = Instantiate(Resources.Load<AudioSource>("MapTwoMusic"));
+            _mapTwoMusic.transform.parent = transform;
+        }
         public override int DefaultSpriteId => 731;
         public override string DefaultName => "Trapdoor";
         public override int Z => -1;
@@ -12,6 +26,7 @@ namespace DungeonCrawl.Actors.Static
         {
             if (anotherActor.DefaultName == "Player")
             {
+<<<<<<< HEAD
                 if (MapLoader.AllActorsSecondMap is null)
                 {
                     ActorManager.Singleton.FreezeActualMap(1);
@@ -26,6 +41,12 @@ namespace DungeonCrawl.Actors.Static
                     MapLoader.ReLoadMap(2);
                     anotherActor.Position = (4, -17);
                 }
+=======
+                ActorManager.Singleton.DestroyAllActors();
+                MapLoader.LoadMap(2);
+                _mapTwoMusic.Play();
+                anotherActor.Position = (4, -17);
+>>>>>>> development
             }
 
             return false;

@@ -334,10 +334,6 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<Ghoul>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
                     break;
-                case 'G':
-                    ActorManager.Singleton.Spawn<Grave>(position);
-                    ActorManager.Singleton.Spawn<Floor>(position);
-                    break;
                 case '/':
                     ActorManager.Singleton.Spawn<Knight>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
@@ -362,9 +358,13 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<Battleaxe>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
                     break;
+                case 'G':
+                    ActorManager.Singleton.Spawn<Grave>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
                 case '(':
                     ActorManager.Singleton.Spawn<Grave2>(position);
-                    ActorManager.Singleton.Spawn<GrassFloor>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
                     break;
                 case ')':
                     ActorManager.Singleton.Spawn<House>(position);
@@ -377,6 +377,48 @@ namespace DungeonCrawl.Core
                 case 'Ä':
                     ActorManager.Singleton.Spawn<House3>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
+                    break;
+                case '7':
+                    ActorManager.Singleton.Spawn<IronBars>(position);
+                    ActorManager.Singleton.Spawn<GrassFloor>(position);
+                    break;
+                case 'j':
+                    ActorManager.Singleton.Spawn<IronDoor>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
+                case '<':
+                    ActorManager.Singleton.Spawn<Road>(position);
+                    break;
+                case '>':
+                    ActorManager.Singleton.Spawn<Road2>(position);
+                    break;
+                case '@':
+                    ActorManager.Singleton.Spawn<Road3>(position);
+                    break;
+                case '{':
+                    ActorManager.Singleton.Spawn<RoadHorizontal>(position);
+                    break;
+                case 'Ł':
+                    ActorManager.Singleton.Spawn<RoadTurn>(position);
+                    break;
+                case 'ß':
+                    ActorManager.Singleton.Spawn<RoadTurn2>(position);
+                    break;
+                case '×':
+                    ActorManager.Singleton.Spawn<Bush2>(position);
+                    ActorManager.Singleton.Spawn<GrassFloor>(position);
+                    break;
+                case '&':
+                    ActorManager.Singleton.Spawn<Helm>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
+                case '¤':
+                    ActorManager.Singleton.Spawn<Mace>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
+                case '$':
+                    ActorManager.Singleton.Spawn<Chest>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
                     break;
                 case ' ':
                     break;
