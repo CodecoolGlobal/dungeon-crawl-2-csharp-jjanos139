@@ -1,5 +1,4 @@
-﻿using Assets.Source.Core;
-using DungeonCrawl.Core;
+﻿using DungeonCrawl.Core;
 using UnityEngine;
 using static DungeonCrawl.Utilities;
 
@@ -26,22 +25,21 @@ namespace DungeonCrawl.Actors.Characters
 
         BattleSystem battleSystem = new BattleSystem();
 
-        protected override void OnUpdate(float deltaTime)
-        {
-            if (battleSystem.state == BattleStatus.PlayerMove)
-            {
-                battleSystem.HandleActionSelection();
-            }
-            _turnCounter += deltaTime;
-            if (_turnCounter >= 1)
-            {
-                _turnCounter = 0;
-                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
-                Direction direction = GetRandomDirection();
-                TryMove(direction);
-            }
-        }
-        private float _turnCounter;
+        //protected override void OnUpdate(float deltaTime)
+        //{
+        //    if (battleSystem.state == BattleStatus.PlayerMove)
+        //    {
+        //        battleSystem.HandleActionSelection();
+        //    }
+        //    _turnCounter += deltaTime;
+        //    if (_turnCounter >= 1)
+        //    {
+        //        _turnCounter = 0;
+        //        (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
+        //        Direction direction = GetRandomDirection();
+        //        TryMove(direction);
+        //    }
+        //}
 
         public override bool OnCollision(Actor anotherActor)
         {
@@ -63,6 +61,11 @@ namespace DungeonCrawl.Actors.Characters
 
         protected override void OnUpdate(float deltaTime)
         {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
+
             _turnCounter += deltaTime;
             if (_turnCounter >= 0.5)
             {

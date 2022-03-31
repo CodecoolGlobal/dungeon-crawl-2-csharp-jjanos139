@@ -251,7 +251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &156419055
 Transform:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,8 +1093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d479ff2a501d1d64ab338b83646af5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: {fileID: 1343574938}
-  Hpbar: {fileID: 1413488938}
 --- !u!1 &938802782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2708,7 +2706,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5c8022a471d0445b53d51c9d0c8f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 2069924246}
 --- !u!114 &1413488939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2930,8 +2927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d479ff2a501d1d64ab338b83646af5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: {fileID: 220570876}
-  Hpbar: {fileID: 1845860246}
 --- !u!224 &1577024270
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3355,7 +3350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5c8022a471d0445b53d51c9d0c8f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 50411246}
 --- !u!224 &1845860247
 RectTransform:
   m_ObjectHideFlags: 0

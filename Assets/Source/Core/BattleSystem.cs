@@ -1,13 +1,11 @@
 using DungeonCrawl.Actors;
-using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Actors.Static;
 using DungeonCrawl.Core;
-
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum BattleStatus {Start, PlayerMove, EnemyMove, Busy}
+public enum BattleStatus { Start, PlayerMove, EnemyMove, Busy }
 public class BattleSystem : MonoBehaviour
 {
     [SerializeField] public GameObject playerUnit;
@@ -95,22 +93,22 @@ public class BattleSystem : MonoBehaviour
             }
 
             if (hasPotion)
-                {
-                    if (GameObject.Find("DialogBox").GetComponents<DialogBox>()[0].MoveTexts[0].color == Color.black)
-                    {
-                        PerformPlayerMove("attack");
-                    }
-                    else if (GameObject.Find("DialogBox").GetComponents<DialogBox>()[0].MoveTexts[0].color ==
-                             Color.blue)
-                    {
-                        PerformPlayerMove("Heal", Potion);
-                    }
-                }
-                else
+            {
+                if (GameObject.Find("DialogBox").GetComponents<DialogBox>()[0].MoveTexts[0].color == Color.black)
                 {
                     PerformPlayerMove("attack");
                 }
-            
+                else if (GameObject.Find("DialogBox").GetComponents<DialogBox>()[0].MoveTexts[0].color ==
+                         Color.blue)
+                {
+                    PerformPlayerMove("Heal", Potion);
+                }
+            }
+            else
+            {
+                PerformPlayerMove("attack");
+            }
+
         }
     }
 
