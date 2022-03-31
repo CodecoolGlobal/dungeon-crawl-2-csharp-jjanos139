@@ -7,7 +7,7 @@ namespace DungeonCrawl.Actors.Characters
         public override bool OnCollision(Actor anotherActor)
         {
             BattleSystem battleSystem = new BattleSystem();
-            battleSystem.SetupBattle(413, this);
+            battleSystem.SetupBattle(413, this, anotherActor);
             return true;
         }
 
@@ -19,6 +19,8 @@ namespace DungeonCrawl.Actors.Characters
         public override int DefaultSpriteId => 413;
         public override string DefaultName => "Bear";
 
-        public override char DefaultChar => 'B';
+
+
+
     }
 }
