@@ -42,8 +42,6 @@ namespace DungeonCrawl.Actors.Static
                 }
             }
             _mapTwoMusic.Play();
-        }
-
             return false;
         }
 

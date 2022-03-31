@@ -43,7 +43,7 @@ namespace DungeonCrawl.Actors.Static
         }
         public override int DefaultSpriteId => 10;
         public override string DefaultName => "Road3";
-
+        public override char DefaultChar => '@';
         public override bool Detectable => true;
     }
 }

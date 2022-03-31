@@ -6,7 +6,7 @@
         public override string DefaultName => "Helm";
         public override int Z => -1;
 
-
+        public override char DefaultChar => '&';
         public override bool Detectable => false;
     }
 }
