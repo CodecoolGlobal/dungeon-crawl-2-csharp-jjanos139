@@ -45,7 +45,6 @@ namespace DungeonCrawl.Actors.Static
                 {
                     ActorManager.Singleton.FreezeActualMap(2);
                     ActorManager.Singleton.DestroyAllActors();
-                    _mapOneMusic.Play();
                     MapLoader.ReLoadMap(3);
                     anotherActor.Position = (7, -6);
                 }
