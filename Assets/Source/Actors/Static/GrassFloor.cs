@@ -6,9 +6,9 @@ namespace DungeonCrawl.Actors.Static
 {
     public class GrassFloor : Actor
     {
-        private AudioSource FootStepWoods1;
-        private AudioSource FootStepWoods2;
-        private AudioSource FootStepWoods3;
+        private AudioSource _footStepWoods1;
+        private AudioSource _footStepWoods2;
+        private AudioSource _footStepWoods3;
 
         readonly System.Random _randomSound = new System.Random();
         private void Awake()
@@ -18,12 +18,12 @@ namespace DungeonCrawl.Actors.Static
         }
         private void InstantiateAudio()
         {
-            FootStepWoods1 = Instantiate(Resources.Load<AudioSource>("FootStepWoods1"));
-            FootStepWoods2 = Instantiate(Resources.Load<AudioSource>("FootStepWoods2"));
-            FootStepWoods3 = Instantiate(Resources.Load<AudioSource>("FootStepWoods3"));
-            FootStepWoods1.transform.parent = transform;
-            FootStepWoods2.transform.parent = transform;
-            FootStepWoods3.transform.parent = transform;
+            _footStepWoods1 = Instantiate(Resources.Load<AudioSource>("FootStepWoods1"));
+            _footStepWoods2 = Instantiate(Resources.Load<AudioSource>("FootStepWoods2"));
+            _footStepWoods3 = Instantiate(Resources.Load<AudioSource>("FootStepWoods3"));
+            _footStepWoods1.transform.parent = transform;
+            _footStepWoods2.transform.parent = transform;
+            _footStepWoods3.transform.parent = transform;
         }
         private void PlayRandomFootStepWoodsSound()
         {
@@ -31,15 +31,16 @@ namespace DungeonCrawl.Actors.Static
 
             switch (soundCase)
             {
-                case 1: FootStepWoods1.Play(); break;
-                case 2: FootStepWoods2.Play(); break;
-                case 3: FootStepWoods3.Play(); break;
+                case 1: _footStepWoods1.Play(); break;
+                case 2: _footStepWoods2.Play(); break;
+                case 3: _footStepWoods3.Play(); break;
             }
         }
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
-                PlayRandomFootStepWoodsSound(); return true;
+                PlayRandomFootStepWoodsSound(); 
+            return true;
         }
         public override int DefaultSpriteId => 0;
         public override string DefaultName => "GrassFloor";

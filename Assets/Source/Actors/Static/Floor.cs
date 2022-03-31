@@ -6,9 +6,9 @@ namespace DungeonCrawl.Actors.Static
 {
     public class Floor : Actor
     {
-        private AudioSource FootStepCave1;
-        private AudioSource FootStepCave2;
-        private AudioSource FootStepCave3;
+        private AudioSource _footStepCave1;
+        private AudioSource _footStepCave2;
+        private AudioSource _footStepCave3;
 
         readonly System.Random _randomSound = new System.Random();
         private void Awake()
@@ -18,12 +18,12 @@ namespace DungeonCrawl.Actors.Static
         }
         private void InstantiateAudio()
         {
-            FootStepCave1 = Instantiate(Resources.Load<AudioSource>("FootStepCave1"));
-            FootStepCave2 = Instantiate(Resources.Load<AudioSource>("FootStepCave2"));
-            FootStepCave3 = Instantiate(Resources.Load<AudioSource>("FootStepCave3"));
-            FootStepCave1.transform.parent = transform;
-            FootStepCave2.transform.parent = transform;
-            FootStepCave3.transform.parent = transform;
+            _footStepCave1 = Instantiate(Resources.Load<AudioSource>("FootStepCave1"));
+            _footStepCave2 = Instantiate(Resources.Load<AudioSource>("FootStepCave2"));
+            _footStepCave3 = Instantiate(Resources.Load<AudioSource>("FootStepCave3"));
+            _footStepCave1.transform.parent = transform;
+            _footStepCave2.transform.parent = transform;
+            _footStepCave3.transform.parent = transform;
         }
         private void PlayRandomFootStepCaveSound()
         {
@@ -31,16 +31,17 @@ namespace DungeonCrawl.Actors.Static
 
             switch (soundCase)
             {
-                case 1: FootStepCave1.Play(); break;
-                case 2: FootStepCave2.Play(); break;
-                case 3: FootStepCave3.Play(); break;
+                case 1: _footStepCave1.Play(); break;
+                case 2: _footStepCave2.Play(); break;
+                case 3: _footStepCave3.Play(); break;
             }
         }
 
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
-                PlayRandomFootStepCaveSound(); return true;
+                PlayRandomFootStepCaveSound();
+            return true;
         }
 
         public override int DefaultSpriteId => 106;
