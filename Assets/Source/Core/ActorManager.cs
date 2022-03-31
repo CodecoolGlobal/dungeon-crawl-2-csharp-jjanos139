@@ -44,6 +44,17 @@ namespace DungeonCrawl.Core
             return _allActors.FirstOrDefault(actor => actor.Detectable && actor.Position == position);
         }
 
+        public List<Actor> GetAllActorsAt((int x, int y) position)
+        {
+            List<Actor> list = new List<Actor>();
+            foreach (Actor actor in _allActors)
+            {
+                if (actor.Detectable && actor.Position == position)
+                    list.Add(actor);
+            }
+            return list;
+        }
+
         /// <summary>
         ///     Returns actor of specific subclass present at given position (returns null if no actor is present)
         /// </summary>
