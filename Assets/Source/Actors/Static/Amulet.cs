@@ -29,7 +29,6 @@ namespace DungeonCrawl.Actors.Static
         public override string DefaultName => "Amulet";
         public override int Z => -1;
 
-
         public override bool Detectable => true;
     }
 }
