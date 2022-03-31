@@ -26,7 +26,7 @@ public class BattleSystem : MonoBehaviour
 
         playerUnit = GameObject.Find("PlayerUnit");
         playerUnit.GetComponent<PlayerUnit>().Unit = player;
-        playerUnit.GetComponent<Image>().sprite = ActorManager.Singleton.GetSprite(24);
+        playerUnit.GetComponent<Image>().sprite = ActorManager.Singleton.GetSprite(player.DefaultSpriteId);
         enemyUnit = GameObject.Find("EnemyPlayer");
         enemyUnit.GetComponent<PlayerUnit>().Unit = enemy;
         enemyUnit.GetComponent<Image>().sprite = ActorManager.Singleton.GetSprite(id);
