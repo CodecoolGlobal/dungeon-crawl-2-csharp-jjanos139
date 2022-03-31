@@ -7,7 +7,6 @@ namespace DungeonCrawl.Actors.Characters
         BattleSystem battleSystem = new BattleSystem();
         public override bool OnCollision(Actor anotherActor)
         {
-
             battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
             return true;
         }

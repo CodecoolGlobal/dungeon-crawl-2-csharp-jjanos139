@@ -1,5 +1,6 @@
 ﻿using Assets.Source.Core;
 using DungeonCrawl.Actors.Characters;
+using DungeonCrawl.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -35,7 +36,11 @@ namespace DungeonCrawl.Actors.Static
         public override int DefaultSpriteId => 428;
         public override string DefaultName => "Amulet";
         public override int Z => -1;
-
+        public void OnTriggerExit2D(Collider2D collider2D)
+        {
+            UserInterface.Singleton.SetText(null, UserInterface.TextPosition.BottomRight);
+            ActorManager.Singleton.GetPlayer().ItemUnder = null;
+        }
 
         public override bool Detectable => true;
 

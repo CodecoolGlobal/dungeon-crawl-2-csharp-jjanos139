@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DungeonCrawl.Actors.Static;
+using UnityEngine;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -8,10 +9,12 @@ namespace DungeonCrawl.Actors.Characters
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
+            {
                 _wizardSound.Play();
-
-            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-            return true;
+                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+                return true;
+            }
+            return false;
         }
 
 
