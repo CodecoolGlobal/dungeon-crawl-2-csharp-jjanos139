@@ -26,7 +26,7 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("Zoinks! G-G-G-G-Ghost");
         }
 
-        public override int DefaultSpriteId => 313;
+        public override int DefaultSpriteId => 315;
         public override string DefaultName => "Ghoul";
 
         public override int Health

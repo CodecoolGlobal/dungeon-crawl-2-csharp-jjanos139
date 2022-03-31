@@ -1,4 +1,6 @@
-﻿using DungeonCrawl.Actors.Characters;
+﻿using System.Collections.Generic;
+using Assets.Source.Core;
+using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Core;
 using UnityEngine;
 
@@ -20,7 +22,7 @@ namespace DungeonCrawl.Actors
         private (int x, int y) _position;
         private SpriteRenderer _spriteRenderer;
 
-        private void Awake()
+        protected void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -78,10 +80,15 @@ namespace DungeonCrawl.Actors
         /// <returns>true if actor can walk on this position, false if not</returns>
         public virtual bool OnCollision(Actor anotherActor)
         {
+            if (anotherActor.DefaultName == "Player")
+            {
+                UserInterface.Singleton.SetText("Press E to pick up", UserInterface.TextPosition.BottomRight);
+                anotherActor.ItemUnder = this;
+            }
             // All actors are passable by default
             return true;
         }
-
+        
         /// <summary>
         ///     Invoked every animation frame, can be used for movement, character logic, etc
         /// </summary>
@@ -136,6 +143,8 @@ namespace DungeonCrawl.Actors
 
         public virtual int MaxHealth { get; }
 
+        public List<Actor> Inventory = new List<Actor>();
+        public Actor ItemUnder;
         public virtual int Damage { get; }
     }
 }

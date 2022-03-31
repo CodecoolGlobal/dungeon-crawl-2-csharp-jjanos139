@@ -25,6 +25,7 @@ namespace DungeonCrawl.Actors.Characters
 
         protected Direction GetMoveDirection((int x, int y) playerCoords)
         {
+
             //------------------------------------------------------------------------------------------------------------------
             if (playerCoords.x - Position.x >= 0)
             {
@@ -35,7 +36,7 @@ namespace DungeonCrawl.Actors.Characters
                     {
                         (int x, int y) targetPosition = (Position.x + 1, Position.y);
                         if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                            ActorManager.Singleton.GetActorAt(targetPosition).OnCollision(this))
                         {
                             return Direction.Right;
                         }
@@ -48,7 +49,7 @@ namespace DungeonCrawl.Actors.Characters
                     {
                         (int x, int y) targetPosition = (Position.x, Position.y + 1);
                         if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                            ActorManager.Singleton.GetActorAt(targetPosition).OnCollision(this))
                         {
                             return Direction.Up;
                         }
@@ -65,7 +66,7 @@ namespace DungeonCrawl.Actors.Characters
                     {
                         (int x, int y) targetPosition = (Position.x + 1, Position.y);
                         if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                            ActorManager.Singleton.GetActorAt(targetPosition).OnCollision(this))
                         {
                             return Direction.Right;
                         }
@@ -78,7 +79,7 @@ namespace DungeonCrawl.Actors.Characters
                     {
                         (int x, int y) targetPosition = (Position.x, Position.y - 1);
                         if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                            ActorManager.Singleton.GetActorAt(targetPosition).OnCollision(this))
                         {
                             return Direction.Down;
                         }
@@ -97,7 +98,7 @@ namespace DungeonCrawl.Actors.Characters
                     {
                         (int x, int y) targetPosition = (Position.x - 1, Position.y);
                         if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                            ActorManager.Singleton.GetActorAt(targetPosition).OnCollision(this))
                         {
                             return Direction.Left;
                         }
@@ -110,7 +111,7 @@ namespace DungeonCrawl.Actors.Characters
                     {
                         (int x, int y) targetPosition = (Position.x, Position.y + 1);
                         if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                            ActorManager.Singleton.GetActorAt(targetPosition).OnCollision(this))
                         {
                             return Direction.Up;
                         }
@@ -127,7 +128,7 @@ namespace DungeonCrawl.Actors.Characters
                     {
                         (int x, int y) targetPosition = (Position.x - 1, Position.y);
                         if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                            ActorManager.Singleton.GetActorAt(targetPosition).OnCollision(this))
                         {
                             return Direction.Left;
                         }
@@ -140,7 +141,7 @@ namespace DungeonCrawl.Actors.Characters
                     {
                         (int x, int y) targetPosition = (Position.x, Position.y - 1);
                         if (ActorManager.Singleton.GetActorAt(targetPosition) is null ||
-                            ActorManager.Singleton.GetActorAt(targetPosition).DefaultName != "Wall")
+                            ActorManager.Singleton.GetActorAt(targetPosition).OnCollision(this))
                         {
                             return Direction.Down;
                         }

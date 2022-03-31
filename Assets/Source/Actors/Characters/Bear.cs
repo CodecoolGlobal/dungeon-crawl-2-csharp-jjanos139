@@ -4,9 +4,29 @@ namespace DungeonCrawl.Actors.Characters
 {
     public class Bear : Character
     {
+        private AudioSource _bearSound;
+        private AudioSource _bearDeathSound;
+
+        private void Awake()
+        {
+            base.Awake();
+            InstantiateAudio();
+        }
+
+        private void InstantiateAudio()
+        {
+            _bearSound = Instantiate(Resources.Load<AudioSource>("BearSound"));
+            _bearSound.transform.parent = transform;
+            _bearDeathSound = Instantiate(Resources.Load<AudioSource>("BearDeathSound"));
+            _bearDeathSound.transform.parent = transform;
+        }
         BattleSystem battleSystem = new BattleSystem();
         public override bool OnCollision(Actor anotherActor)
         {
+            BattleSystem battleSystem = new BattleSystem();
+            battleSystem.SetupBattle(413, this, anotherActor);
+            if (anotherActor is Player)
+                _bearSound.Play();
             
             battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
             return true;
@@ -22,6 +42,7 @@ namespace DungeonCrawl.Actors.Characters
         }
         protected override void OnDeath()
         {
+            _bearDeathSound.Play();
             Debug.Log("It's because I'm smarter than the average bear.");
         }
 
@@ -39,5 +60,8 @@ namespace DungeonCrawl.Actors.Characters
         public override int Damage => 10;
 
 
+        public override bool Detectable => true;
+
+        public override char DefaultChar => 'B';
     }
 }
