@@ -12,7 +12,7 @@ namespace DungeonCrawl.Actors.Characters
         {
             if (anotherActor is Player)
             {
-                _demonSound.Play();
+                //_demonSound.Play();
                 battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
                 return true;
             }
@@ -44,26 +44,26 @@ namespace DungeonCrawl.Actors.Characters
         }
         private float _turnCounter;
 
-        private AudioSource _demonSound;
-        private AudioSource _demonDeathSound;
+        //private AudioSource _demonSound;
+        //private AudioSource _demonDeathSound;
 
         private void Awake()
         {
-            base.Awake();
-            InstantiateAudio();
+            //base.Awake();
+            //InstantiateAudio();
         }
 
-        private void InstantiateAudio()
-        {
-            _demonSound = Instantiate(Resources.Load<AudioSource>("DemonSound"));
-            _demonSound.transform.parent = transform;
-            _demonDeathSound = Instantiate(Resources.Load<AudioSource>("DemonDeathSound"));
-            _demonDeathSound.transform.parent = transform;
-        }
+        //private void InstantiateAudio()
+        //{
+        //    _demonSound = Instantiate(Resources.Load<AudioSource>("DemonSound"));
+        //    _demonSound.transform.parent = transform;
+        //    _demonDeathSound = Instantiate(Resources.Load<AudioSource>("DemonDeathSound"));
+        //    _demonDeathSound.transform.parent = transform;
+        //}
 
         protected override void OnDeath()
         {
-            _demonDeathSound.Play();
+            //_demonDeathSound.Play();
             Debug.Log("Burn!!!");
         }
 

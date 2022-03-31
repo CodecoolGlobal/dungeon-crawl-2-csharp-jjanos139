@@ -30,6 +30,7 @@ namespace DungeonCrawl.Actors.Characters
                 battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
                 return true;
             }
+
             return false;
         }
 

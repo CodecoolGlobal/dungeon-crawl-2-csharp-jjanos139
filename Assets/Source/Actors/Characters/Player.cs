@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Assets.Source.Core;
 using DungeonCrawl.Core;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -57,24 +60,28 @@ namespace DungeonCrawl.Actors.Characters
             {
                 // Move up
                 TryMove(Direction.Up);
+                _turnCounter = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.S))
             {
                 // Move down
                 TryMove(Direction.Down);
+                _turnCounter = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.A))
             {
                 // Move left
                 TryMove(Direction.Left);
+                _turnCounter = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
                 // Move right
                 TryMove(Direction.Right);
+                _turnCounter = 0;
             }
 
             if (Input.GetKey(KeyCode.W))
@@ -130,6 +137,24 @@ namespace DungeonCrawl.Actors.Characters
                     this.Inventory.Add(ItemUnder);
                     ActorManager.Singleton.DestroyActor(ItemUnder);
                 }
+            }
+
+            if (Input.GetKey(KeyCode.I))
+            {
+                var canvas = GameObject.Find("InventoryCanvas").GetComponent<Canvas>();
+                canvas.enabled = true;
+                var contents = GameObject.Find("Contents").GetComponent<Text>();
+                string contentsOfBag = "";
+                for (int i = 0; i < Inventory.Count; i++)
+                {
+                    contentsOfBag += $"{Inventory[i].DefaultName}\n";
+                }
+                contents.text = contentsOfBag;
+            }
+            else
+            {
+                var canvas = GameObject.Find("InventoryCanvas").GetComponent<Canvas>();
+                canvas.enabled = false;
             }
         }
 
