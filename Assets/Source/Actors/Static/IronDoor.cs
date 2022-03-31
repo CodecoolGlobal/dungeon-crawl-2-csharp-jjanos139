@@ -9,7 +9,11 @@
 
         public override bool OnCollision(Actor anotherActor)
         {
-            return true;
+            if (anotherActor.DefaultName == "Soul")
+            {
+                return true;
+            }
+            return false;
         }
 
         public override char DefaultChar => '8';

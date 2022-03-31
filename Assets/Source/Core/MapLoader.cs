@@ -433,6 +433,10 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<Priest>(position);
                     ActorManager.Singleton.Spawn<GrassFloor>(position);
                     break;
+                case 'á':
+                    ActorManager.Singleton.Spawn<Spider>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
                 case ' ':
                     break;
                 default:

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using DungeonCrawl.Core;
+using UnityEngine;
+using static DungeonCrawl.Utilities;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -20,6 +22,18 @@ namespace DungeonCrawl.Actors.Characters
             _batDeathSound = Instantiate(Resources.Load<AudioSource>("BatDeathSound"));
             _batDeathSound.transform.parent = transform;
         }
+        protected override void OnUpdate(float deltaTime)
+        {
+            _turnCounter += deltaTime;
+            if (_turnCounter >= 0.7)
+            {
+                _turnCounter = 0;
+                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
+                Direction direction = GetRandomDirection();
+                TryMove(direction);
+            }
+        }
+        private float _turnCounter;
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
