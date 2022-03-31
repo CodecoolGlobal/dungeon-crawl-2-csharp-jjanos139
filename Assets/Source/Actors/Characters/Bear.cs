@@ -7,7 +7,7 @@ namespace DungeonCrawl.Actors.Characters
         public override bool OnCollision(Actor anotherActor)
         {
             BattleSystem battleSystem = new BattleSystem();
-            battleSystem.SetupBattle(413, this);
+            battleSystem.SetupBattle(413, this, anotherActor);
             return true;
         }
 
