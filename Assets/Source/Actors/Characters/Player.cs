@@ -14,11 +14,7 @@ namespace DungeonCrawl.Actors.Characters
         private AudioSource DeathSound3;
 
         readonly System.Random _randomSound = new System.Random();
-        private void Awake()
-        {
-            base.Awake();
-            InstantiateAudio();
-        }
+        
         private void InstantiateAudio()
         {
             DeathSound1 = Instantiate(Resources.Load<AudioSource>("DeathSound1"));
@@ -48,6 +44,25 @@ namespace DungeonCrawl.Actors.Characters
             return true;
         }
 
+
+        private FieldOfView _fieldOfView;
+
+        private void Awake()
+        {
+            base.Awake();
+            InstantiateAudio();
+
+            SpriteRenderer = GetComponent<SpriteRenderer>();
+
+            SetSprite(DefaultSpriteId);
+
+            CameraController.Singleton.Camera.transform.parent = this.transform;
+            CameraController.Singleton.Position = (0, 0);
+
+            _fieldOfView = Instantiate(Resources.Load<FieldOfView>("FieldOfView"));
+            _fieldOfView.transform.parent = this.transform;
+            _fieldOfView.SetOrigin(transform.position);
+        }
 
         protected override void OnUpdate(float deltaTime)
         {
@@ -156,6 +171,8 @@ namespace DungeonCrawl.Actors.Characters
                 var canvas = GameObject.Find("InventoryCanvas").GetComponent<Canvas>();
                 canvas.enabled = false;
             }
+
+            _fieldOfView.SetOrigin(transform.position);
         }
 
 
