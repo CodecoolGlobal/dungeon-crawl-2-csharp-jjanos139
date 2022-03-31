@@ -13,7 +13,7 @@ namespace DungeonCrawl.Actors.Characters
             {
                 _turnCounter = 0;
                 (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
-                CheckIfAggro(playerCoords, 4, 10);
+                CheckIfAggro(playerCoords, 4, 5);
 
                 if (_isAggro)
                 {
