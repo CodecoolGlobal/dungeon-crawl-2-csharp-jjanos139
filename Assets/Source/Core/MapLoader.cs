@@ -23,6 +23,8 @@ namespace DungeonCrawl.Core
             var split = lines[0].Split(' ');
             var width = int.Parse(split[0]);
             var height = int.Parse(split[1]);
+            CurrentMapHeight = height;
+            CurrentMapWidth = width;
 
             // Create actors
             for (var y = 0; y < height; y++)
@@ -40,6 +42,9 @@ namespace DungeonCrawl.Core
             CameraController.Singleton.Size = 10;
             //CameraController.Singleton.Position = (width / 2, -height / 2);
         }
+
+        public static int CurrentMapWidth;
+        public static int CurrentMapHeight;
 
         private static void SpawnActor(char c, (int x, int y) position)
         {
