@@ -43,7 +43,7 @@ namespace DungeonCrawl.Actors.Static
         }
         public override int DefaultSpriteId => 12;
         public override string DefaultName => "RoadTurn2";
-
+        public override char DefaultChar => 'ß';
         public override bool Detectable => true;
     }
 }

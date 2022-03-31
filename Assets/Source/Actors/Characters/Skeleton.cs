@@ -7,6 +7,13 @@ namespace DungeonCrawl.Actors.Characters
 {
     public class Skeleton : Character
     {
+
+        BattleSystem battleSystem = new BattleSystem();
+        public override bool OnCollision(Actor anotherActor)
+        {
+
+            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
+
         private AudioSource _skeletonSound;
         private AudioSource _skeletonDeathSound;
 
@@ -27,8 +34,10 @@ namespace DungeonCrawl.Actors.Characters
         {
             if (anotherActor is Player)
                 _skeletonSound.Play();
+
             return true;
         }
+
 
         protected override void OnDeath()
         {
@@ -38,6 +47,10 @@ namespace DungeonCrawl.Actors.Characters
 
         protected override void OnUpdate(float deltaTime)
         {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
             _turnCounter += deltaTime;
             if (_turnCounter >= 1)
             {
@@ -60,6 +73,18 @@ namespace DungeonCrawl.Actors.Characters
         private float _turnCounter;
         public override int DefaultSpriteId => 316;
         public override string DefaultName => "Skeleton";
+
+        public override int Health
+        {
+            get;
+            set;
+        } = 100;
+        public override int MaxHealth => 100;
+
+        public override int Damage => 10;
+        public override char DefaultChar => 's';
+
         public override bool Detectable => true;
+
     }
 }

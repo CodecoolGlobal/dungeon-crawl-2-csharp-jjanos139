@@ -27,6 +27,8 @@ namespace DungeonCrawl.Actors.Static
         public override int DefaultSpriteId => 197;
         public override string DefaultName => "Bridge";
 
-        public override bool Detectable => true;
+        public override bool Detectable => false;
+
+        public override char DefaultChar => '-';
     }
 }

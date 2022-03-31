@@ -8,7 +8,7 @@ namespace DungeonCrawl.Actors.Characters
     {
         private AudioSource _batSound;
         private AudioSource _batDeathSound;
-
+        BattleSystem battleSystem = new BattleSystem();
         private void Awake()
         {
             base.Awake();
@@ -38,7 +38,18 @@ namespace DungeonCrawl.Actors.Characters
         {
             if (anotherActor is Player)
                 _batSound.Play();
+
+            battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
             return true;
+        }
+
+
+        protected override void OnUpdate(float deltaTime)
+        {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
         }
 
         protected override void OnDeath()
@@ -49,7 +60,16 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 409;
         public override string DefaultName => "Bat";
-        public override bool Detectable => true;
+        public override int Health
+        {
+            get;
+            set;
+        } = 100;
 
+        public override int MaxHealth => 100;
+
+        public override int Damage => 10;
+
+        public override char DefaultChar => 'b';
     }
 }

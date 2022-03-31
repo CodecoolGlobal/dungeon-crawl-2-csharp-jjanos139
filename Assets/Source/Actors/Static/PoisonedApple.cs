@@ -29,6 +29,8 @@ namespace DungeonCrawl.Actors.Static
         public override string DefaultName => "Apple";
         public override int Z => -1;
 
-        public override bool Detectable => true;
+        public override bool Detectable => false;
+
+        public override char DefaultChar => 'A';
     }
 }

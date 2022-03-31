@@ -9,6 +9,15 @@ namespace DungeonCrawl.Core
     {
         private void Start()
         {
+            var fight = (GameObject) Instantiate(Resources.Load("BattleSystem"));
+            var cams = GameObject.FindObjectsOfType(typeof(Camera));
+            foreach (Camera cam in cams)
+            {
+                if (cam.name == "BattleCamera")
+                {
+                    cam.enabled = false;
+                }
+            }
             MapLoader.LoadMap(1);
         }
     }

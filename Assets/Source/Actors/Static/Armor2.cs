@@ -37,5 +37,7 @@ namespace DungeonCrawl.Actors.Static
 
 
         public override bool Detectable => true;
+
+        public override char DefaultChar => '+';
     }
 }

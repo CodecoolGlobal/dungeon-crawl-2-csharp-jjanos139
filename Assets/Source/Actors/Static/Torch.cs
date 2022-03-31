@@ -15,5 +15,7 @@ namespace DungeonCrawl.Actors.Static
         public override int Z => -1;
         public override bool Detectable => true;
 
+
+        public override char DefaultChar => 'ő';
     }
 }

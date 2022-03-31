@@ -12,5 +12,7 @@ namespace DungeonCrawl.Actors.Static
         {
             return false;
         }
+
+        public override char DefaultChar => 'z';
     }
 }
