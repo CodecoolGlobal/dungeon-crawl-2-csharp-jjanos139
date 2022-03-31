@@ -280,6 +280,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1565edb6a2b673e45830fc16d9b929e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerUnit: {fileID: 0}
+  enemyUnit: {fileID: 0}
+  playerHud: {fileID: 0}
+  enemyHud: {fileID: 0}
+  battledialog: {fileID: 0}
+  state: 0
 --- !u!1 &220570873
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44af3cf10a840a7429ac83dac9288832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Unit: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +538,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,8 +1100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d479ff2a501d1d64ab338b83646af5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: {fileID: 1343574938}
-  Hpbar: {fileID: 1413488938}
+  Name: {fileID: 0}
+  Hpbar: {fileID: 0}
 --- !u!1 &938802782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44af3cf10a840a7429ac83dac9288832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Unit: {fileID: 0}
 --- !u!1 &966312693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2708,7 +2716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5c8022a471d0445b53d51c9d0c8f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 2069924246}
+  health: {fileID: 0}
 --- !u!114 &1413488939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2930,8 +2938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d479ff2a501d1d64ab338b83646af5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: {fileID: 220570876}
-  Hpbar: {fileID: 1845860246}
+  Name: {fileID: 0}
+  Hpbar: {fileID: 0}
 --- !u!224 &1577024270
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3355,7 +3363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5c8022a471d0445b53d51c9d0c8f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 50411246}
+  health: {fileID: 0}
 --- !u!224 &1845860247
 RectTransform:
   m_ObjectHideFlags: 0

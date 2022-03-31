@@ -46,7 +46,7 @@ namespace DungeonCrawl.Actors.Static
 
         public override int DefaultSpriteId => 106;
         public override string DefaultName => "Floor";
-
+        public override bool IsWalkable => true;
         public override bool Detectable => false;
         public override char DefaultChar => '.';
     }

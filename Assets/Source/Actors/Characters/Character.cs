@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Assets.Source.Core;
 using DungeonCrawl.Core;
 using UnityEngine;
 
@@ -21,6 +23,18 @@ namespace DungeonCrawl.Actors.Characters
             {
                 _isAggro = false;
             }
+        }
+
+        protected (int, int ) PathFind((int x, int y) playerCoords)
+        {
+            //PathFinding.UpdateGrid();     // TODO This Cause performance issues! Need optimization!
+            List<PathNode> path = PathFinding.FindPath(Position.x, Position.y + MapLoader.CurrentMapHeight, playerCoords.x, playerCoords.y + MapLoader.CurrentMapHeight);
+            if (path != null)
+            {
+                return (path[1].x, path[1].y - MapLoader.CurrentMapHeight);
+            }
+
+            return (0, 0);
         }
 
         protected Direction GetMoveDirection((int x, int y) playerCoords)
@@ -157,7 +171,7 @@ namespace DungeonCrawl.Actors.Characters
         }
 
         protected bool _isAggro;
-
+        protected Pathfinding PathFinding = new Pathfinding(MapLoader.CurrentMapWidth, MapLoader.CurrentMapHeight);
         protected abstract void OnDeath();
 
         /// <summary>

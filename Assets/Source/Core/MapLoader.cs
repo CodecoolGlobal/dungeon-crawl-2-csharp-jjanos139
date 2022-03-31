@@ -18,6 +18,8 @@ namespace DungeonCrawl.Core
         public static List<Actor> AllActorsFirstMap;
         public static List<Actor> AllActorsSecondMap;
         public static List<Actor> AllActorsThirdNMap;
+        public static int CurrentMapWidth;
+        public static int CurrentMapHeight;
         /// <summary>
         ///     Constructs map from txt file and spawns actors at appropriate positions
         /// </summary>
@@ -30,6 +32,8 @@ namespace DungeonCrawl.Core
             var split = lines[0].Split(' ');
             var width = int.Parse(split[0]);
             var height = int.Parse(split[1]);
+            CurrentMapHeight = height;
+            CurrentMapWidth = width;
 
             // Create actors
             for (var y = 0; y < height; y++)

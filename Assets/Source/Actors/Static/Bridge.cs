@@ -24,6 +24,8 @@ namespace DungeonCrawl.Actors.Static
                 _bridgeStep.Play();
             return true;
         }
+
+        public override bool IsWalkable => true;
         public override int DefaultSpriteId => 197;
         public override string DefaultName => "Bridge";
 

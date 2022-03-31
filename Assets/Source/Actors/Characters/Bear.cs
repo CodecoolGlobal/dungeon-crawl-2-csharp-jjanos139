@@ -25,22 +25,21 @@ namespace DungeonCrawl.Actors.Characters
 
         BattleSystem battleSystem = new BattleSystem();
 
-        protected override void OnUpdate(float deltaTime)
-        {
-            if (battleSystem.state == BattleStatus.PlayerMove)
-            {
-                battleSystem.HandleActionSelection();
-            }
-            _turnCounter += deltaTime;
-            if (_turnCounter >= 1)
-            {
-                _turnCounter = 0;
-                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
-                Direction direction = GetRandomDirection();
-                TryMove(direction);
-            }
-        }
-        private float _turnCounter;
+        //protected override void OnUpdate(float deltaTime)
+        //{
+        //    if (battleSystem.state == BattleStatus.PlayerMove)
+        //    {
+        //        battleSystem.HandleActionSelection();
+        //    }
+        //    _turnCounter += deltaTime;
+        //    if (_turnCounter >= 1)
+        //    {
+        //        _turnCounter = 0;
+        //        (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
+        //        Direction direction = GetRandomDirection();
+        //        TryMove(direction);
+        //    }
+        //}
 
         public override bool OnCollision(Actor anotherActor)
         {
@@ -60,6 +59,40 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("It's because I'm smarter than the average bear.");
         }
 
+        protected override void OnUpdate(float deltaTime)
+        {
+            if (battleSystem.state == BattleStatus.PlayerMove)
+            {
+                battleSystem.HandleActionSelection();
+            }
+
+            _turnCounter += deltaTime;
+            if (_turnCounter >= 0.5)
+            {
+                _turnCounter = 0;
+                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
+                CheckIfAggro(playerCoords, 5, 10);
+
+                if (_isAggro)
+                {
+                    var placeToMove = PathFind(playerCoords);
+                    if (placeToMove != (0, 0))
+                        TryMove(placeToMove);
+                    else
+                    {
+                        Direction direction = GetRandomDirection();
+                        TryMove(direction);
+                    }
+                }
+                else if (!_isAggro)
+                {
+                    Direction direction = GetRandomDirection();
+                    TryMove(direction);
+                }
+            }
+        }
+
+        private float _turnCounter;
         public override int DefaultSpriteId => 413;
         public override string DefaultName => "Bear";
 
