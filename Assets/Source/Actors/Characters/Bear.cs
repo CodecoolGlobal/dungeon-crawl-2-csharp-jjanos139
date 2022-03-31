@@ -22,13 +22,10 @@ namespace DungeonCrawl.Actors.Characters
         }
         public override bool OnCollision(Actor anotherActor)
         {
-<<<<<<< HEAD
             BattleSystem battleSystem = new BattleSystem();
             battleSystem.SetupBattle(413, this, anotherActor);
-=======
             if (anotherActor is Player)
                 _bearSound.Play();
->>>>>>> development
             return true;
         }
 
@@ -41,10 +38,7 @@ namespace DungeonCrawl.Actors.Characters
         public override int DefaultSpriteId => 413;
         public override string DefaultName => "Bear";
 
-<<<<<<< HEAD
         public override char DefaultChar => 'B';
-=======
         public override bool Detectable => true;
->>>>>>> development
     }
 }

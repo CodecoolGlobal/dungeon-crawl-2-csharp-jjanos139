@@ -35,12 +35,8 @@ namespace DungeonCrawl.Actors.Characters
 
         public override int DefaultSpriteId => 409;
         public override string DefaultName => "Bat";
-<<<<<<< HEAD
 
         public override char DefaultChar => 'b';
-=======
         public override bool Detectable => true;
-
->>>>>>> development
     }
 }
