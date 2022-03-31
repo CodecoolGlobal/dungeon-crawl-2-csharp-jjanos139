@@ -44,7 +44,12 @@ public class FieldOfView : MonoBehaviour
             }
             else
             {
-                vertex = raycastHit2D.point;
+                vertex = _origin + Utilities.GetVectorFromAngle(angle) * raycastHit2D.distance * 1.2f;
+
+                if (Vector3.Distance(vertex, _origin) > viewDistance)
+                {
+                    vertex = Vector3.Normalize(vertex - _origin) * viewDistance + _origin;
+                }
             }
             vertices[vertexIndex] = vertex;
 
@@ -66,7 +71,7 @@ public class FieldOfView : MonoBehaviour
         _mesh.vertices = vertices;
         _mesh.uv = uv;
         _mesh.triangles = triangles;
-        _mesh.bounds = new Bounds(_origin, Vector3.one * 1000f);
+        _mesh.bounds = new Bounds(transform.position, Vector3.one * 1000f);
     }
 
     public void SetOrigin(Vector3 origin)
