@@ -1,5 +1,6 @@
 using DungeonCrawl.Actors;
 using DungeonCrawl.Actors.Characters;
+using DungeonCrawl.Actors.Static;
 using DungeonCrawl.Core;
 
 using UnityEngine;
@@ -77,32 +78,74 @@ public class BattleSystem : MonoBehaviour
                 currentAction--;
             }
         }
+
         battledialog.UpdateActionSelection(currentAction);
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            PerformPlayerMove();
+            bool hasPotion = false;
+            Actor Potion = new Potion();
+
+            foreach (var Item in playerUnit.GetComponent<PlayerUnit>().Unit.Inventory)
+            {
+                if (Item.DefaultName == "Potion")
+                {
+                    hasPotion = true;
+                    Potion = Item;
+                }
+            }
+
+            if (hasPotion)
+                {
+                    if (GameObject.Find("DialogBox").GetComponents<DialogBox>()[0].MoveTexts[0].color == Color.black)
+                    {
+                        PerformPlayerMove("attack");
+                    }
+                    else if (GameObject.Find("DialogBox").GetComponents<DialogBox>()[0].MoveTexts[0].color ==
+                             Color.blue)
+                    {
+                        PerformPlayerMove("Heal", Potion);
+                    }
+                }
+                else
+                {
+                    PerformPlayerMove("attack");
+                }
+            
         }
     }
 
-    private void PerformPlayerMove()
+    private void PerformPlayerMove(string movetype, Actor Potion = null)
     {
-        if (state == BattleStatus.PlayerMove)
+        if (movetype == "attack")
         {
-            enemyUnit.GetComponent<PlayerUnit>().Unit.ApplyDamage(playerUnit.GetComponent<PlayerUnit>().Unit);
-            float health = enemyUnit.GetComponent<PlayerUnit>().Unit.Health;
-            float maxHealth = enemyUnit.GetComponent<PlayerUnit>().Unit.MaxHealth;
-            enemyHud.GetComponent<PlayerHud>().Hpbar.SetHP((float) health / maxHealth);
-            state = BattleStatus.EnemyMove;
+            if (state == BattleStatus.PlayerMove)
+            {
+                enemyUnit.GetComponent<PlayerUnit>().Unit.ApplyDamage(playerUnit.GetComponent<PlayerUnit>().Unit.Damage);
+                float health = enemyUnit.GetComponent<PlayerUnit>().Unit.Health;
+                float maxHealth = enemyUnit.GetComponent<PlayerUnit>().Unit.MaxHealth;
+                enemyHud.GetComponent<PlayerHud>().Hpbar.SetHP((float)health / maxHealth);
+                state = BattleStatus.EnemyMove;
+            }
+            if (state == BattleStatus.EnemyMove)
+            {
+                playerUnit.GetComponent<PlayerUnit>().Unit.ApplyDamage(enemyUnit.GetComponent<PlayerUnit>().Unit.Damage);
+                float phealth = playerUnit.GetComponent<PlayerUnit>().Unit.Health;
+                float pmaxHealth = playerUnit.GetComponent<PlayerUnit>().Unit.MaxHealth;
+                playerHud.GetComponent<PlayerHud>().Hpbar.SetHP((float)phealth / pmaxHealth);
+                state = BattleStatus.PlayerMove;
+            }
         }
-        if (state == BattleStatus.EnemyMove)
+        else
         {
-            playerUnit.GetComponent<PlayerUnit>().Unit.ApplyDamage(enemyUnit.GetComponent<PlayerUnit>().Unit);
+            playerUnit.GetComponent<PlayerUnit>().Unit.ApplyDamage(Potion.Damage);
             float phealth = playerUnit.GetComponent<PlayerUnit>().Unit.Health;
             float pmaxHealth = playerUnit.GetComponent<PlayerUnit>().Unit.MaxHealth;
-            playerHud.GetComponent<PlayerHud>().Hpbar.SetHP((float) phealth/pmaxHealth);
-            state = BattleStatus.PlayerMove;
+            playerHud.GetComponent<PlayerHud>().Hpbar.SetHP((float)phealth / pmaxHealth);
+            playerUnit.GetComponent<PlayerUnit>().Unit.Inventory.Remove(Potion);
+            ActorManager.Singleton.DestroyActor(Potion);
         }
-        
+
+
     }
 }
 

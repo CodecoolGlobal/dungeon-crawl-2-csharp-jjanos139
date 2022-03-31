@@ -43,5 +43,7 @@ namespace DungeonCrawl.Actors.Static
             ActorManager.Singleton.GetPlayer().ItemUnder = null;
         }
         public override char DefaultChar => 'P';
+
+        public override int Damage => -30;
     }
 }

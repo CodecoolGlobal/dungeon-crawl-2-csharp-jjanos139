@@ -98,9 +98,8 @@ namespace DungeonCrawl.Actors
         }
 
 
-        public void ApplyDamage(Actor attacker)
+        public void ApplyDamage(int damage)
         {
-            var damage = attacker.Damage;
             this.Health -= damage;
             if (this.Health <= 0)
             {
