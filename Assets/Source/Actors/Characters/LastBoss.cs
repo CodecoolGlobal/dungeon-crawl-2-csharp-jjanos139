@@ -9,12 +9,29 @@ namespace DungeonCrawl.Actors.Characters
         {
             if (anotherActor is Player)
             {
+                _lastBossSound.Play();
                 battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
                 return true;
             }
             return false;
         }
 
+        private AudioSource _lastBossSound;
+        private AudioSource _victory;
+
+        private void Awake()
+        {
+            base.Awake();
+            InstantiateAudio();
+        }
+
+        private void InstantiateAudio()
+        {
+            _lastBossSound = Instantiate(Resources.Load<AudioSource>("LastBossSound"));
+            _lastBossSound.transform.parent = transform;
+            _victory = Instantiate(Resources.Load<AudioSource>("Victory"));
+            _victory.transform.parent = transform;
+        }
 
         protected override void OnUpdate(float deltaTime)
         {
@@ -26,6 +43,7 @@ namespace DungeonCrawl.Actors.Characters
 
         protected override void OnDeath()
         {
+            _victory.Play();
             Debug.Log("I will return!");
         }
 
