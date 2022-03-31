@@ -50,7 +50,7 @@ namespace DungeonCrawl.Core
             List<Actor> list = new List<Actor>();
             foreach (Actor actor in _allActors)
             {
-                if (actor.Detectable && actor.Position == position)
+                if (actor.Position == position)
                     list.Add(actor);
             }
             return list;
