@@ -9,7 +9,7 @@
 
         public override bool OnCollision(Actor anotherActor)
         {
-            if (DefaultName == "Soul")
+            if (anotherActor.DefaultName == "Soul")
             {
                 return true;
             }
