@@ -6,7 +6,7 @@ namespace DungeonCrawl.Actors.Characters
     {
         private AudioSource _batSound;
         private AudioSource _batDeathSound;
-
+        BattleSystem battleSystem = new BattleSystem();
         private void Awake()
         {
             base.Awake();
