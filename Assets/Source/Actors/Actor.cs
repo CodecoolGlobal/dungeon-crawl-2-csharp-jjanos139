@@ -116,15 +116,12 @@ namespace DungeonCrawl.Actors
         /// </summary>
         public abstract string DefaultName { get; }
 
-<<<<<<< HEAD
         public abstract char DefaultChar { get; }
 
         public int Health { get; set; }
 
         public int MaxHealth { get; set; }
-=======
         public List<Actor> Inventory = new List<Actor>();
         public Actor ItemUnder;
->>>>>>> development
     }
 }

@@ -38,7 +38,8 @@ namespace DungeonCrawl.Actors.Characters
         public override int DefaultSpriteId => 413;
         public override string DefaultName => "Bear";
 
-        public override char DefaultChar => 'B';
         public override bool Detectable => true;
+
+        public override char DefaultChar => 'B';
     }
 }

@@ -30,12 +30,8 @@ namespace DungeonCrawl.Actors.Static
                 {
                     ActorManager.Singleton.FreezeActualMap(2);
                     ActorManager.Singleton.DestroyAllActors();
-<<<<<<< HEAD
-                    MapLoader.ReLoadMap(1);
-=======
-                    MapLoader.LoadMap(1);
                     _mapOneMusic.Play();
->>>>>>> development
+                    MapLoader.ReLoadMap(1);
                     anotherActor.Position = (48, -22);
                 }
             }

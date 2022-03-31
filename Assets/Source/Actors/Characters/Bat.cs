@@ -37,6 +37,5 @@ namespace DungeonCrawl.Actors.Characters
         public override string DefaultName => "Bat";
 
         public override char DefaultChar => 'b';
-        public override bool Detectable => true;
     }
 }

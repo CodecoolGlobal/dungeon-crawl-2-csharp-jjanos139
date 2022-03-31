@@ -26,7 +26,6 @@ namespace DungeonCrawl.Actors.Static
         {
             if (anotherActor.DefaultName == "Player")
             {
-<<<<<<< HEAD
                 if (MapLoader.AllActorsSecondMap is null)
                 {
                     ActorManager.Singleton.FreezeActualMap(1);
@@ -41,13 +40,9 @@ namespace DungeonCrawl.Actors.Static
                     MapLoader.ReLoadMap(2);
                     anotherActor.Position = (4, -17);
                 }
-=======
-                ActorManager.Singleton.DestroyAllActors();
-                MapLoader.LoadMap(2);
-                _mapTwoMusic.Play();
-                anotherActor.Position = (4, -17);
->>>>>>> development
             }
+            _mapTwoMusic.Play();
+        }
 
             return false;
         }

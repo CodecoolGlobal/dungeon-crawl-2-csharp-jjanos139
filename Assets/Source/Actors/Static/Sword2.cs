@@ -29,11 +29,7 @@ namespace DungeonCrawl.Actors.Static
         public override string DefaultName => "Sword2";
         public override int Z => -1;
 
-<<<<<<< HEAD
-        public override bool Detectable => false;
-        public override char DefaultChar => '4';
-=======
         public override bool Detectable => true;
->>>>>>> development
+        public override char DefaultChar => '4';
     }
 }

@@ -45,11 +45,7 @@ namespace DungeonCrawl.Actors.Static
         public override int DefaultSpriteId => 0;
         public override string DefaultName => "GrassFloor";
 
-<<<<<<< HEAD
         public override bool Detectable => false;
         public override char DefaultChar => ',';
-=======
-        public override bool Detectable => true;
->>>>>>> development
     }
 }

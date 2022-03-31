@@ -64,7 +64,6 @@ namespace DungeonCrawl.Actors.Characters
                 // Move right
                 TryMove(Direction.Right);
             }
-<<<<<<< HEAD
 
             if (Input.GetKey(KeyCode.W))
             {
@@ -109,10 +108,6 @@ namespace DungeonCrawl.Actors.Characters
                     _turnCounter = 0;
                 }
             }
-
-        }
-=======
->>>>>>> development
 
             if (Input.GetKeyDown(KeyCode.E))
             {

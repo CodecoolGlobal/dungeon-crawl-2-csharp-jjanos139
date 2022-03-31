@@ -30,12 +30,8 @@ namespace DungeonCrawl.Actors.Static
         public override int Z => -1;
 
 
-<<<<<<< HEAD
         public override bool Detectable => false;
 
         public override char DefaultChar => '2';
-=======
-        public override bool Detectable => true;
->>>>>>> development
     }
 }

@@ -35,10 +35,6 @@ namespace DungeonCrawl.Actors.Static
         //    gameObject.transform.localScale = new Vector3(1, -1, 1);
         //}
 
-<<<<<<< HEAD
-        public override bool Detectable => false;
-        public override char DefaultChar => '3';
-=======
         public void OnTriggerExit2D(Collider2D collider2D)
         {
             UserInterface.Singleton.SetText(null, UserInterface.TextPosition.BottomRight);
@@ -46,6 +42,6 @@ namespace DungeonCrawl.Actors.Static
         }
 
         public override bool Detectable => true;
->>>>>>> development
+        public override char DefaultChar => '3';
     }
 }

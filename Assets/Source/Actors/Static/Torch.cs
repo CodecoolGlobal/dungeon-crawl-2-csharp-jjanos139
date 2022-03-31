@@ -25,14 +25,12 @@ namespace DungeonCrawl.Actors.Static
             return false;
         }
 
-<<<<<<< HEAD
-        public override char DefaultChar => 'ő';
-=======
         public override int DefaultSpriteId => 722;
         public override string DefaultName => "Torch";
         public override int Z => -1;
         public override bool Detectable => true;
 
->>>>>>> development
+
+        public override char DefaultChar => 'ő';
     }
 }

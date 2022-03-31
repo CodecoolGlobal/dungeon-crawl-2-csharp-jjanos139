@@ -29,12 +29,8 @@ namespace DungeonCrawl.Actors.Static
         public override string DefaultName => "Drumstick";
         public override int Z => -1;
 
-<<<<<<< HEAD
         public override bool Detectable => false;
 
         public override char DefaultChar => 'd';
-=======
-        public override bool Detectable => true;
->>>>>>> development
     }
 }
