@@ -1,9 +1,33 @@
-﻿using UnityEngine;
+﻿using DungeonCrawl.Core;
+using UnityEngine;
+using static DungeonCrawl.Utilities;
 
 namespace DungeonCrawl.Actors.Characters
 {
     public class Demon : Character
     {
+        protected override void OnUpdate(float deltaTime)
+        {
+            _turnCounter += deltaTime;
+            if (_turnCounter >= 0.5)
+            {
+                _turnCounter = 0;
+                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
+                CheckIfAggro(playerCoords, 4, 10);
+
+                if (_isAggro)
+                {
+                    TryMove(GetMoveDirection(playerCoords));
+                }
+                else if (!_isAggro)
+                {
+                    Direction direction = GetRandomDirection();
+                    TryMove(direction);
+                }
+            }
+        }
+        private float _turnCounter;
+
         private AudioSource _demonSound;
         private AudioSource _demonDeathSound;
 
@@ -22,7 +46,7 @@ namespace DungeonCrawl.Actors.Characters
         }
         public override bool OnCollision(Actor anotherActor)
         {
-            if (anotherActor is Player) 
+            if (anotherActor is Player)
                 _demonSound.Play();
             return true;
         }
