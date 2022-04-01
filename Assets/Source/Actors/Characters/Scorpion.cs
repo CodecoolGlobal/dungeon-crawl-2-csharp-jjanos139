@@ -64,7 +64,5 @@ namespace DungeonCrawl.Actors.Characters
 
         public override char DefaultChar => 'x';
 
-        public override bool Detectable => true;
-
     }
 }

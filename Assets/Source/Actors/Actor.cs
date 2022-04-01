@@ -20,24 +20,33 @@ namespace DungeonCrawl.Actors
         }
 
         private (int x, int y) _position;
-        private SpriteRenderer _spriteRenderer;
+
+        protected SpriteRenderer SpriteRenderer;
+        //private FieldOfView _fieldOfView;
 
         protected void Awake()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            SpriteRenderer = GetComponent<SpriteRenderer>();
 
             SetSprite(DefaultSpriteId);
 
             if (this.GetType() == typeof(Player))
             {
-                CameraController.Singleton.Camera.transform.parent = this.transform;
-                CameraController.Singleton.Position = (0, 0);
-                
-                SpriteMask spriteMask = Instantiate(Resources.Load<SpriteMask>("Sprite Mask"));
-                spriteMask.transform.parent = this.transform;
-            }
+                //CameraController.Singleton.Camera.transform.parent = this.transform;
+                //CameraController.Singleton.Position = (0, 0);
 
-            _spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                //_fieldOfView = Instantiate(Resources.Load<FieldOfView>("FieldOfView"));
+                //_fieldOfView.transform.parent = this.transform;
+
+                //SpriteMask spriteMask = Instantiate(Resources.Load<SpriteMask>("Sprite Mask"));
+                //spriteMask.transform.parent = this.transform;
+                //}
+
+            }
+            //SpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
+            SpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+
+            //GetComponent<Renderer>().material = Resources.Load<Material>("Materials/Objects");
         }
 
         private void Update()
@@ -47,7 +56,7 @@ namespace DungeonCrawl.Actors
 
         public void SetSprite(int id)
         {
-            _spriteRenderer.sprite = ActorManager.Singleton.GetSprite(id);
+            SpriteRenderer.sprite = ActorManager.Singleton.GetSprite(id);
         }
 
         public void TryMove(Direction direction)

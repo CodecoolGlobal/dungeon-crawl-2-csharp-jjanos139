@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DungeonCrawl.Actors;
+using DungeonCrawl.Actors.Static;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -142,6 +143,19 @@ namespace DungeonCrawl.Core
             go.AddComponent<SpriteRenderer>();
 
             var component = go.AddComponent<T>();
+
+            if (component.GetType() == typeof(Wall))
+            {
+                BoxCollider2D boxCollider = go.AddComponent<BoxCollider2D>();
+                //Rigidbody2D rigidbody2D = go.AddComponent<Rigidbody2D>();
+                //rigidbody2D.gravityScale = 0;
+                //rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+                //rigidbody2D.bodyType = RigidbodyType2D.Static;
+                //MeshCollider meshCollider = go.AddComponent<MeshCollider>();
+                //meshCollider.convex = true;
+                //boxCollider.enabled = true;
+                go.layer = 3;
+            }
 
             go.name = actorName ?? component.DefaultName;
             component.Position = (x, y);

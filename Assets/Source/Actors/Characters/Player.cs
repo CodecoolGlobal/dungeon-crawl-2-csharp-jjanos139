@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Assets.Source.Core;
 using DungeonCrawl.Core;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -11,11 +14,7 @@ namespace DungeonCrawl.Actors.Characters
         private AudioSource DeathSound3;
 
         readonly System.Random _randomSound = new System.Random();
-        private void Awake()
-        {
-            base.Awake();
-            InstantiateAudio();
-        }
+        
         private void InstantiateAudio()
         {
             DeathSound1 = Instantiate(Resources.Load<AudioSource>("DeathSound1"));
@@ -46,6 +45,25 @@ namespace DungeonCrawl.Actors.Characters
         }
 
 
+        private FieldOfView _fieldOfView;
+
+        private void Awake()
+        {
+            base.Awake();
+            InstantiateAudio();
+
+            SpriteRenderer = GetComponent<SpriteRenderer>();
+
+            SetSprite(DefaultSpriteId);
+
+            CameraController.Singleton.Camera.transform.parent = this.transform;
+            CameraController.Singleton.Position = (0, 0);
+
+            _fieldOfView = Instantiate(Resources.Load<FieldOfView>("FieldOfView"));
+            _fieldOfView.transform.parent = this.transform;
+            _fieldOfView.SetOrigin(transform.position);
+        }
+
         protected override void OnUpdate(float deltaTime)
         {
             if (battleSystem.state == BattleStatus.PlayerMove)
@@ -60,24 +78,28 @@ namespace DungeonCrawl.Actors.Characters
             {
                 // Move up
                 TryMove(Direction.Up);
+                _turnCounter = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.S))
             {
                 // Move down
                 TryMove(Direction.Down);
+                _turnCounter = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.A))
             {
                 // Move left
                 TryMove(Direction.Left);
+                _turnCounter = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
                 // Move right
                 TryMove(Direction.Right);
+                _turnCounter = 0;
             }
 
             if (Input.GetKey(KeyCode.W))
@@ -134,6 +156,26 @@ namespace DungeonCrawl.Actors.Characters
                     ActorManager.Singleton.DestroyActor(ItemUnder);
                 }
             }
+
+            if (Input.GetKey(KeyCode.I))
+            {
+                var canvas = GameObject.Find("InventoryCanvas").GetComponent<Canvas>();
+                canvas.enabled = true;
+                var contents = GameObject.Find("Contents").GetComponent<Text>();
+                string contentsOfBag = "";
+                for (int i = 0; i < Inventory.Count; i++)
+                {
+                    contentsOfBag += $"{Inventory[i].DefaultName}\n";
+                }
+                contents.text = contentsOfBag;
+            }
+            else
+            {
+                var canvas = GameObject.Find("InventoryCanvas").GetComponent<Canvas>();
+                canvas.enabled = false;
+            }
+
+            _fieldOfView.SetOrigin(transform.position);
         }
 
 

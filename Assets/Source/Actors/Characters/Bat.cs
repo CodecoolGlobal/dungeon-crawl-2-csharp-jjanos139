@@ -1,6 +1,6 @@
 ﻿using DungeonCrawl.Core;
 using UnityEngine;
-using static DungeonCrawl.Utilities;
+using DungeonCrawl;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -33,7 +33,7 @@ namespace DungeonCrawl.Actors.Characters
             {
                 _turnCounter = 0;
                 (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
-                Direction direction = GetRandomDirection();
+                Direction direction = Utilities.GetRandomDirection();
                 TryMove(direction);
             }
         }
