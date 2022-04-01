@@ -2,8 +2,8 @@
 using DungeonCrawl.Actors.Static;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
+using Assets.Source.Core;
 using DungeonCrawl.Actors;
 using UnityEngine;
 
@@ -20,6 +20,7 @@ namespace DungeonCrawl.Core
         public static List<Actor> AllActorsThirdNMap;
         public static int CurrentMapWidth;
         public static int CurrentMapHeight;
+        public static Pathfinding PathFinding;
         /// <summary>
         ///     Constructs map from txt file and spawns actors at appropriate positions
         /// </summary>
@@ -34,6 +35,7 @@ namespace DungeonCrawl.Core
             var height = int.Parse(split[1]);
             CurrentMapHeight = height;
             CurrentMapWidth = width;
+            PathFinding = new Pathfinding(CurrentMapWidth, CurrentMapHeight);
 
             // Create actors
             for (var y = 0; y < height; y++)

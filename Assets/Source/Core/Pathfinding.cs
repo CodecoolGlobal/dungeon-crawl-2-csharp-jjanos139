@@ -103,13 +103,17 @@ namespace Assets.Source.Core
         {
             List<PathNode> neighbourList = new List<PathNode>();
             // Left
-            if (currentNode.x - 1 >= 0) neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y));
+            if (currentNode.x - 1 >= 0) 
+                neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y));
             // Right
-            if (currentNode.x + 1 < _grid.GetWidth()) neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y));
+            if (currentNode.x + 1 < _grid.GetWidth()) 
+                neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y));
             // Down --------------------------------------------------------------------------------------------------------------------( + / - )------
-            if (currentNode.y - 1 >= 0) neighbourList.Add(GetNode(currentNode.x, currentNode.y - 1));
+            if (currentNode.y - 1 >= 0) 
+                neighbourList.Add(GetNode(currentNode.x, currentNode.y - 1));
             // Up ----------------------------------------------------------------------------------------------------------------------( + / - )------
-            if (currentNode.y + 1 < _grid.GetHeight()) neighbourList.Add(GetNode(currentNode.x, currentNode.y + 1));
+            if (currentNode.y + 1 < _grid.GetHeight()) 
+                neighbourList.Add(GetNode(currentNode.x, currentNode.y + 1));
 
             return neighbourList;
         }
@@ -131,6 +135,8 @@ namespace Assets.Source.Core
             }
 
             path.Reverse();
+            if (path.Count > 1)
+                path[1].isWalkable = false;
             return path;
         }
 

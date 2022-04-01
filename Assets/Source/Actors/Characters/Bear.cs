@@ -74,7 +74,7 @@ namespace DungeonCrawl.Actors.Characters
                 {
                     _turnCounter = 0;
                     (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
-                    CheckIfAggro(playerCoords, 5, 10);
+                    CheckIfAggro(playerCoords, 1000, 2000);
 
                     if (_isAggro)
                     {

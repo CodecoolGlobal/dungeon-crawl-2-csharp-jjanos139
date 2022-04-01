@@ -18,20 +18,18 @@ namespace DungeonCrawl.Actors.Characters
             if (!_isAggro && dist <= agroRange)
             {
                 _isAggro = true;
-                PathFinding = new Pathfinding(MapLoader.CurrentMapWidth, MapLoader.CurrentMapHeight);
             }
             else if (_isAggro && dist >= loseAgroRange)
             {
                 _isAggro = false;
-                PathFinding = null;
             }
         }
 
         protected (int, int ) PathFind((int x, int y) playerCoords)
         {
             //PathFinding.UpdateGrid();     // TODO This Cause performance issues! Need optimization!
-            List<PathNode> path = PathFinding.FindPath(Position.x, Position.y + MapLoader.CurrentMapHeight, playerCoords.x, playerCoords.y + MapLoader.CurrentMapHeight);
-            if (path != null)
+            List<PathNode> path = MapLoader.PathFinding.FindPath(Position.x, Position.y + MapLoader.CurrentMapHeight, playerCoords.x, playerCoords.y + MapLoader.CurrentMapHeight);
+            if (path != null && path.Count > 1)
             {
                 return (path[1].x, path[1].y - MapLoader.CurrentMapHeight);
             }
@@ -174,7 +172,6 @@ namespace DungeonCrawl.Actors.Characters
 
         protected bool InCombat;
         protected bool _isAggro;
-        public Pathfinding PathFinding;
         protected abstract void OnDeath();
 
         /// <summary>

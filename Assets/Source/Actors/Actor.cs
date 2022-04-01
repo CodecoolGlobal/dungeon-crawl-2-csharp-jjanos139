@@ -60,6 +60,8 @@ namespace DungeonCrawl.Actors
             if (actorAtTargetPosition == null)
             {
                 // No obstacle found, just move
+                MapLoader.PathFinding.GetGrid().GetGridObject(Position.x, Position.y + MapLoader.CurrentMapHeight).isWalkable = true;
+                MapLoader.PathFinding.GetGrid().GetGridObject(targetPosition.x, targetPosition.y + MapLoader.CurrentMapHeight).isWalkable = false;
                 Position = targetPosition;
             }
             else
@@ -67,6 +69,8 @@ namespace DungeonCrawl.Actors
                 if (actorAtTargetPosition.OnCollision(this))
                 {
                     // Allowed to move
+                    MapLoader.PathFinding.GetGrid().GetGridObject(Position.x, Position.y + MapLoader.CurrentMapHeight).isWalkable = true;
+                    MapLoader.PathFinding.GetGrid().GetGridObject(targetPosition.x, targetPosition.y + MapLoader.CurrentMapHeight).isWalkable = false;
                     Position = targetPosition;
                 }
             }
@@ -79,6 +83,8 @@ namespace DungeonCrawl.Actors
             if (actorAtTargetPosition == null)
             {
                 // No obstacle found, just move
+                MapLoader.PathFinding.GetGrid().GetGridObject(Position.x, Position.y + MapLoader.CurrentMapHeight).isWalkable = true;
+                MapLoader.PathFinding.GetGrid().GetGridObject(targetPosition.x, targetPosition.y + MapLoader.CurrentMapHeight).isWalkable = false;
                 Position = targetPosition;
             }
             else
@@ -86,6 +92,8 @@ namespace DungeonCrawl.Actors
                 if (actorAtTargetPosition.OnCollision(this))
                 {
                     // Allowed to move
+                    MapLoader.PathFinding.GetGrid().GetGridObject(Position.x, Position.y + MapLoader.CurrentMapHeight).isWalkable = true;
+                    MapLoader.PathFinding.GetGrid().GetGridObject(targetPosition.x, targetPosition.y + MapLoader.CurrentMapHeight).isWalkable = false;
                     Position = targetPosition;
                 }
             }
