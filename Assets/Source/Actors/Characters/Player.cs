@@ -68,8 +68,11 @@ namespace DungeonCrawl.Actors.Characters
         {
             if (battleSystem.state == BattleStatus.PlayerMove)
             {
+                InCombat = true;
                 battleSystem.HandleActionSelection();
+                InCombat = false;
             }
+
             // Move up
             if (Input.GetKeyDown(KeyCode.W))
             {

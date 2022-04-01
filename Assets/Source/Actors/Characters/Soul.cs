@@ -13,23 +13,28 @@ namespace DungeonCrawl.Actors.Characters
         {
             if (battleSystem.state == BattleStatus.PlayerMove)
             {
+                InCombat = true;
                 battleSystem.HandleActionSelection();
             }
-            _turnCounter += deltaTime;
-            if (_turnCounter >= 0.6)
-            {
-                _turnCounter = 0;
-                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
-                CheckIfAggro(playerCoords, 4, 8);
 
-                if (_isAggro)
+            if (!InCombat)
+            {
+                _turnCounter += deltaTime;
+                if (_turnCounter >= 0.6)
                 {
-                    TryMove(GetMoveDirection(playerCoords));
-                }
-                else if (!_isAggro)
-                {
-                    Direction direction = GetRandomDirection();
-                    TryMove(direction);
+                    _turnCounter = 0;
+                    (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
+                    CheckIfAggro(playerCoords, 4, 10);
+
+                    if (_isAggro)
+                    {
+                        TryMove(GetMoveDirection(playerCoords));
+                    }
+                    else if (!_isAggro)
+                    {
+                        Direction direction = GetRandomDirection();
+                        TryMove(direction);
+                    }
                 }
             }
         }

@@ -28,8 +28,8 @@ namespace DungeonCrawl.Actors.Characters
         protected (int, int ) PathFind((int x, int y) playerCoords)
         {
             //PathFinding.UpdateGrid();     // TODO This Cause performance issues! Need optimization!
-            List<PathNode> path = PathFinding.FindPath(Position.x, Position.y + MapLoader.CurrentMapHeight, playerCoords.x, playerCoords.y + MapLoader.CurrentMapHeight);
-            if (path != null)
+            List<PathNode> path = MapLoader.PathFinding.FindPath(Position.x, Position.y + MapLoader.CurrentMapHeight, playerCoords.x, playerCoords.y + MapLoader.CurrentMapHeight);
+            if (path != null && path.Count > 1)
             {
                 return (path[1].x, path[1].y - MapLoader.CurrentMapHeight);
             }
@@ -170,15 +170,15 @@ namespace DungeonCrawl.Actors.Characters
             throw new Exception("Where on earth  is that drone?");
         }
 
+        protected bool InCombat;
         protected bool _isAggro;
-        protected Pathfinding PathFinding = new Pathfinding(MapLoader.CurrentMapWidth, MapLoader.CurrentMapHeight);
         protected abstract void OnDeath();
 
         /// <summary>
         ///     All characters are drawn "above" floor etc
         /// </summary>
         public override int Z => -1;
-
+        
         public override char DefaultChar => 'p';
     }
     

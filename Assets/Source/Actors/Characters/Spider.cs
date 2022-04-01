@@ -12,30 +12,37 @@ namespace DungeonCrawl.Actors.Characters
         {
             if (battleSystem.state == BattleStatus.PlayerMove)
             {
+                InCombat = true;
                 battleSystem.HandleActionSelection();
             }
-            _turnCounter += deltaTime;
-            if (_turnCounter >= 0.8)
-            {
-                _turnCounter = 0;
-                (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
-                CheckIfAggro(playerCoords, 4, 5);
 
-                if (_isAggro)
-                {
-                    TryMove(GetMoveDirection(playerCoords));
-                }
-                else if (!_isAggro)
-                {
-                    Direction direction = GetRandomDirection();
-                    TryMove(direction);
-                }
-            }
-            if (battleSystem.state == BattleStatus.PlayerMove)
+            if (!InCombat)
             {
-                battleSystem.HandleActionSelection();
+                _turnCounter += deltaTime;
+                if (_turnCounter >= 0.8)
+                {
+                    _turnCounter = 0;
+                    (int x, int y) playerCoords = ActorManager.Singleton.GetPlayer().Position;
+                    CheckIfAggro(playerCoords, 4, 5);
+
+                    if (_isAggro)
+                    {
+                        TryMove(GetMoveDirection(playerCoords));
+                    }
+                    else if (!_isAggro)
+                    {
+                        Direction direction = GetRandomDirection();
+                        TryMove(direction);
+                    }
+                }
+
+                if (battleSystem.state == BattleStatus.PlayerMove)
+                {
+                    battleSystem.HandleActionSelection();
+                }
             }
         }
+
         private float _turnCounter;
 
         private AudioSource _spiderSound;

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DungeonCrawl.Actors.Static;
-using DungeonCrawl.Core;
-using UnityEngine;
+﻿using DungeonCrawl.Core;
 
 namespace Assets.Source.Core
 {

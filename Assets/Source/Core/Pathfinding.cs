@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Source.Core
@@ -11,7 +6,6 @@ namespace Assets.Source.Core
     public class Pathfinding
     {
         private const int MOVE_STRAIGHT_COST = 10;
-        private const int MOVE_DIAGONAL_COST = 14;
 
         private Grid<PathNode> _grid;
         private List<PathNode> _openList;
@@ -25,6 +19,9 @@ namespace Assets.Source.Core
         {
             PathNode startNode = _grid.GetGridObject(startX, startY);   // get own cords?
             PathNode endNode = _grid.GetGridObject(endX, endY);         // get player cords?
+
+            startNode.isWalkable = true;
+            endNode.isWalkable = true;
 
             _openList = new List<PathNode> {startNode};
             _closedList = new List<PathNode>();
@@ -106,13 +103,17 @@ namespace Assets.Source.Core
         {
             List<PathNode> neighbourList = new List<PathNode>();
             // Left
-            if (currentNode.x - 1 >= 0) neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y));
+            if (currentNode.x - 1 >= 0) 
+                neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y));
             // Right
-            if (currentNode.x + 1 < _grid.GetWidth()) neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y));
+            if (currentNode.x + 1 < _grid.GetWidth()) 
+                neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y));
             // Down --------------------------------------------------------------------------------------------------------------------( + / - )------
-            if (currentNode.y - 1 >= 0) neighbourList.Add(GetNode(currentNode.x, currentNode.y - 1));
+            if (currentNode.y - 1 >= 0) 
+                neighbourList.Add(GetNode(currentNode.x, currentNode.y - 1));
             // Up ----------------------------------------------------------------------------------------------------------------------( + / - )------
-            if (currentNode.y + 1 < _grid.GetHeight()) neighbourList.Add(GetNode(currentNode.x, currentNode.y + 1));
+            if (currentNode.y + 1 < _grid.GetHeight()) 
+                neighbourList.Add(GetNode(currentNode.x, currentNode.y + 1));
 
             return neighbourList;
         }
@@ -134,6 +135,8 @@ namespace Assets.Source.Core
             }
 
             path.Reverse();
+            if (path.Count > 1)
+                path[1].isWalkable = false;
             return path;
         }
 
