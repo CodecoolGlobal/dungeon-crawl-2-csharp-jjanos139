@@ -70,6 +70,9 @@ crashlytics-build.properties
 
 .vsconfig
 Assembly-CSharp.csproj
-dungeon-crawl-1-csharp-Phyxick.sln
-/Assets/Resources/Spritesheet.spriteatlas
+*.asset
+*.pfx
+*.meta
+*.spriteatlas
+*.sln
 UpgradeLog.htm
