@@ -134,24 +134,25 @@ namespace DungeonCrawl.Actors
         }
 
 
-        public void ApplyDamage(int damage)
+        public virtual void ApplyDamage(int damage)
         {
-            this.Health -= damage;
-            if (this.Health <= 0)
-            {
-                // Die
-                //Character.OnDeath();
-                var cams = GameObject.FindObjectsOfType(typeof(Camera));
-                foreach (Camera cam in cams)
-                {
-                    if (cam.name == "BattleCamera")
-                    {
-                        cam.enabled = false;
-                    }
-                }
-                ActorManager.Singleton.DestroyActor(this);
-            }
+            //this.Health -= damage;
+            //if (this.Health <= 0)
+            //{
+            //    // Die
+            //    //Character.OnDeath();
+            //    var cams = GameObject.FindObjectsOfType(typeof(Camera));
+            //    foreach (Camera cam in cams)
+            //    {
+            //        if (cam.name == "BattleCamera")
+            //        {
+            //            cam.enabled = false;
+            //        }
+            //    }
+            //    ActorManager.Singleton.DestroyActor(this);
+            //}
         }
+
         /// <summary>
         ///     Can this actor be detected with ActorManager.GetActorAt()? Should be false for purely cosmetic actors
         /// </summary>

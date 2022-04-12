@@ -6,44 +6,14 @@ namespace DungeonCrawl.Actors.Characters
 {
     public class Ghoul : Character
     {
-
-        BattleSystem battleSystem = new BattleSystem();
-        
-        private AudioSource _ghoulSound;
-        private AudioSource _ghoulDeathSound;
-
-        private void Awake()
-        {
-            base.Awake();
-            InstantiateAudio();
-        }
-
-        private void InstantiateAudio()
-        {
-            _ghoulSound = Instantiate(Resources.Load<AudioSource>("GhoulSound"));
-            _ghoulSound.transform.parent = transform;
-            _ghoulDeathSound = Instantiate(Resources.Load<AudioSource>("GhoulDeathSound"));
-            _ghoulDeathSound.transform.parent = transform;
-        }
-        public override bool OnCollision(Actor anotherActor)
-        {
-            if (anotherActor is Player)
-            {
-                _ghoulSound.Play();
-                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-                return true;
-            }
-            return false;
-        }
         protected override void OnUpdate(float deltaTime)
         {
             if (battleSystem.state == BattleStatus.PlayerMove)
             {
-                InCombat = true;
                 battleSystem.HandleActionSelection();
             }
 
-            if (!InCombat)
+            if (!ActorManager.Singleton.IsCombat)
             {
                 _turnCounter += deltaTime;
                 if (_turnCounter >= 1)
@@ -65,25 +35,23 @@ namespace DungeonCrawl.Actors.Characters
             }
         }
 
-        private float _turnCounter;
-
         protected override void OnDeath()
         {
-            _ghoulDeathSound.Play();
+            DeathSound.Play();
             Debug.Log("Zoinks! G-G-G-G-Ghost");
         }
 
+        private float _turnCounter;
+        public override string AttackSoundFileName => "GhoulSound";
+        public override string DeathSoundFileName => "GhoulDeathSound";
         public override int DefaultSpriteId => 315;
         public override string DefaultName => "Ghoul";
-
         public override int Health
         {
             get;
             set;
         } = 100;
-
         public override int MaxHealth => 100;
-
         public override int Damage => 10;
         public override char DefaultChar => 'g';
     }

@@ -58,5 +58,10 @@ namespace DungeonCrawl
             float angleRad = angle * (Mathf.PI / 180f);
             return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
         }
+
+        public static int GetRandomInt(int min, int max)
+        {
+            return _random.Next(min, max);
+        }
     }
 }

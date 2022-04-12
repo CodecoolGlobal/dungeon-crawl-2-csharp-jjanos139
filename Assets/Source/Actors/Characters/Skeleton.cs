@@ -7,40 +7,9 @@ namespace DungeonCrawl.Actors.Characters
 {
     public class Skeleton : Character
     {
-
-        BattleSystem battleSystem = new BattleSystem();
-
-        private AudioSource _skeletonSound;
-        private AudioSource _skeletonDeathSound;
-
-        private void Awake()
-        {
-            base.Awake();
-            InstantiateAudio();
-        }
-
-        private void InstantiateAudio()
-        {
-            _skeletonSound = Instantiate(Resources.Load<AudioSource>("SkeletonSound"));
-            _skeletonSound.transform.parent = transform;
-            _skeletonDeathSound = Instantiate(Resources.Load<AudioSource>("SkeletonDeathSound"));
-            _skeletonDeathSound.transform.parent = transform;
-        }
-        public override bool OnCollision(Actor anotherActor)
-        {
-            if (anotherActor is Player)
-            {
-                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-                _skeletonSound.Play();
-                return true;
-            }
-            return false;
-        }
-
-
         protected override void OnDeath()
         {
-            _skeletonDeathSound.Play();
+            DeathSound.Play();
             Debug.Log("Well, I was already dead anyway...");
         }
 
@@ -48,11 +17,10 @@ namespace DungeonCrawl.Actors.Characters
         {
             if (battleSystem.state == BattleStatus.PlayerMove)
             {
-                InCombat = true;
                 battleSystem.HandleActionSelection();
             }
 
-            if (!InCombat)
+            if (!ActorManager.Singleton.IsCombat)
             {
                 _turnCounter += deltaTime;
                 if (_turnCounter >= 1)
@@ -73,22 +41,20 @@ namespace DungeonCrawl.Actors.Characters
                 }
             }
         }
-        
+
+        public override string AttackSoundFileName => "SkeletonSound";
+        public override string DeathSoundFileName => "SkeletonDeathSound";
         private float _turnCounter;
         public override int DefaultSpriteId => 316;
         public override string DefaultName => "Skeleton";
-
         public override int Health
         {
             get;
             set;
         } = 100;
         public override int MaxHealth => 100;
-
         public override int Damage => 10;
         public override char DefaultChar => 's';
-
         public override bool Detectable => true;
-
     }
 }

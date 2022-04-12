@@ -20,6 +20,7 @@ namespace DungeonCrawl.Core
 
         private SpriteAtlas _spriteAtlas;
         private HashSet<Actor> _allActors;
+        public bool IsCombat;
 
 
         private void Awake()
@@ -34,6 +35,7 @@ namespace DungeonCrawl.Core
 
             _allActors = new HashSet<Actor>();
             _spriteAtlas = Resources.Load<SpriteAtlas>("Spritesheet");
+            IsCombat = false;
         }
 
         /// <summary>

@@ -6,17 +6,14 @@ namespace DungeonCrawl.Actors.Characters
 {
     public class Spider : Character
     {
-        BattleSystem battleSystem = new BattleSystem();
-
         protected override void OnUpdate(float deltaTime)
         {
             if (battleSystem.state == BattleStatus.PlayerMove)
             {
-                InCombat = true;
                 battleSystem.HandleActionSelection();
             }
 
-            if (!InCombat)
+            if (!ActorManager.Singleton.IsCombat)
             {
                 _turnCounter += deltaTime;
                 if (_turnCounter >= 0.8)
@@ -43,42 +40,15 @@ namespace DungeonCrawl.Actors.Characters
             }
         }
 
-        private float _turnCounter;
-
-        private AudioSource _spiderSound;
-        private AudioSource _spiderDeathSound;
-
-        private void Awake()
-        {
-            base.Awake();
-            InstantiateAudio();
-        }
-
-        private void InstantiateAudio()
-        {
-            _spiderSound = Instantiate(Resources.Load<AudioSource>("SpiderSound"));
-            _spiderSound.transform.parent = transform;
-            _spiderDeathSound = Instantiate(Resources.Load<AudioSource>("SpiderDeathSound"));
-            _spiderDeathSound.transform.parent = transform;
-        }
-        public override bool OnCollision(Actor anotherActor)
-        {
-
-            if (anotherActor is Player)
-            {
-                _spiderSound.Play();
-                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-                return true;
-            }
-            return false;
-        }
-
         protected override void OnDeath()
         {
-            _spiderDeathSound.Play();
+            DeathSound.Play();
             Debug.Log("Remember, with great power comes great responsibility...");
         }
 
+        private float _turnCounter;
+        public override string AttackSoundFileName => "SpiderSound";
+        public override string DeathSoundFileName => "SpiderDeathSound";
         public override int DefaultSpriteId => 267;
         public override string DefaultName => "Spider";
         public override int Health
@@ -86,11 +56,8 @@ namespace DungeonCrawl.Actors.Characters
             get;
             set;
         } = 10;
-
         public override int MaxHealth => 10;
-
         public override int Damage => 10;
-
         public override char DefaultChar => 'X';
     }
 }

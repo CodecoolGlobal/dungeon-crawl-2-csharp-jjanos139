@@ -6,18 +6,14 @@ namespace DungeonCrawl.Actors.Characters
 {
     public class Soul : Character
     {
-
-        BattleSystem battleSystem = new BattleSystem();
-
         protected override void OnUpdate(float deltaTime)
         {
             if (battleSystem.state == BattleStatus.PlayerMove)
             {
-                InCombat = true;
                 battleSystem.HandleActionSelection();
             }
 
-            if (!InCombat)
+            if (!ActorManager.Singleton.IsCombat)
             {
                 _turnCounter += deltaTime;
                 if (_turnCounter >= 0.6)
@@ -38,23 +34,16 @@ namespace DungeonCrawl.Actors.Characters
                 }
             }
         }
-        private float _turnCounter;
-
-        public override bool OnCollision(Actor anotherActor)
-        {
-            if (anotherActor is Player)
-            {
-                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-                return true;
-            }
-            return false;
-        }
 
         protected override void OnDeath()
         {
+            DeathSound.Play();
             Debug.Log("Woosh.");
         }
 
+        private float _turnCounter;
+        public override string AttackSoundFileName => "GhoulSound";
+        public override string DeathSoundFileName => "GhoulDeathSound";
         public override int DefaultSpriteId => 314;
         public override string DefaultName => "Soul";
         public override int Health
@@ -62,11 +51,8 @@ namespace DungeonCrawl.Actors.Characters
             get;
             set;
         } = 100;
-
         public override int MaxHealth => 100;
-
         public override int Damage => 10;
-
         public override char DefaultChar => '"';
     }
 }

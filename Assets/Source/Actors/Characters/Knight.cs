@@ -6,18 +6,14 @@ namespace DungeonCrawl.Actors.Characters
 {
     public class Knight : Character
     {
-
-        BattleSystem battleSystem = new BattleSystem();
-
         protected override void OnUpdate(float deltaTime)
         {
             if (battleSystem.state == BattleStatus.PlayerMove)
             {
-                InCombat = true;
                 battleSystem.HandleActionSelection();
             }
 
-            if (!InCombat)
+            if (!ActorManager.Singleton.IsCombat)
             {
                 _turnCounter += deltaTime;
                 if (_turnCounter >= 0.8)
@@ -39,44 +35,17 @@ namespace DungeonCrawl.Actors.Characters
             }
         }
 
-        private float _turnCounter;
-
-        private AudioSource _knightSound;
-        private AudioSource _knightDeathSound;
-
-        private void Awake()
-        {
-            base.Awake();
-            InstantiateAudio();
-        }
-
-        private void InstantiateAudio()
-        {
-            _knightSound = Instantiate(Resources.Load<AudioSource>("PriestSound"));
-            _knightSound.transform.parent = transform;
-            _knightDeathSound = Instantiate(Resources.Load<AudioSource>("DeathSound3"));
-            _knightDeathSound.transform.parent = transform;
-        }
-        public override bool OnCollision(Actor anotherActor)
-        {
-            if (anotherActor is Player)
-            {
-                _knightSound.Play();
-                battleSystem.SetupBattle(this.DefaultSpriteId, this, anotherActor);
-                return true;
-            }
-            return false;
-        }
-
         protected override void OnDeath()
         {
-            _knightDeathSound.Play();
+            DeathSound.Play();
             Debug.Log("How...?");
         }
 
+        private float _turnCounter;
+        public override string AttackSoundFileName => "PriestSound";
+        public override string DeathSoundFileName => "DeathSound3";
         public override int DefaultSpriteId => 30;
         public override string DefaultName => "Knight";
-
         public override int Health
         {
             get;
@@ -84,7 +53,6 @@ namespace DungeonCrawl.Actors.Characters
         } = 100;
 
         public override int MaxHealth => 100;
-
         public override int Damage => 10;
         public override char DefaultChar => '/';
     }

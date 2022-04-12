@@ -3,6 +3,7 @@ using DungeonCrawl.Actors.Static;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Assets.Source.Actors.Items;
 using Assets.Source.Core;
 using DungeonCrawl.Actors;
 using UnityEngine;
