@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System;
 using Assets.Source.Actors.Static;
-using DungeonCrawl.Actors.Characters;
 
 namespace DungeonCrawl.Actors.Static
 {
@@ -9,9 +7,9 @@ namespace DungeonCrawl.Actors.Static
     {
         protected override void InstantiateAudio(string _, string __)
         {
-            _footStepCave1 = Instantiate(Resources.Load<AudioSource>("FootStepCave1"));
-            _footStepCave2 = Instantiate(Resources.Load<AudioSource>("FootStepCave2"));
-            _footStepCave3 = Instantiate(Resources.Load<AudioSource>("FootStepCave3"));
+            _footStepCave1 = Instantiate(Resources.Load<AudioSource>("Sounds/FootStepCave1"));
+            _footStepCave2 = Instantiate(Resources.Load<AudioSource>("Sounds/FootStepCave2"));
+            _footStepCave3 = Instantiate(Resources.Load<AudioSource>("Sounds/FootStepCave3"));
             _footStepCave1.transform.parent = transform;
             _footStepCave2.transform.parent = transform;
             _footStepCave3.transform.parent = transform;
@@ -19,7 +17,7 @@ namespace DungeonCrawl.Actors.Static
 
         private void PlayRandomFootStepCaveSound()
         {
-            int soundCase = Utilities.GetRandomInt(1, 4);
+            int soundCase = Utilities.GetRandomIntBetween(1, 4);
 
             switch (soundCase)
             {

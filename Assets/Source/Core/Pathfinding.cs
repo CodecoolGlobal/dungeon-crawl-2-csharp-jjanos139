@@ -17,8 +17,8 @@ namespace Assets.Source.Core
 
         public List<PathNode> FindPath(int startX, int startY, int endX, int endY)
         {
-            PathNode startNode = _grid.GetGridObject(startX, startY);   // get own cords?
-            PathNode endNode = _grid.GetGridObject(endX, endY);         // get player cords?
+            PathNode startNode = _grid.GetGridObject(startX, startY);   // get own cords
+            PathNode endNode = _grid.GetGridObject(endX, endY);         // get player cords
 
             startNode.isWalkable = true;
             endNode.isWalkable = true;
@@ -87,18 +87,6 @@ namespace Assets.Source.Core
             return _grid;
         }
 
-        // TODO This Cause performance issues! Need optimization!
-        //public void UpdateGrid()
-        //{
-        //    for (int x = 0; x < _grid.GetWidth(); x++)
-        //    {
-        //        for (int y = 0; y < _grid.GetHeight(); y++)
-        //        {
-        //            _grid.GetGridObject(x, y).UpdateIsWalkable();
-        //        }
-        //    }
-        //}
-
         private List<PathNode> GetNeighbourList(PathNode currentNode)
         {
             List<PathNode> neighbourList = new List<PathNode>();
@@ -108,10 +96,10 @@ namespace Assets.Source.Core
             // Right
             if (currentNode.x + 1 < _grid.GetWidth()) 
                 neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y));
-            // Down --------------------------------------------------------------------------------------------------------------------( + / - )------
+            // Down
             if (currentNode.y - 1 >= 0) 
                 neighbourList.Add(GetNode(currentNode.x, currentNode.y - 1));
-            // Up ----------------------------------------------------------------------------------------------------------------------( + / - )------
+            // Up
             if (currentNode.y + 1 < _grid.GetHeight()) 
                 neighbourList.Add(GetNode(currentNode.x, currentNode.y + 1));
 

@@ -1,6 +1,5 @@
 ﻿using DungeonCrawl.Core;
 using UnityEngine;
-using DungeonCrawl;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -32,8 +31,8 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("I won’t kill you, but I don’t have to save you.");
         }
 
-        public override string AttackSoundFileName => "BatSound";
-        public override string DeathSoundFileName => "BatDeathSound";
+        public override string AttackSoundFileName => "Sounds/BatSound";
+        public override string DeathSoundFileName => "Sounds/BatDeathSound";
         private float _turnCounter;
         public override int DefaultSpriteId => 409;
         public override string DefaultName => "Bat";

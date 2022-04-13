@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using DungeonCrawl.Core;
 
 namespace DungeonCrawl.Actors.Static
 {

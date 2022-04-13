@@ -1,5 +1,4 @@
-﻿using DungeonCrawl.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -19,8 +18,8 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("Run, you fool.");
         }
 
-        public override string AttackSoundFileName => "WizardSound";
-        public override string DeathSoundFileName => "DeathSound1";
+        public override string AttackSoundFileName => "Sounds/WizardSound";
+        public override string DeathSoundFileName => "Sounds/DeathSound1";
         public override int DefaultSpriteId => 457;
         public override string DefaultName => "Wizard";
         public override int Health

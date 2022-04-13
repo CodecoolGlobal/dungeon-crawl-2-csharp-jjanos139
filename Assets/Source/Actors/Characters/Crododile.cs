@@ -1,5 +1,4 @@
-﻿using DungeonCrawl.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -19,8 +18,8 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("Get on the right side of the road you pelican!");
         }
 
-        public override string AttackSoundFileName => "CrocSound";
-        public override string DeathSoundFileName => "CrocDeathSound";
+        public override string AttackSoundFileName => "Sounds/CrocSound";
+        public override string DeathSoundFileName => "Sounds/CrocDeathSound";
         public override int DefaultSpriteId => 412;
         public override string DefaultName => "Crocodile";
         public override int Health

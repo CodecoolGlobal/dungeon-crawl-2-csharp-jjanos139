@@ -1,5 +1,4 @@
-﻿using DungeonCrawl.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -19,8 +18,8 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("I will return!");
         }
 
-        public override string AttackSoundFileName => "LastBossSound";
-        public override string DeathSoundFileName => "Victory";
+        public override string AttackSoundFileName => "Sounds/LastBossSound";
+        public override string DeathSoundFileName => "Sounds/Victory";
         public override int DefaultSpriteId => 455;
         public override string DefaultName => "LastBoss";
         public override int Health

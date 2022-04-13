@@ -52,7 +52,6 @@ namespace DungeonCrawl.Core
 
             // Set default camera size and position
             CameraController.Singleton.Size = 10;
-            //CameraController.Singleton.Position = (width / 2, -height / 2);
         }
 
         public static void ReLoadMap(int mapId)

@@ -60,8 +60,7 @@ namespace DungeonCrawl.Actors.Characters
             this.Health -= damage;
             if (this.Health <= 0)
             {
-                // Die
-                //Character.OnDeath();
+                OnDeath();
                 var cams = GameObject.FindObjectsOfType(typeof(Camera));
                 foreach (Camera cam in cams)
                 {
@@ -78,7 +77,6 @@ namespace DungeonCrawl.Actors.Characters
         protected Direction GetMoveDirection((int x, int y) playerCoords)
         {
 
-            //------------------------------------------------------------------------------------------------------------------
             if (playerCoords.x - Position.x >= 0)
             {
                 if (playerCoords.y - Position.y >= 0)
@@ -110,7 +108,7 @@ namespace DungeonCrawl.Actors.Characters
                             return Direction.Right;
                         }
                     }
-                }//-------------------------------------------------------------------------------------------------------------
+                }
                 else if (playerCoords.y - Position.y < 0)
                 {
                     
@@ -141,7 +139,7 @@ namespace DungeonCrawl.Actors.Characters
                         }
                     }
                 }
-            }//-----------------------------------------------------------------------------------------------------------------
+            }
             else if (playerCoords.x - Position.x < 0)
             {
                 if (playerCoords.y - Position.y >= 0)
@@ -172,7 +170,7 @@ namespace DungeonCrawl.Actors.Characters
                             return Direction.Left;
                         }
                     }
-                }//-------------------------------------------------------------------------------------------------------------
+                }
                 else if (playerCoords.y - Position.y < 0)
                 {
 
@@ -203,7 +201,7 @@ namespace DungeonCrawl.Actors.Characters
                         }
                     }
                 }
-            }//-----------------------------------------------------------------------------------------------------------------
+            }
 
             throw new Exception("Where on earth  is that drone?");
         }
@@ -211,9 +209,6 @@ namespace DungeonCrawl.Actors.Characters
         protected bool _isAggro;
         protected abstract void OnDeath();
 
-        /// <summary>
-        ///     All characters are drawn "above" floor etc
-        /// </summary>
         public override int Z => -1;
 
         public override char DefaultChar => 'p';

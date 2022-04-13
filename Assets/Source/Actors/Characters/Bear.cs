@@ -46,8 +46,8 @@ namespace DungeonCrawl.Actors.Characters
                 }
             }
         }
-        public override string AttackSoundFileName => "BearSound";
-        public override string DeathSoundFileName => "BearDeathSound";
+        public override string AttackSoundFileName => "Sounds/BearSound";
+        public override string DeathSoundFileName => "Sounds/BearDeathSound";
         private float _turnCounter;
         public override int DefaultSpriteId => 413;
         public override string DefaultName => "Bear";

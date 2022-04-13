@@ -1,6 +1,4 @@
-﻿using DungeonCrawl.Actors.Characters;
-
-namespace DungeonCrawl.Actors.Static
+﻿namespace DungeonCrawl.Actors.Static
 {
     public class Bush2 : Actor
     {

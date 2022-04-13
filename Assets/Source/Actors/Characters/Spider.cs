@@ -47,8 +47,8 @@ namespace DungeonCrawl.Actors.Characters
         }
 
         private float _turnCounter;
-        public override string AttackSoundFileName => "SpiderSound";
-        public override string DeathSoundFileName => "SpiderDeathSound";
+        public override string AttackSoundFileName => "Sounds/SpiderSound";
+        public override string DeathSoundFileName => "Sounds/SpiderDeathSound";
         public override int DefaultSpriteId => 267;
         public override string DefaultName => "Spider";
         public override int Health

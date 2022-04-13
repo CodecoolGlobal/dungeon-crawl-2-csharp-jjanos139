@@ -1,5 +1,4 @@
-﻿using DungeonCrawl.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -19,8 +18,8 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("ME SMASH!");
         }
 
-        public override string AttackSoundFileName => "OgreSound";
-        public override string DeathSoundFileName => "OgreDeathSound";
+        public override string AttackSoundFileName => "Sounds/OgreSound";
+        public override string DeathSoundFileName => "Sounds/OgreDeathSound";
         public override int DefaultSpriteId => 317;
         public override string DefaultName => "Ogre";
         public override int Health

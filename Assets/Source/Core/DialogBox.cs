@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +10,6 @@ public class DialogBox : MonoBehaviour
     [SerializeField] public Color highlightedColor = Color.blue;
 
 
-    // Update is called once per frame
     public void EnableMoveSelector(bool enabled)
     {
         moveSelector = GameObject.Find("ActionSelector");

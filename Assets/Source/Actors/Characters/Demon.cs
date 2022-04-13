@@ -35,8 +35,8 @@ namespace DungeonCrawl.Actors.Characters
             }
         }
         private float _turnCounter;
-        public override string AttackSoundFileName => "DemonSound";
-        public override string DeathSoundFileName => "DemonDeathSound";
+        public override string AttackSoundFileName => "Sounds/DemonSound";
+        public override string DeathSoundFileName => "Sounds/DemonDeathSound";
         protected override void OnDeath()
         {
             DeathSound.Play();

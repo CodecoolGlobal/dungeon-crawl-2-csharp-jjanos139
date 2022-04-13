@@ -38,8 +38,8 @@ namespace DungeonCrawl.Actors.Characters
         }
 
         private float _turnCounter;
-        public override string AttackSoundFileName => "PriestSound";
-        public override string DeathSoundFileName => "DeathSound2";
+        public override string AttackSoundFileName => "Sounds/PriestSound";
+        public override string DeathSoundFileName => "Sounds/DeathSound2";
         public override int DefaultSpriteId => 78;
         public override string DefaultName => "Priest";
         public override int Health

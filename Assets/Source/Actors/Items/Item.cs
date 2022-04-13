@@ -18,7 +18,7 @@ namespace Assets.Source.Actors.Items
 
         private void InstantiateAudio()
         {
-            _itemPickUp = Instantiate(Resources.Load<AudioSource>("ItemPickUp"));
+            _itemPickUp = Instantiate(Resources.Load<AudioSource>("Sounds/ItemPickUp"));
             _itemPickUp.transform.parent = transform;
         }
 

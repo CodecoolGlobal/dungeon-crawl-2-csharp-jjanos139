@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System;
 using Assets.Source.Actors.Static;
-using DungeonCrawl.Actors.Characters;
 
 namespace DungeonCrawl.Actors.Static
 {
@@ -9,9 +7,9 @@ namespace DungeonCrawl.Actors.Static
     {
         protected override void InstantiateAudio(string _, string __)
         {
-            FootStepCity1 = Instantiate(Resources.Load<AudioSource>("FootStepCity1"));
-            FootStepCity2 = Instantiate(Resources.Load<AudioSource>("FootStepCity2"));
-            FootStepCity3 = Instantiate(Resources.Load<AudioSource>("FootStepCity3"));
+            FootStepCity1 = Instantiate(Resources.Load<AudioSource>("Sounds/FootStepCity1"));
+            FootStepCity2 = Instantiate(Resources.Load<AudioSource>("Sounds/FootStepCity2"));
+            FootStepCity3 = Instantiate(Resources.Load<AudioSource>("Sounds/FootStepCity3"));
             FootStepCity1.transform.parent = transform;
             FootStepCity2.transform.parent = transform;
             FootStepCity3.transform.parent = transform;
@@ -19,7 +17,7 @@ namespace DungeonCrawl.Actors.Static
 
         private void PlayRandomFootStepCitySound()
         {
-            int soundCase = Utilities.GetRandomInt(1, 4);
+            int soundCase = Utilities.GetRandomIntBetween(1, 4);
 
             switch (soundCase)
             {

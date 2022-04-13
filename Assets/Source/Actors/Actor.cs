@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using Assets.Source.Core;
 using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Core;
@@ -23,31 +22,14 @@ namespace DungeonCrawl.Actors
         private (int x, int y) _position;
 
         protected SpriteRenderer SpriteRenderer;
-        //private FieldOfView _fieldOfView;
 
         protected void Awake()
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
 
             SetSprite(DefaultSpriteId);
-
-            if (this.GetType() == typeof(Player))
-            {
-                //CameraController.Singleton.Camera.transform.parent = this.transform;
-                //CameraController.Singleton.Position = (0, 0);
-
-                //_fieldOfView = Instantiate(Resources.Load<FieldOfView>("FieldOfView"));
-                //_fieldOfView.transform.parent = this.transform;
-
-                //SpriteMask spriteMask = Instantiate(Resources.Load<SpriteMask>("Sprite Mask"));
-                //spriteMask.transform.parent = this.transform;
-                //}
-
-            }
-            //SpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
+            
             SpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-
-            //GetComponent<Renderer>().material = Resources.Load<Material>("Materials/Objects");
         }
 
         protected virtual void InstantiateAudio(string attackSound, string deathSound)
@@ -145,21 +127,6 @@ namespace DungeonCrawl.Actors
 
         public virtual void ApplyDamage(int damage)
         {
-            //this.Health -= damage;
-            //if (this.Health <= 0)
-            //{
-            //    // Die
-            //    //Character.OnDeath();
-            //    var cams = GameObject.FindObjectsOfType(typeof(Camera));
-            //    foreach (Camera cam in cams)
-            //    {
-            //        if (cam.name == "BattleCamera")
-            //        {
-            //            cam.enabled = false;
-            //        }
-            //    }
-            //    ActorManager.Singleton.DestroyActor(this);
-            //}
         }
 
         /// <summary>

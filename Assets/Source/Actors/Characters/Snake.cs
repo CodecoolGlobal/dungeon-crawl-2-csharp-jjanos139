@@ -1,5 +1,4 @@
-﻿using DungeonCrawl.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -19,8 +18,8 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("Trust in me...");
         }
 
-        public override string AttackSoundFileName => "SnakeSound";
-        public override string DeathSoundFileName => "SnakeDeathSound";
+        public override string AttackSoundFileName => "Sounds/SnakeSound";
+        public override string DeathSoundFileName => "Sounds/SnakeDeathSound";
         public override int DefaultSpriteId => 411;
         public override string DefaultName => "Snake";
         public override int Health

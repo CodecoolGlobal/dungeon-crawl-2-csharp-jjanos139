@@ -1,5 +1,4 @@
-﻿using DungeonCrawl.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -19,8 +18,8 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("Take me to the magic of the moment\nOn a glory night");
         }
 
-        public override string AttackSoundFileName => "ScorpionSound";
-        public override string DeathSoundFileName => "ScorpionDeathSound";
+        public override string AttackSoundFileName => "Sounds/ScorpionSound";
+        public override string DeathSoundFileName => "Sounds/ScorpionDeathSound";
         public override int DefaultSpriteId => 263;
         public override string DefaultName => "Scorpion";
         public override int Health

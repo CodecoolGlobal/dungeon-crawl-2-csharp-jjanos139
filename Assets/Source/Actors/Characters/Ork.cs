@@ -1,5 +1,4 @@
-﻿using DungeonCrawl.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -19,8 +18,8 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("Looks like meat is back on the menu boys.");
         }
 
-        public override string AttackSoundFileName => "OrkSound";
-        public override string DeathSoundFileName => "OrkDeathSound";
+        public override string AttackSoundFileName => "Sounds/OrkSound";
+        public override string DeathSoundFileName => "Sounds/OrkDeathSound";
         public override int DefaultSpriteId => 124;
         public override string DefaultName => "Ork";
         public override int Health

@@ -1,9 +1,7 @@
-﻿using System;
-using Assets.Source.Actors.Items;
-using UnityEngine;
+﻿using UnityEngine;
 using Assets.Source.Core;
 using DungeonCrawl.Core;
-using UnityEngine.Rendering;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace DungeonCrawl.Actors.Characters
@@ -12,9 +10,9 @@ namespace DungeonCrawl.Actors.Characters
     {
         protected override void InstantiateAudio(string _, string __)
         {
-            DeathSound1 = Instantiate(Resources.Load<AudioSource>("DeathSound1"));
-            DeathSound2 = Instantiate(Resources.Load<AudioSource>("DeathSound2"));
-            DeathSound3 = Instantiate(Resources.Load<AudioSource>("DeathSound3"));
+            DeathSound1 = Instantiate(Resources.Load<AudioSource>("Sounds/DeathSound1"));
+            DeathSound2 = Instantiate(Resources.Load<AudioSource>("Sounds/DeathSound2"));
+            DeathSound3 = Instantiate(Resources.Load<AudioSource>("Sounds/DeathSound3"));
             DeathSound1.transform.parent = transform;
             DeathSound2.transform.parent = transform;
             DeathSound3.transform.parent = transform;
@@ -42,6 +40,9 @@ namespace DungeonCrawl.Actors.Characters
             _fieldOfView = Instantiate(Resources.Load<FieldOfView>("FieldOfView"));
             _fieldOfView.transform.parent = this.transform;
             _fieldOfView.SetOrigin(transform.position);
+
+            _light2D = Instantiate(Resources.Load<Light2D>("Shaders/Light 2D"));
+            _light2D.transform.parent = transform;
         }
 
         protected override void OnUpdate(float deltaTime)
@@ -167,7 +168,7 @@ namespace DungeonCrawl.Actors.Characters
 
         private void PlayRandomDeathSound()
         {
-            int soundCase = Utilities.GetRandomInt(1, 4);
+            int soundCase = Utilities.GetRandomIntBetween(1, 4);
 
             switch (soundCase)
             {
@@ -187,6 +188,7 @@ namespace DungeonCrawl.Actors.Characters
         private AudioSource DeathSound2;
         private AudioSource DeathSound3;
         private FieldOfView _fieldOfView;
+        private Light2D _light2D;
         public override int DefaultSpriteId => 24;
         public override string DefaultName => "Player";
         public override int Health

@@ -53,13 +53,6 @@ namespace Assets.Source.Core
             if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs {x = x, y = y});
         }
 
-        //public void SetGridObject(Vector3 worldPosition, TGridObject value)
-        //{
-        //    int x, y;
-        //    GetXY(worldPosition, out x, out y);
-        //    SetGridObject(x, y, value);
-        //}
-
         public TGridObject GetGridObject(int x, int y)
         {
             if (x >= 0 && y >= 0 && x < width && y < height)
@@ -71,13 +64,6 @@ namespace Assets.Source.Core
                 return default(TGridObject);
             }
         }
-
-        //public TGridObject GetGridObject(Vector3 worldPosition)
-        //{
-        //    int x, y;
-        //    GetXY(worldPosition, out x, out y);
-        //    return GetGridObject(x, y);
-        //}
 
         public void TriggerObjectChange(int x, int y)
         {

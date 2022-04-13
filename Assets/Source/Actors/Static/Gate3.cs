@@ -1,7 +1,4 @@
 ﻿using System.Linq;
-using Assets.Source.Actors.Items;
-using DungeonCrawl.Actors.Characters;
-using DungeonCrawl.Core;
 
 namespace DungeonCrawl.Actors.Static
 {

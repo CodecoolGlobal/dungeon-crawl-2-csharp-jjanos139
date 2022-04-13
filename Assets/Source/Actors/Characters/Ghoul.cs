@@ -42,8 +42,8 @@ namespace DungeonCrawl.Actors.Characters
         }
 
         private float _turnCounter;
-        public override string AttackSoundFileName => "GhoulSound";
-        public override string DeathSoundFileName => "GhoulDeathSound";
+        public override string AttackSoundFileName => "Sounds/GhoulSound";
+        public override string DeathSoundFileName => "Sounds/GhoulDeathSound";
         public override int DefaultSpriteId => 315;
         public override string DefaultName => "Ghoul";
         public override int Health

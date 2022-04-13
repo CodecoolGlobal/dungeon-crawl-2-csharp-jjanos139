@@ -1,7 +1,5 @@
 ﻿using Assets.Source.Actors.Static;
-using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Core;
-using UnityEngine;
 
 namespace DungeonCrawl.Actors.Static
 {
@@ -40,7 +38,7 @@ namespace DungeonCrawl.Actors.Static
             return false;
         }
 
-        public override string AttackSoundFileName => "MapOneMusic";
+        public override string AttackSoundFileName => "Sounds/MapOneMusic";
         public override int DefaultSpriteId => 289;
         public override string DefaultName => "Stairs";
         public override int Z => -1;

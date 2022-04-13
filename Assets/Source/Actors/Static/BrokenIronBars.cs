@@ -1,7 +1,4 @@
-﻿using DungeonCrawl.Actors.Characters;
-using UnityEngine;
-
-namespace DungeonCrawl.Actors.Static
+﻿namespace DungeonCrawl.Actors.Static
 {
     public class BrokenIronBars : Actor
     {
