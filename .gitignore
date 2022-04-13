@@ -70,7 +70,6 @@ crashlytics-build.properties
 
 .vsconfig
 Assembly-CSharp.csproj
-*.asset
 *.pfx
 *.meta
 *.spriteatlas
