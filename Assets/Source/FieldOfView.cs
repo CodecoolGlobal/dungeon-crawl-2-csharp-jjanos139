@@ -17,13 +17,13 @@ public class FieldOfView : MonoBehaviour
         GetComponent<MeshFilter>().mesh = _mesh;
     }
 
+    public float viewDistance = 10f;
     private void LateUpdate()
     {
         float fov = 360f;
         int rayCount = 100;
         float angle = 0f;
         float angleIncrease = fov / rayCount;
-        float viewDistance = 6f;
 
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
