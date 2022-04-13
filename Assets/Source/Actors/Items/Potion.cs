@@ -5,6 +5,6 @@
         public override int DefaultSpriteId => 569;
         public override string DefaultName => "Potion";
         public override char DefaultChar => 'P';
-        public override int Damage => -30;
+        public override int Damage => -50;
     }
 }

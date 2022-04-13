@@ -16,6 +16,9 @@ namespace DungeonCrawl.Actors.Static
                     ActorManager.Singleton.FreezeActualMap(2);
                     ActorManager.Singleton.DestroyAllActors();
                     AttackSound.Play();
+                    MapLoader.LoadMap(3);
+                    ActorManager.Singleton.FreezeActualMap(3);
+                    ActorManager.Singleton.DestroyAllActors();
                     MapLoader.ReLoadMap(1);
                     anotherActor.Position = (48, -22);
                 }

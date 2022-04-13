@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Source.Actors.Items;
 using UnityEngine;
 using Assets.Source.Core;
 using DungeonCrawl.Core;
@@ -131,10 +132,13 @@ namespace DungeonCrawl.Actors.Characters
                     if (ItemUnder != null)
                     {
                         UserInterface.Singleton.SetText(null, UserInterface.TextPosition.BottomRight);
-                        this.Inventory.Add(ItemUnder);
-                        this.Health += ItemUnder.Health;
-                        this.MaxHealth += ItemUnder.Health;
-                        this.Damage += ItemUnder.Damage;
+                        Inventory.Add(ItemUnder);
+                        if (ItemUnder.name != "Potion")
+                        {
+                            Health += ItemUnder.Health;
+                            MaxHealth += ItemUnder.Health;
+                            Damage += ItemUnder.Damage;
+                        }
                         ActorManager.Singleton.DestroyActor(ItemUnder);
                     }
                 }
@@ -190,8 +194,16 @@ namespace DungeonCrawl.Actors.Characters
             get;
             set;
         } = 1000;
-        public override int MaxHealth => 1000;
-        public override int Damage => 15;
+        public override int MaxHealth
+        {
+            get;
+            set;
+        } = 1000;
+        public override int Damage
+        {
+            get;
+            set;
+        } = 15;
         private float _turnCounter;
     }
 }

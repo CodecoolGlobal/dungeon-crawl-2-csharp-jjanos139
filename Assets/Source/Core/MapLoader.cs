@@ -356,7 +356,7 @@ namespace DungeonCrawl.Core
                     break;
                 case '§':
                     ActorManager.Singleton.Spawn<LastBoss>(position);
-                    ActorManager.Singleton.Spawn<GrassFloor>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
                     break;
                 case '=':
                     ActorManager.Singleton.Spawn<Battleaxe>(position);

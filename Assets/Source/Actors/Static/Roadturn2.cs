@@ -29,12 +29,11 @@ namespace DungeonCrawl.Actors.Static
             }
         }
 
-        public override bool OnCollision(Actor anotherActor)
+        public void OnTriggerEnter2D(Collider2D collider2D)
         {
-            if (anotherActor is Player)
-                PlayRandomFootStepCitySound(); return true;
+            PlayRandomFootStepCitySound();
         }
-        
+
         private AudioSource FootStepCity1;
         private AudioSource FootStepCity2;
         private AudioSource FootStepCity3;
@@ -42,6 +41,6 @@ namespace DungeonCrawl.Actors.Static
         public override string DefaultName => "RoadTurn2";
         public override bool IsWalkable => true;
         public override char DefaultChar => 'ß';
-        public override bool Detectable => true;
+        public override bool Detectable => false;
     }
 }

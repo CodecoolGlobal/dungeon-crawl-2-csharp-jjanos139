@@ -1,4 +1,6 @@
-﻿using DungeonCrawl.Actors.Characters;
+﻿using System.Linq;
+using Assets.Source.Actors.Items;
+using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Core;
 
 namespace DungeonCrawl.Actors.Static
@@ -9,11 +11,10 @@ namespace DungeonCrawl.Actors.Static
         public override string DefaultName => "Gate3";
         public override bool Detectable => true;
         public override char DefaultChar => 'l';
-        Actor _actorKey = ActorManager.Singleton.GetActorAt((35, -12));
 
         public override bool OnCollision(Actor anotherActor)
         {
-            if (anotherActor.Inventory.Contains(_actorKey))
+            if (anotherActor.Inventory.Count(Actor => Actor.DefaultName == "Key") >= 1)
                 return true;
 
             return false;

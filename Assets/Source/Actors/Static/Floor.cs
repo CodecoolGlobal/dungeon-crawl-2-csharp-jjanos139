@@ -28,12 +28,9 @@ namespace DungeonCrawl.Actors.Static
                 case 3: _footStepCave3.Play(); break;
             }
         }
-
-        public override bool OnCollision(Actor anotherActor)
+        public void OnTriggerEnter2D(Collider2D collider2D)
         {
-            if (anotherActor is Player)
-                PlayRandomFootStepCaveSound();
-            return true;
+            PlayRandomFootStepCaveSound();
         }
 
         private AudioSource _footStepCave1;

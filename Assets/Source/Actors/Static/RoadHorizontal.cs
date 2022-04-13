@@ -28,12 +28,9 @@ namespace DungeonCrawl.Actors.Static
                 case 3: FootStepCity3.Play(); break;
             }
         }
-
-        public override bool OnCollision(Actor anotherActor)
+        public void OnTriggerEnter2D(Collider2D collider2D)
         {
-            if (anotherActor is Player)
-                PlayRandomFootStepCitySound();
-            return true;
+            PlayRandomFootStepCitySound();
         }
 
         private AudioSource FootStepCity1;
@@ -43,6 +40,6 @@ namespace DungeonCrawl.Actors.Static
         public override string DefaultName => "RoadHorizontal";
         public override char DefaultChar => '{';
         public override bool IsWalkable => true;
-        public override bool Detectable => true;
+        public override bool Detectable => false;
     }
 }

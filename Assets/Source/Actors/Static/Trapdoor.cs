@@ -17,7 +17,7 @@ namespace DungeonCrawl.Actors.Static
                     MapLoader.LoadMap(2);
                     anotherActor.Position = (4, -17);
                 }
-                else if (this.Position == (49, -22))
+                else if (MapLoader.AllActorsSecondMap != null && this.Position == (49, -22))
                 {
                     ActorManager.Singleton.FreezeActualMap(1);
                     ActorManager.Singleton.DestroyAllActors();

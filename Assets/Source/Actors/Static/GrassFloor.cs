@@ -29,11 +29,9 @@ namespace DungeonCrawl.Actors.Static
             }
         }
 
-        public override bool OnCollision(Actor anotherActor)
+        public void OnTriggerEnter2D(Collider2D collider2D)
         {
-            if (anotherActor is Player)
-                PlayRandomFootStepWoodsSound(); 
-            return true;
+            PlayRandomFootStepWoodsSound();
         }
 
         private AudioSource _footStepWoods1;
