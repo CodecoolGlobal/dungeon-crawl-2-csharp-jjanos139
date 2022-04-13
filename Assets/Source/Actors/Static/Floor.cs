@@ -1,22 +1,13 @@
 ﻿using UnityEngine;
 using System;
+using Assets.Source.Actors.Static;
 using DungeonCrawl.Actors.Characters;
 
 namespace DungeonCrawl.Actors.Static
 {
-    public class Floor : Actor
+    public class Floor : Traversable
     {
-        private AudioSource _footStepCave1;
-        private AudioSource _footStepCave2;
-        private AudioSource _footStepCave3;
-
-        readonly System.Random _randomSound = new System.Random();
-        private void Awake()
-        {
-            base.Awake();
-            InstantiateAudio();
-        }
-        private void InstantiateAudio()
+        protected override void InstantiateAudio(string _, string __)
         {
             _footStepCave1 = Instantiate(Resources.Load<AudioSource>("FootStepCave1"));
             _footStepCave2 = Instantiate(Resources.Load<AudioSource>("FootStepCave2"));
@@ -25,9 +16,10 @@ namespace DungeonCrawl.Actors.Static
             _footStepCave2.transform.parent = transform;
             _footStepCave3.transform.parent = transform;
         }
+
         private void PlayRandomFootStepCaveSound()
         {
-            int soundCase = _randomSound.Next(1, 4);
+            int soundCase = Utilities.GetRandomInt(1, 4);
 
             switch (soundCase)
             {
@@ -44,6 +36,9 @@ namespace DungeonCrawl.Actors.Static
             return true;
         }
 
+        private AudioSource _footStepCave1;
+        private AudioSource _footStepCave2;
+        private AudioSource _footStepCave3;
         public override int DefaultSpriteId => 106;
         public override string DefaultName => "Floor";
         public override bool IsWalkable => true;

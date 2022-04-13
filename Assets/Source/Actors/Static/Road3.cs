@@ -1,22 +1,13 @@
 ﻿using UnityEngine;
 using System;
+using Assets.Source.Actors.Static;
 using DungeonCrawl.Actors.Characters;
 
 namespace DungeonCrawl.Actors.Static
 {
-    public class Road3 : Actor
+    public class Road3 : Traversable
     {
-        private AudioSource FootStepCity1;
-        private AudioSource FootStepCity2;
-        private AudioSource FootStepCity3;
-
-        readonly System.Random _randomSound = new System.Random();
-        private void Awake()
-        {
-            base.Awake();
-            InstantiateAudio();
-        }
-        private void InstantiateAudio()
+        protected override void InstantiateAudio(string _, string __)
         {
             FootStepCity1 = Instantiate(Resources.Load<AudioSource>("FootStepCity1"));
             FootStepCity2 = Instantiate(Resources.Load<AudioSource>("FootStepCity2"));
@@ -25,9 +16,10 @@ namespace DungeonCrawl.Actors.Static
             FootStepCity2.transform.parent = transform;
             FootStepCity3.transform.parent = transform;
         }
+
         private void PlayRandomFootStepCitySound()
         {
-            int soundCase = _randomSound.Next(1, 4);
+            int soundCase = Utilities.GetRandomInt(1, 4);
 
             switch (soundCase)
             {
@@ -36,11 +28,16 @@ namespace DungeonCrawl.Actors.Static
                 case 3: FootStepCity3.Play(); break;
             }
         }
+
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
                 PlayRandomFootStepCitySound(); return true;
         }
+
+        private AudioSource FootStepCity1;
+        private AudioSource FootStepCity2;
+        private AudioSource FootStepCity3;
         public override int DefaultSpriteId => 10;
         public override string DefaultName => "Road3";
         public override char DefaultChar => '@';

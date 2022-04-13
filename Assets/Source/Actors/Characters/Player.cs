@@ -132,6 +132,9 @@ namespace DungeonCrawl.Actors.Characters
                     {
                         UserInterface.Singleton.SetText(null, UserInterface.TextPosition.BottomRight);
                         this.Inventory.Add(ItemUnder);
+                        this.Health += ItemUnder.Health;
+                        this.MaxHealth += ItemUnder.Health;
+                        this.Damage += ItemUnder.Damage;
                         ActorManager.Singleton.DestroyActor(ItemUnder);
                     }
                 }
@@ -179,7 +182,6 @@ namespace DungeonCrawl.Actors.Characters
         private AudioSource DeathSound1;
         private AudioSource DeathSound2;
         private AudioSource DeathSound3;
-        BattleSystem battleSystem = new BattleSystem();
         private FieldOfView _fieldOfView;
         public override int DefaultSpriteId => 24;
         public override string DefaultName => "Player";

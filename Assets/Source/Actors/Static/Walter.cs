@@ -4,11 +4,11 @@
     {
         public override int DefaultSpriteId => 201;
         public override string DefaultName => "Walter";
+        public override char DefaultChar => 'Q';
 
         public override bool OnCollision(Actor anotherActor)
         {
             return false;
         }
-        public override char DefaultChar => 'Q';
     }
 }

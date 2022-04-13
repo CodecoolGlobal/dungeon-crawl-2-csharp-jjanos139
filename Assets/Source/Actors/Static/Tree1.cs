@@ -7,12 +7,11 @@ namespace DungeonCrawl.Actors.Static
         public override int DefaultSpriteId => 49;
         public override string DefaultName => "Tree1";
         public override int Z => -1;
+        public override char DefaultChar => 'f';
 
         public override bool OnCollision(Actor anotherActor)
         {
             return false;
         }
-
-        public override char DefaultChar => 'f';
     }
 }

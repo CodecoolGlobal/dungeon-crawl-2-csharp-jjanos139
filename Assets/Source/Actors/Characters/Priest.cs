@@ -47,8 +47,8 @@ namespace DungeonCrawl.Actors.Characters
             get;
             set;
         } = 100;
-        public override int MaxHealth => 100;
-        public override int Damage => 10;
+        public override int MaxHealth => 150;
+        public override int Damage => 15;
         public override char DefaultChar => '%';
     }
 }

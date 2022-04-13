@@ -6,13 +6,6 @@
         public override string DefaultName => "Gate2";
         public override bool Detectable => false;
         public override bool IsWalkable => true;
-
         public override char DefaultChar => 'k';
-
-        //public override bool OnCollision(Actor anotherActor)
-        //{
-        //    return false;
-        //}
-
     }
 }

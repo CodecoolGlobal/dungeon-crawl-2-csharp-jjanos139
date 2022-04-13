@@ -7,9 +7,11 @@ namespace DungeonCrawl.Actors.Static
         public override int DefaultSpriteId => 194;
         public override string DefaultName => "IronDoor";
         public override int Z => -1;
-
+        public override char DefaultChar => '8';
         Actor _actorKey1 = ActorManager.Singleton.GetActorAt((19, -11));
         Actor _actorKey2 = ActorManager.Singleton.GetActorAt((78, -2));
+        private Actor _actorKey3 = ActorManager.Singleton.GetActorAt((96, -32));
+        
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor.DefaultName == "Soul")
@@ -20,9 +22,9 @@ namespace DungeonCrawl.Actors.Static
                 return true;
             else if (anotherActor.Inventory.Contains(_actorKey2) && this.Position == (14, -26))
                 return true;
+            else if (anotherActor.Inventory.Contains(_actorKey3) && this.Position == (84, -31))
+                return true;
             return false;
         }
-
-        public override char DefaultChar => '8';
     }
 }

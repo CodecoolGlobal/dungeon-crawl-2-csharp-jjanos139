@@ -121,10 +121,6 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<Diamond>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
                     break;
-                case 'd':
-                    ActorManager.Singleton.Spawn<Drumstick>(position);
-                    ActorManager.Singleton.Spawn<Floor>(position);
-                    break;
                 case 'e':
                     ActorManager.Singleton.Spawn<Explosive>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
@@ -442,6 +438,10 @@ namespace DungeonCrawl.Core
                     break;
                 case 'á':
                     ActorManager.Singleton.Spawn<Spider>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
+                case ';':
+                    ActorManager.Singleton.Spawn<Key>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
                     break;
                 case ' ':

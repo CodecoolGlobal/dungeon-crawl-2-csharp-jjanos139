@@ -5,11 +5,11 @@
         public override int DefaultSpriteId => 967;
         public override string DefaultName => "House2";
         public override int Z => -1;
+        public override char DefaultChar => 'Ó';
+
         public override bool OnCollision(Actor anotherActor)
         {
             return false;
         }
-
-        public override char DefaultChar => 'Ó';
     }
 }

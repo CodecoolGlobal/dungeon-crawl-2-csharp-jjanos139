@@ -10,11 +10,12 @@ namespace DungeonCrawl.Actors.Characters
     {
         protected BattleSystem battleSystem = new BattleSystem();
 
-        private void Awake()
+        public void Awake()
         {
             base.Awake();
             InstantiateAudio(AttackSoundFileName, DeathSoundFileName);
         }
+
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
@@ -26,14 +27,6 @@ namespace DungeonCrawl.Actors.Characters
             }
 
             return false;
-        }
-
-        protected virtual void InstantiateAudio(string attackSound, string deathSound)
-        {
-            AttackSound = Instantiate(Resources.Load<AudioSource>(attackSound));
-            AttackSound.transform.parent = transform;
-            DeathSound = Instantiate(Resources.Load<AudioSource>(deathSound));
-            DeathSound.transform.parent = transform;
         }
 
         protected void CheckIfAggro((int x, int y) playerCoords, int agroRange, int loseAgroRange)
@@ -222,10 +215,7 @@ namespace DungeonCrawl.Actors.Characters
         ///     All characters are drawn "above" floor etc
         /// </summary>
         public override int Z => -1;
-        public AudioSource AttackSound;
-        public AudioSource DeathSound;
-        public virtual string AttackSoundFileName { get; set; }
-        public virtual string DeathSoundFileName { get; set; }
+
         public override char DefaultChar => 'p';
     }
     

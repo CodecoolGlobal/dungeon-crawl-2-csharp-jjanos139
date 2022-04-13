@@ -5,5 +5,7 @@
         public override int DefaultSpriteId => 84;
         public override string DefaultName => "Armor";
         public override char DefaultChar => 'q';
+        public override int Health => 100;
+
     }
 }

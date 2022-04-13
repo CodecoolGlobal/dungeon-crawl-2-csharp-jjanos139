@@ -49,6 +49,14 @@ namespace DungeonCrawl.Actors
             //GetComponent<Renderer>().material = Resources.Load<Material>("Materials/Objects");
         }
 
+        protected virtual void InstantiateAudio(string attackSound, string deathSound)
+        {
+            AttackSound = Instantiate(Resources.Load<AudioSource>(attackSound));
+            AttackSound.transform.parent = transform;
+            DeathSound = Instantiate(Resources.Load<AudioSource>(deathSound));
+            DeathSound.transform.parent = transform;
+        }
+
         private void Update()
         {
             OnUpdate(Time.deltaTime);
@@ -175,13 +183,19 @@ namespace DungeonCrawl.Actors
 
         public abstract char DefaultChar { get; }
 
-        public virtual int Health { get; set; }
+        public virtual int Health { get; set; } = 0;
 
-        public virtual int MaxHealth { get; }
+        public virtual int MaxHealth { get; set;}
 
         public virtual bool IsWalkable => false;
         public List<Actor> Inventory = new List<Actor>();
         public Actor ItemUnder;
-        public virtual int Damage { get; }
+
+        public virtual int Damage { get; set; } = 0;
+
+        public AudioSource AttackSound;
+        public AudioSource DeathSound;
+        public virtual string AttackSoundFileName { get; set; }
+        public virtual string DeathSoundFileName { get; set; }
     }
 }

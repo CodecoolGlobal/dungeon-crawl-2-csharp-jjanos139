@@ -5,7 +5,7 @@
         public override int DefaultSpriteId => 671;
         public override string DefaultName => "Grave2";
         public override int Z => -1;
-
+        public override char DefaultChar => '(';
 
         public override bool OnCollision(Actor anotherActor)
         {
@@ -15,7 +15,5 @@
             }
             return false;
         }
-
-        public override char DefaultChar => '(';
     }
 }

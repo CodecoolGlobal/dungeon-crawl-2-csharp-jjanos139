@@ -1,22 +1,13 @@
 ﻿using UnityEngine;
 using System;
+using Assets.Source.Actors.Static;
 using DungeonCrawl.Actors.Characters;
 
 namespace DungeonCrawl.Actors.Static
 {
-    public class GrassFloor : Actor
+    public class GrassFloor : Traversable
     {
-        private AudioSource _footStepWoods1;
-        private AudioSource _footStepWoods2;
-        private AudioSource _footStepWoods3;
-
-        readonly System.Random _randomSound = new System.Random();
-        private void Awake()
-        {
-            base.Awake();
-            InstantiateAudio();
-        }
-        private void InstantiateAudio()
+        protected override void InstantiateAudio(string _, string __)
         {
             _footStepWoods1 = Instantiate(Resources.Load<AudioSource>("FootStepWoods1"));
             _footStepWoods2 = Instantiate(Resources.Load<AudioSource>("FootStepWoods2"));
@@ -25,9 +16,10 @@ namespace DungeonCrawl.Actors.Static
             _footStepWoods2.transform.parent = transform;
             _footStepWoods3.transform.parent = transform;
         }
+
         private void PlayRandomFootStepWoodsSound()
         {
-            int soundCase = _randomSound.Next(1, 4);
+            int soundCase = Utilities.GetRandomInt(1, 4);
 
             switch (soundCase)
             {
@@ -36,12 +28,17 @@ namespace DungeonCrawl.Actors.Static
                 case 3: _footStepWoods3.Play(); break;
             }
         }
+
         public override bool OnCollision(Actor anotherActor)
         {
             if (anotherActor is Player)
                 PlayRandomFootStepWoodsSound(); 
             return true;
         }
+
+        private AudioSource _footStepWoods1;
+        private AudioSource _footStepWoods2;
+        private AudioSource _footStepWoods3;
         public override int DefaultSpriteId => 0;
         public override string DefaultName => "GrassFloor";
         public override bool IsWalkable => true;
